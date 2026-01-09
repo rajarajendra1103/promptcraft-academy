@@ -6,28 +6,27 @@ import { useState } from "react";
 const navLinks = [
   { href: "/curriculum", label: "Curriculum" },
   { href: "/sandbox", label: "Sandbox" },
-  { href: "/library", label: "Prompt Library" },
-  { href: "/docs", label: "Docs" },
+  { href: "/library", label: "Library" },
 ];
 
 export function Header() {
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary shadow-glow">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
               <Terminal className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold tracking-tight">
-              Prompt<span className="text-gradient">Forge</span>
+            <span className="text-xl font-bold">
+              Prompt<span className="text-primary">Forge</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
@@ -36,7 +35,7 @@ export function Header() {
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   location.pathname === link.href
                     ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -45,48 +44,32 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
-              Sign In
-            </Button>
-            <Button variant="hero" size="sm">
-              Start Learning
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/curriculum">Start Learning</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-secondary"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border/50 animate-fade-in">
+        {menuOpen && (
+          <nav className="md:hidden py-4 border-t border-border/50">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname === link.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 text-sm font-medium hover:bg-secondary rounded-lg"
+                onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-border/50">
-              <Button variant="ghost" className="justify-start">
-                Sign In
-              </Button>
-              <Button variant="hero">
-                Start Learning
-              </Button>
-            </div>
           </nav>
         )}
       </div>
