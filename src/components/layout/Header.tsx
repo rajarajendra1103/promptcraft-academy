@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Terminal, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
   { href: "/curriculum", label: "Curriculum" },
@@ -44,6 +45,7 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Button variant="outline" size="sm" asChild>
               <Link to="/curriculum">Start Learning</Link>
             </Button>

@@ -71,11 +71,18 @@ const Lesson = () => {
             </div>
           )}
 
-          {/* Content */}
-          {lesson.content?.content && (
+          {/* Summary */}
+          {lesson.content?.summary && (
+            <div className="p-4 rounded-lg bg-primary/5 border border-primary/20 mb-8">
+              <p className="text-muted-foreground">{lesson.content.summary}</p>
+            </div>
+          )}
+
+          {/* Theory */}
+          {lesson.content?.theory && (
             <div className="prose prose-invert max-w-none mb-8">
               <div className="whitespace-pre-line text-muted-foreground leading-relaxed">
-                {lesson.content.content}
+                {lesson.content.theory}
               </div>
             </div>
           )}
@@ -83,7 +90,7 @@ const Lesson = () => {
           {/* Examples */}
           {lesson.content?.examples?.map((example, i) => (
             <div key={i} className="mb-8">
-              <h3 className="text-lg font-semibold mb-4">Example {i + 1}</h3>
+              <h3 className="text-lg font-semibold mb-4">{example.title || `Example ${i + 1}`}</h3>
               
               <div className="space-y-4">
                 <div>
@@ -108,9 +115,41 @@ const Lesson = () => {
                     {example.after}
                   </div>
                 </div>
+
+                {example.explanation && (
+                  <p className="text-sm text-muted-foreground italic">{example.explanation}</p>
+                )}
               </div>
             </div>
           ))}
+
+          {/* Exercises */}
+          {lesson.content?.exercises && lesson.content.exercises.length > 0 && (
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4">Exercises</h3>
+              <div className="space-y-4">
+                {lesson.content.exercises.map((exercise, i) => (
+                  <div key={i} className="p-4 rounded-lg bg-card border border-border">
+                    <h4 className="font-medium mb-2">{exercise.title}</h4>
+                    <p className="text-muted-foreground text-sm mb-3">{exercise.instructions}</p>
+                    {exercise.starterPrompt && (
+                      <div className="p-3 rounded bg-muted font-mono text-sm">
+                        Start: "{exercise.starterPrompt}"
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Instructor Notes */}
+          {lesson.content?.instructorNotes && (
+            <div className="p-4 rounded-lg bg-accent/10 border border-accent/20 mb-8">
+              <h4 className="font-medium mb-2 text-accent">💡 Instructor Notes</h4>
+              <p className="text-sm text-muted-foreground">{lesson.content.instructorNotes}</p>
+            </div>
+          )}
 
           {/* Navigation */}
           <div className="mt-12 flex items-center justify-between pt-8 border-t border-border">
