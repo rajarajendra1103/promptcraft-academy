@@ -82,7 +82,16 @@ const Lesson = () => {
           {lesson.content?.theory && (
             <div className="prose prose-invert max-w-none mb-8">
               <div className="whitespace-pre-line text-muted-foreground leading-relaxed">
-                {lesson.content.theory}
+                {lesson.content.theory.split(/(\*\*[^*]+\*\*)/).map((part, i) => {
+                  if (part.startsWith('**') && part.endsWith('**')) {
+                    return (
+                      <span key={i} className="text-amber-400 font-semibold">
+                        {part.slice(2, -2)}
+                      </span>
+                    );
+                  }
+                  return part;
+                })}
               </div>
             </div>
           )}
@@ -123,20 +132,20 @@ const Lesson = () => {
             </div>
           ))}
 
-          {/* Exercises */}
-          {lesson.content?.exercises && lesson.content.exercises.length > 0 && (
+          {/* Keywords Dictionary */}
+          {lesson.content?.keywords && lesson.content.keywords.length > 0 && (
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-4">Exercises</h3>
-              <div className="space-y-4">
-                {lesson.content.exercises.map((exercise, i) => (
+              <h3 className="text-xl font-semibold mb-4">📖 Keywords Dictionary</h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                {lesson.content.keywords.map((keyword, i) => (
                   <div key={i} className="p-4 rounded-lg bg-card border border-border">
-                    <h4 className="font-medium mb-2">{exercise.title}</h4>
-                    <p className="text-muted-foreground text-sm mb-3">{exercise.instructions}</p>
-                    {exercise.starterPrompt && (
-                      <div className="p-3 rounded bg-muted font-mono text-sm">
-                        Start: "{exercise.starterPrompt}"
-                      </div>
-                    )}
+                    <h4 className="font-semibold text-amber-400 mb-2">{keyword.term}</h4>
+                    <p className="text-muted-foreground text-sm mb-2">
+                      <span className="text-foreground font-medium">Meaning:</span> {keyword.meaning}
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      <span className="text-foreground font-medium">Usage:</span> {keyword.usage}
+                    </p>
                   </div>
                 ))}
               </div>
