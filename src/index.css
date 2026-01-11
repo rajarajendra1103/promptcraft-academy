@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,61 +7,61 @@
 @layer base {
   :root,
   .dark {
-    --background: 222 47% 6%;
+    --background: 222 47% 5%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 8%;
+    --card: 222 47% 7%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 8%;
+    --popover: 222 47% 7%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 174 72% 56%;
     --primary-foreground: 222 47% 6%;
 
-    --secondary: 222 30% 14%;
+    --secondary: 222 30% 12%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 222 30% 12%;
+    --muted: 222 30% 10%;
     --muted-foreground: 215 20% 55%;
 
-    --accent: 270 60% 60%;
+    --accent: 280 65% 60%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 14%;
+    --border: 222 30% 15%;
+    --input: 222 30% 12%;
     --ring: 174 72% 56%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(174 72% 56%) 0%, hsl(190 80% 50%) 50%, hsl(270 60% 60%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(222 47% 10%) 0%, hsl(222 47% 6%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(222 47% 10%) 0%, hsl(222 47% 8%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 56%) 0%, hsl(200 80% 55%) 50%, hsl(280 65% 60%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(222 47% 8%) 0%, hsl(222 47% 5%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(222 47% 8%) 0%, hsl(222 47% 6%) 100%);
     --gradient-glow: radial-gradient(ellipse at center, hsl(174 72% 56% / 0.15) 0%, transparent 70%);
     
-    --shadow-glow: 0 0 60px hsl(174 72% 56% / 0.2);
-    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.3);
-    --shadow-elevated: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 80px hsl(174 72% 56% / 0.25);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.4);
+    --shadow-elevated: 0 8px 40px hsl(0 0% 0% / 0.5);
 
     --font-sans: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
     /* Level badges */
-    --beginner: 120 60% 50%;
-    --intermediate: 45 90% 55%;
-    --advanced: 0 80% 60%;
+    --beginner: 142 70% 45%;
+    --intermediate: 45 100% 50%;
+    --advanced: 0 85% 60%;
 
-    --sidebar-background: 222 47% 8%;
+    --sidebar-background: 222 47% 7%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 174 72% 56%;
     --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 14%;
+    --sidebar-accent: 222 30% 12%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 30% 18%;
+    --sidebar-border: 222 30% 15%;
     --sidebar-ring: 174 72% 56%;
   }
 
@@ -69,43 +69,43 @@
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
-    --card: 0 0% 98%;
+    --card: 220 20% 97%;
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 174 72% 40%;
+    --primary: 174 72% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 14% 96%;
+    --secondary: 220 14% 94%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 220 14% 96%;
+    --muted: 220 14% 94%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 270 60% 50%;
+    --accent: 280 65% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 174 72% 40%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 174 72% 38%;
 
-    --beginner: 120 60% 35%;
-    --intermediate: 45 90% 40%;
-    --advanced: 0 80% 50%;
+    --beginner: 142 70% 35%;
+    --intermediate: 45 100% 40%;
+    --advanced: 0 85% 50%;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 220 20% 97%;
     --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 174 72% 40%;
+    --sidebar-primary: 174 72% 38%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent: 220 14% 94%;
     --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 174 72% 40%;
+    --sidebar-border: 220 13% 88%;
+    --sidebar-ring: 174 72% 38%;
   }
 }
 
@@ -159,29 +159,38 @@
   }
 
   .code-block {
-    @apply bg-muted rounded-lg p-4 font-mono text-sm overflow-x-auto border border-border;
+    @apply bg-muted rounded-xl p-4 font-mono text-sm overflow-x-auto border border-border;
   }
 
   .prompt-block {
-    @apply bg-secondary rounded-lg p-4 font-mono text-sm border-l-4 border-primary;
+    @apply bg-secondary rounded-xl p-4 font-mono text-sm border-l-4 border-primary;
   }
 
   .badge-beginner {
-    @apply text-xs font-medium px-2 py-0.5 rounded-full;
+    @apply text-xs font-semibold px-3 py-1 rounded-full;
     background-color: hsl(var(--beginner) / 0.15);
     color: hsl(var(--beginner));
   }
 
   .badge-intermediate {
-    @apply text-xs font-medium px-2 py-0.5 rounded-full;
+    @apply text-xs font-semibold px-3 py-1 rounded-full;
     background-color: hsl(var(--intermediate) / 0.15);
     color: hsl(var(--intermediate));
   }
 
   .badge-advanced {
-    @apply text-xs font-medium px-2 py-0.5 rounded-full;
+    @apply text-xs font-semibold px-3 py-1 rounded-full;
     background-color: hsl(var(--advanced) / 0.15);
     color: hsl(var(--advanced));
+  }
+
+  /* Modern card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-elevated;
   }
 }
 
@@ -198,6 +207,11 @@
     animation: gradient 8s ease infinite;
     background-size: 200% 200%;
   }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background-size: 200% 100%;
+  }
 }
 
 @keyframes float {
@@ -206,7 +220,7 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
+  0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
 
@@ -214,4 +228,9 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }

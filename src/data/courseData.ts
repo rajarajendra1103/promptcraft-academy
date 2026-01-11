@@ -2,9 +2,10 @@
 
 // Stats for display
 export const stats = {
-  modules: 8,
-  lessons: 46,
-  hours: 12,
+  totalModules: 8,
+  totalLessons: 52,
+  totalTemplates: 200,
+  hours: 14,
 };
 
 export interface Lesson {
@@ -162,7 +163,28 @@ export const modules: Module[] = [
       { id: "8-5", title: "Emergent AI & Anti Gravity", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
       { id: "8-6", title: "Android Studio AI & Mobile Tools", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
       { id: "8-7", title: "Replit AI & Windsurf", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-8", title: "AI Tools Comparison & Workflow", duration: "25 min", completed: false, level: "advanced", prerequisites: ["8-1", "8-2", "8-3"] },
+      { id: "8-8", title: "ChatGPT - Conversational AI", duration: "25 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
+      { id: "8-9", title: "Gemini AI & Google AI Studio", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-3"] },
+      { id: "8-10", title: "Grok AI by xAI", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-3"] },
+      { id: "8-11", title: "AI Tools Comparison & Workflow", duration: "25 min", completed: false, level: "advanced", prerequisites: ["8-1", "8-2", "8-3"] },
+    ],
+    level: "intermediate",
+  },
+  {
+    id: 9,
+    title: "Game & Simulation Development",
+    description: "Create games, 3D simulations, and interactive experiences with AI.",
+    lessons: [
+      { id: "9-1", title: "Coming Soon", duration: "TBD", completed: false, level: "intermediate", prerequisites: [] },
+    ],
+    level: "intermediate",
+  },
+  {
+    id: 10,
+    title: "Images & Videos Development",
+    description: "Generate, edit, and enhance images and videos using AI tools.",
+    lessons: [
+      { id: "10-1", title: "Coming Soon", duration: "TBD", completed: false, level: "intermediate", prerequisites: [] },
     ],
     level: "intermediate",
   },
@@ -4032,6 +4054,282 @@ Best for:
   },
   "8-8": {
     objectives: [
+      "Master ChatGPT for code generation",
+      "Use effective prompting techniques",
+      "Understand ChatGPT's strengths and limitations",
+    ],
+    summary: "ChatGPT by OpenAI is one of the most popular AI assistants. It excels at explaining concepts, generating code, and helping with a wide range of development tasks.",
+    theory: `**ChatGPT** is OpenAI's conversational AI model. It understands context, remembers conversation history, and can help with coding, writing, and problem-solving.
+
+**Strengths:**
+- Excellent at explanations
+- Great code generation
+- Multi-language support
+- Large context window
+- Plugins and tools
+
+**Best uses for coding:**
+- Explaining concepts
+- Debugging code
+- Writing functions
+- Code reviews
+- Learning new technologies
+
+**Prompting ChatGPT:**
+- Be specific about what you want
+- Provide code context
+- Ask for step-by-step explanations
+- Request specific formats
+
+**GPT-4 vs GPT-3.5:**
+- GPT-4 is more accurate
+- Better at complex tasks
+- Follows instructions better
+- GPT-3.5 is faster and free
+
+**Tips:**
+- Use system messages for role-setting
+- Break complex tasks into steps
+- Ask for alternative approaches
+- Request tests along with code`,
+    examples: [
+      {
+        title: "ChatGPT for Code Generation",
+        before: "Write a sort function",
+        after: `I need a TypeScript function that sorts an array of products.
+
+Product interface:
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  createdAt: Date;
+}
+
+Requirements:
+- Sort by multiple fields (primary and secondary)
+- Support ascending and descending order
+- Handle null values gracefully
+- Return a new array (don't mutate original)
+
+Example usage:
+sortProducts(products, { field: 'price', order: 'asc' })
+sortProducts(products, { field: 'rating', order: 'desc' }, { field: 'name', order: 'asc' })
+
+Please include:
+1. TypeScript types for the sort options
+2. The sort function
+3. 2-3 test cases`,
+        explanation: "ChatGPT works best with clear context, specific requirements, and examples of expected usage.",
+      },
+    ],
+    keywords: [
+      {
+        term: "ChatGPT",
+        meaning: "OpenAI's conversational AI assistant for coding and more",
+        usage: "Ask ChatGPT to explain code, generate functions, or debug issues",
+      },
+      {
+        term: "GPT-4",
+        meaning: "OpenAI's most capable model with advanced reasoning",
+        usage: "Use GPT-4 for complex coding tasks requiring accuracy",
+      },
+      {
+        term: "System Message",
+        meaning: "Instructions that set the AI's behavior for a conversation",
+        usage: "Use system messages to tell ChatGPT to act as a senior developer",
+      },
+    ],
+    instructorNotes: "Demo ChatGPT's code generation and explanation abilities. Show how conversation context improves results. Compare GPT-3.5 and GPT-4 outputs.",
+  },
+  "8-9": {
+    objectives: [
+      "Use Google's Gemini AI for development",
+      "Navigate Google AI Studio",
+      "Leverage Gemini's multimodal capabilities",
+    ],
+    summary: "Gemini is Google's AI model family. It excels at multimodal tasks (text + images), has large context windows, and integrates with Google services.",
+    theory: `**Google Gemini** is a family of AI models from Google, designed to be multimodal and highly capable.
+
+**Model variants:**
+- Gemini Ultra: Most powerful
+- Gemini Pro: Balanced performance
+- Gemini Flash: Fast and efficient
+
+**Strengths:**
+- Long context window (1M+ tokens)
+- Image understanding
+- Code generation
+- Integration with Google tools
+- Competitive pricing
+
+**Google AI Studio:**
+A web interface to experiment with Gemini:
+- Test prompts quickly
+- Tune parameters
+- Create AI applications
+- Generate API keys
+
+**Best for:**
+- Large codebase analysis
+- Image-to-code tasks
+- Documentation review
+- Multi-file understanding
+- Long document processing
+
+**Using Gemini for code:**
+- Upload images of designs
+- Analyze error screenshots
+- Process long documentation
+- Compare multiple files
+
+**Integration:**
+- API access via Google AI
+- Available in Android Studio
+- Works with Vertex AI
+- MakerSuite for experiments`,
+    examples: [
+      {
+        title: "Gemini for Image-to-Code",
+        before: "Make this design",
+        after: `[Attach screenshot of UI design]
+
+Convert this design to React + Tailwind CSS.
+
+Details I can see in the image:
+- Header with navigation and logo
+- Hero section with gradient background
+- 3-column feature cards
+- Footer with newsletter signup
+
+Requirements:
+- Match the colors and spacing closely
+- Use semantic HTML
+- Make it fully responsive
+- Add subtle hover animations
+
+Questions:
+- What font appears to be used?
+- Are there any micro-interactions shown?
+
+Please provide:
+1. Component structure outline
+2. Main page component
+3. Individual sub-components
+4. Tailwind classes matching the design`,
+        explanation: "Gemini's image understanding lets you upload designs and get accurate code that matches the visual.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Gemini",
+        meaning: "Google's multimodal AI model for text, code, and images",
+        usage: "Use Gemini to analyze images and generate matching code",
+      },
+      {
+        term: "Google AI Studio",
+        meaning: "Web interface to experiment with Gemini models",
+        usage: "Test prompts in Google AI Studio before using the API",
+      },
+      {
+        term: "Multimodal",
+        meaning: "AI that understands multiple types of input (text, images, audio)",
+        usage: "Use multimodal AI to convert design screenshots to code",
+      },
+    ],
+    instructorNotes: "Demo Google AI Studio interface. Show image-to-code with a design screenshot. Compare context window sizes between models.",
+  },
+  "8-10": {
+    objectives: [
+      "Understand Grok AI capabilities",
+      "Use Grok for real-time information",
+      "Compare Grok with other AI assistants",
+    ],
+    summary: "Grok is xAI's AI assistant, created by Elon Musk's AI company. It has access to real-time information from X (Twitter) and takes a more direct, unfiltered approach.",
+    theory: `**Grok** is an AI assistant from xAI, designed to be helpful, truthful, and direct.
+
+**Unique features:**
+- Real-time X/Twitter access
+- Current events knowledge
+- Direct, witty responses
+- Less restrictive than others
+- Fast response times
+
+**Best for:**
+- Current trends and news
+- Real-time market info
+- Social media analysis
+- Unfiltered opinions
+- Quick, direct answers
+
+**For developers:**
+- Trending tech discussions
+- Community sentiment
+- Quick code snippets
+- Debugging help
+- Library recommendations
+
+**Access:**
+- X Premium subscription
+- Available on x.com
+- API access available
+- Mobile app
+
+**When to use Grok:**
+- Need current information
+- Want quick, direct answers
+- Researching trends
+- Social context matters
+
+**Limitations:**
+- Smaller context window
+- Less coding depth than GPT-4
+- X-focused knowledge
+- Newer, still evolving`,
+    examples: [
+      {
+        title: "Grok for Tech Research",
+        before: "What's the best frontend framework?",
+        after: `What are developers on X/Twitter saying about React vs Vue vs Svelte in 2024?
+
+I want to understand:
+1. Current community sentiment
+2. Recent major updates or announcements
+3. What problems people are complaining about
+4. What features people are excited about
+5. Any trending migrations (e.g., React to X)
+
+Context: I'm choosing a framework for a new project and want to understand the current landscape beyond just documentation.
+
+Please include:
+- Recent tweets or discussions you're aware of
+- Any notable developer opinions
+- Practical recommendations based on what you see`,
+        explanation: "Grok's access to real-time X data makes it useful for understanding current developer sentiment and trends.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Grok",
+        meaning: "xAI's AI assistant with real-time X/Twitter access",
+        usage: "Use Grok to research current developer trends and sentiment",
+      },
+      {
+        term: "xAI",
+        meaning: "Elon Musk's AI company that created Grok",
+        usage: "xAI focuses on building helpful and truthful AI assistants",
+      },
+      {
+        term: "Real-time",
+        meaning: "Access to current, up-to-date information",
+        usage: "Grok's real-time access helps answer questions about current events",
+      },
+    ],
+    instructorNotes: "Demo Grok's real-time capabilities. Show how it differs from ChatGPT and Gemini. Discuss when real-time information matters for development.",
+  },
+  "8-11": {
+    objectives: [
       "Compare AI development tools",
       "Choose the right tool for each task",
       "Build efficient AI-assisted workflows",
@@ -4048,6 +4346,11 @@ Best for:
 - Cursor: Best overall editor
 - Windsurf: Best for complex projects
 - Replit: Best for learning/sharing
+
+**For conversational AI:**
+- ChatGPT: Best for explanations
+- Gemini: Best for large context
+- Grok: Best for real-time info
 
 **For mobile:**
 - FlutterFlow: Visual Flutter
@@ -4094,6 +4397,14 @@ Working on existing codebase?
 Need mobile app?
 → FlutterFlow for visual building
 → Android Studio + AI for native
+
+Need code explanations?
+→ ChatGPT or Gemini
+→ Ask for step-by-step breakdowns
+
+Researching trends?
+→ Grok for real-time info
+→ Check what developers are saying
 
 Workflow example:
 1. Sketch idea on paper
