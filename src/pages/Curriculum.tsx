@@ -1,9 +1,9 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
-import { BookOpen, Clock, ArrowRight, PlayCircle, FileText, ExternalLink } from "lucide-react";
+import { BookOpen, Clock, ArrowRight, PlayCircle, FileText, ExternalLink, Code, Smartphone, Gamepad2, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { modules, stats } from "@/data/courseData";
+import { modules, stats, sections } from "@/data/courseData";
 
 // Learn more links - YouTube tutorials and articles
 const learnMoreLinks: Record<string, { url: string; type: "youtube" | "article" }> = {
@@ -82,6 +82,20 @@ const learnMoreLinks: Record<string, { url: string; type: "youtube" | "article" 
   "11-5": { url: "https://www.youtube.com/watch?v=ZLAbQ8TLkxk", type: "youtube" },
 };
 
+const sectionIcons: Record<string, React.ReactNode> = {
+  "web-development": <Code className="h-6 w-6" />,
+  "app-development": <Smartphone className="h-6 w-6" />,
+  "games-simulation": <Gamepad2 className="h-6 w-6" />,
+  "images-videos": <Image className="h-6 w-6" />,
+};
+
+const sectionColors: Record<string, string> = {
+  "web-development": "from-primary to-cyan-500",
+  "app-development": "from-violet-500 to-purple-600",
+  "games-simulation": "from-orange-500 to-red-500",
+  "images-videos": "from-pink-500 to-rose-500",
+};
+
 const Curriculum = () => {
   return (
     <div className="min-h-screen bg-background">
@@ -131,100 +145,122 @@ const Curriculum = () => {
             </div>
           </div>
 
-          {/* Modules Grid */}
-          <div className="space-y-8">
-            {modules.map((module) => (
-              <div
-                key={module.id}
-                className="group rounded-3xl border bg-card border-border/50 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
-              >
-                {/* Module Header */}
-                <div className="p-8 bg-gradient-to-r from-muted/30 to-transparent">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                    <div className="flex items-start gap-5">
-                      <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20">
-                        <span className="text-2xl font-bold text-gradient">
-                          {String(module.id).padStart(2, "0")}
-                        </span>
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <h2 className="text-2xl font-bold group-hover:text-primary transition-colors">
-                            {module.title}
-                          </h2>
-                          <span className={`badge-${module.level}`}>{module.level}</span>
-                        </div>
-                        <p className="text-muted-foreground max-w-xl">{module.description}</p>
-                      </div>
+          {/* Sections */}
+          <div className="space-y-16">
+            {sections.map((section) => {
+              const sectionModules = modules.filter((m) => section.moduleIds.includes(m.id));
+              
+              return (
+                <div key={section.id} className="space-y-6">
+                  {/* Section Header */}
+                  <div className="flex items-center gap-4 pb-4 border-b border-border/50">
+                    <div className={`flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${sectionColors[section.id]} text-white shadow-lg`}>
+                      {sectionIcons[section.id]}
                     </div>
-                    <div className="flex items-center gap-4">
-                      <div className="text-center px-4">
-                        <div className="text-2xl font-bold text-primary">{module.lessons.length}</div>
-                        <div className="text-xs text-muted-foreground">lessons</div>
-                      </div>
-                      <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
-                        <Link to={`/lesson/${module.lessons[0].id}`}>
-                          Start Learning
-                          <ArrowRight className="h-4 w-4 ml-2" />
-                        </Link>
-                      </Button>
+                    <div>
+                      <h2 className="text-3xl font-bold">{section.title}</h2>
+                      <p className="text-muted-foreground">{section.description}</p>
                     </div>
                   </div>
-                </div>
 
-                {/* Lessons List */}
-                <div className="border-t border-border/50">
-                  {module.lessons.map((lesson, idx) => (
-                    <div
-                      key={lesson.id}
-                      className={`flex items-center justify-between px-8 py-5 hover:bg-muted/30 transition-colors ${
-                        idx !== module.lessons.length - 1 ? "border-b border-border/30" : ""
-                      }`}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-muted text-sm font-medium text-muted-foreground">
-                          {idx + 1}
+                  {/* Modules Grid */}
+                  <div className="space-y-6">
+                    {sectionModules.map((module) => (
+                      <div
+                        key={module.id}
+                        className="group rounded-3xl border bg-card border-border/50 overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5"
+                      >
+                        {/* Module Header */}
+                        <div className="p-8 bg-gradient-to-r from-muted/30 to-transparent">
+                          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div className="flex items-start gap-5">
+                              <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20">
+                                <span className="text-2xl font-bold text-gradient">
+                                  {String(module.id).padStart(2, "0")}
+                                </span>
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-3 mb-2">
+                                  <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">
+                                    {module.title}
+                                  </h3>
+                                  <span className={`badge-${module.level}`}>{module.level}</span>
+                                </div>
+                                <p className="text-muted-foreground max-w-xl">{module.description}</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                              <div className="text-center px-4">
+                                <div className="text-2xl font-bold text-primary">{module.lessons.length}</div>
+                                <div className="text-xs text-muted-foreground">lessons</div>
+                              </div>
+                              <Button size="lg" className="rounded-xl shadow-lg shadow-primary/20" asChild>
+                                <Link to={`/lesson/${module.lessons[0].id}`}>
+                                  Start Learning
+                                  <ArrowRight className="h-4 w-4 ml-2" />
+                                </Link>
+                              </Button>
+                            </div>
+                          </div>
                         </div>
-                        <Link
-                          to={`/lesson/${lesson.id}`}
-                          className="font-medium hover:text-primary transition-colors"
-                        >
-                          {lesson.title}
-                        </Link>
-                        <span className={`badge-${lesson.level} scale-90`}>{lesson.level}</span>
+
+                        {/* Lessons List */}
+                        <div className="border-t border-border/50">
+                          {module.lessons.map((lesson, idx) => (
+                            <div
+                              key={lesson.id}
+                              className={`flex items-center justify-between px-8 py-5 hover:bg-muted/30 transition-colors ${
+                                idx !== module.lessons.length - 1 ? "border-b border-border/30" : ""
+                              }`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-muted text-sm font-medium text-muted-foreground">
+                                  {idx + 1}
+                                </div>
+                                <Link
+                                  to={`/lesson/${lesson.id}`}
+                                  className="font-medium hover:text-primary transition-colors"
+                                >
+                                  {lesson.title}
+                                </Link>
+                                <span className={`badge-${lesson.level} scale-90`}>{lesson.level}</span>
+                              </div>
+                              <div className="flex items-center gap-5">
+                                {learnMoreLinks[lesson.id] && (
+                                  <a
+                                    href={learnMoreLinks[lesson.id].url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                                  >
+                                    {learnMoreLinks[lesson.id].type === "youtube" ? (
+                                      <>
+                                        <PlayCircle className="h-4 w-4" />
+                                        Watch
+                                      </>
+                                    ) : (
+                                      <>
+                                        <FileText className="h-4 w-4" />
+                                        Read
+                                      </>
+                                    )}
+                                    <ExternalLink className="h-3 w-3" />
+                                  </a>
+                                )}
+                                <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                                  <Clock className="h-4 w-4" />
+                                  {lesson.duration}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-5">
-                        {learnMoreLinks[lesson.id] && (
-                          <a
-                            href={learnMoreLinks[lesson.id].url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-                          >
-                            {learnMoreLinks[lesson.id].type === "youtube" ? (
-                              <>
-                                <PlayCircle className="h-4 w-4" />
-                                Watch
-                              </>
-                            ) : (
-                              <>
-                                <FileText className="h-4 w-4" />
-                                Read
-                              </>
-                            )}
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        )}
-                        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                          <Clock className="h-4 w-4" />
-                          {lesson.duration}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </main>

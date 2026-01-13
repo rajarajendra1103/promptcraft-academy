@@ -8,6 +8,41 @@ export const stats = {
   hours: 18,
 };
 
+// Section definitions for curriculum organization
+export interface Section {
+  id: string;
+  title: string;
+  description: string;
+  moduleIds: number[];
+}
+
+export const sections: Section[] = [
+  {
+    id: "web-development",
+    title: "Web Development",
+    description: "Master web development with AI - from prompts to full-stack applications.",
+    moduleIds: [1, 2, 3, 4, 5, 6, 7, 8],
+  },
+  {
+    id: "app-development",
+    title: "App Development",
+    description: "Build mobile and cross-platform applications using AI tools.",
+    moduleIds: [9],
+  },
+  {
+    id: "games-simulation",
+    title: "Games & Simulation Development",
+    description: "Create games, 3D simulations, and interactive experiences with AI.",
+    moduleIds: [10],
+  },
+  {
+    id: "images-videos",
+    title: "Images & Videos Development",
+    description: "Generate, edit, and enhance visual content using AI.",
+    moduleIds: [11],
+  },
+];
+
 export interface Lesson {
   id: string;
   title: string;
