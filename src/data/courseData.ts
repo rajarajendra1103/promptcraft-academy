@@ -2,10 +2,10 @@
 
 // Stats for display
 export const stats = {
-  totalModules: 8,
-  totalLessons: 52,
-  totalTemplates: 200,
-  hours: 14,
+  totalModules: 11,
+  totalLessons: 67,
+  totalTemplates: 250,
+  hours: 18,
 };
 
 export interface Lesson {
@@ -172,19 +172,40 @@ export const modules: Module[] = [
   },
   {
     id: 9,
-    title: "Game & Simulation Development",
-    description: "Create games, 3D simulations, and interactive experiences with AI.",
+    title: "App Development with AI",
+    description: "Build mobile and web applications using AI-powered development tools.",
     lessons: [
-      { id: "9-1", title: "Coming Soon", duration: "TBD", completed: false, level: "intermediate", prerequisites: [] },
+      { id: "9-1", title: "Flutter & FlutterFlow Basics", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
+      { id: "9-2", title: "React Native with AI", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["2-1"] },
+      { id: "9-3", title: "Building iOS Apps with AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["9-1"] },
+      { id: "9-4", title: "Android App Development", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["9-1"] },
+      { id: "9-5", title: "Cross-Platform Strategies", duration: "25 min", completed: false, level: "advanced", prerequisites: ["9-2"] },
     ],
     level: "intermediate",
   },
   {
     id: 10,
+    title: "Game & Simulation Development",
+    description: "Create games, 3D simulations, and interactive experiences with AI.",
+    lessons: [
+      { id: "10-1", title: "Unity AI Integration", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
+      { id: "10-2", title: "Unreal Engine with AI", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
+      { id: "10-3", title: "2D Game Development", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
+      { id: "10-4", title: "3D Simulation Basics", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["10-1"] },
+      { id: "10-5", title: "Game Asset Generation", duration: "25 min", completed: false, level: "beginner", prerequisites: ["7-1"] },
+    ],
+    level: "intermediate",
+  },
+  {
+    id: 11,
     title: "Images & Videos Development",
     description: "Generate, edit, and enhance images and videos using AI tools.",
     lessons: [
-      { id: "10-1", title: "Coming Soon", duration: "TBD", completed: false, level: "intermediate", prerequisites: [] },
+      { id: "11-1", title: "Midjourney Masterclass", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
+      { id: "11-2", title: "DALL-E & Image Editing", duration: "25 min", completed: false, level: "beginner", prerequisites: ["11-1"] },
+      { id: "11-3", title: "Stable Diffusion Guide", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["11-1"] },
+      { id: "11-4", title: "AI Video Generation", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["11-1"] },
+      { id: "11-5", title: "Video Editing with AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["11-4"] },
     ],
     level: "intermediate",
   },
@@ -4436,6 +4457,1188 @@ Use each for what it does best.`,
       },
     ],
     instructorNotes: "Show a real workflow using multiple tools. Let students try different combinations. Discuss how the landscape will evolve.",
+  },
+  // ============ MODULE 9: App Development with AI ============
+  "9-1": {
+    objectives: [
+      "Understand Flutter and FlutterFlow basics",
+      "Build mobile apps with AI assistance",
+      "Create cross-platform applications",
+    ],
+    summary: "Flutter is Google's UI toolkit for building beautiful, natively compiled applications. FlutterFlow adds visual, AI-powered development on top.",
+    theory: `**Flutter** is an open-source UI framework from Google for building cross-platform apps from a single codebase.
+
+**FlutterFlow** is a visual builder that generates Flutter code, making app development faster and more accessible.
+
+**Why Flutter?**
+- One codebase for iOS, Android, web, desktop
+- Beautiful, customizable widgets
+- Fast development with hot reload
+- Strong performance
+
+**FlutterFlow advantages:**
+- Visual drag-and-drop interface
+- AI-powered code generation
+- Direct Supabase/Firebase integration
+- Export clean Flutter code
+
+**Getting started:**
+1. Design your app visually
+2. Connect your data sources
+3. Add logic and navigation
+4. Test on multiple platforms
+5. Export or deploy`,
+    examples: [
+      {
+        title: "Building a Mobile App",
+        before: "Make me an app",
+        after: `Build a task management app using FlutterFlow.
+
+Features needed:
+- User authentication (email/password)
+- Task list with add, edit, delete
+- Categories for organizing tasks
+- Due dates with notifications
+- Dark/light theme toggle
+
+Design requirements:
+- Clean, minimal interface
+- Bottom navigation with 3 tabs
+- Floating action button to add tasks
+- Swipe gestures for quick actions
+
+Backend:
+- Use Supabase for database
+- Real-time sync across devices`,
+        explanation: "Specific features, design requirements, and backend choices help FlutterFlow generate a complete, functional app.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Flutter",
+        meaning: "Google's cross-platform UI framework for mobile, web, and desktop apps",
+        usage: "Use Flutter to build apps for iOS and Android from one codebase",
+      },
+      {
+        term: "FlutterFlow",
+        meaning: "Visual app builder that generates Flutter code with AI assistance",
+        usage: "Use FlutterFlow to build apps faster without writing all the code manually",
+      },
+      {
+        term: "Widget",
+        meaning: "A building block of Flutter UI - everything is a widget",
+        usage: "Combine widgets like Container, Column, and Button to build your UI",
+      },
+    ],
+    instructorNotes: "Demo FlutterFlow's visual builder. Show how to connect Supabase. Build a simple app in real-time.",
+  },
+  "9-2": {
+    objectives: [
+      "Build React Native apps with AI",
+      "Understand Expo development workflow",
+      "Create native mobile experiences",
+    ],
+    summary: "React Native lets you build mobile apps using JavaScript and React. Combined with AI tools, you can rapidly prototype and build native mobile apps.",
+    theory: `**React Native** uses React to build native mobile apps. If you know React, you can build mobile apps.
+
+**Expo** simplifies React Native development with managed workflow, OTA updates, and easy deployment.
+
+**AI-assisted React Native:**
+- Use ChatGPT/Gemini for component code
+- Use Cursor for editing RN projects
+- Copilot for autocomplete
+
+**Key differences from web React:**
+- View instead of div
+- Text component for all text
+- StyleSheet instead of CSS
+- Platform-specific code
+
+**Development workflow:**
+1. Initialize with Expo
+2. Develop with hot reload
+3. Test on simulators/devices
+4. Build with EAS Build
+5. Deploy to app stores`,
+    examples: [
+      {
+        title: "React Native Screen",
+        before: "Create a profile screen",
+        after: `Create a React Native profile screen using Expo.
+
+Requirements:
+- Profile picture with edit option
+- User info (name, email, bio)
+- Settings list (notifications, privacy, help)
+- Logout button at bottom
+
+Styling:
+- Use NativeWind (Tailwind for RN)
+- Support dark mode
+- iOS and Android optimized
+
+Navigation:
+- Using React Navigation
+- Stack navigator for nested screens
+- Bottom tabs for main sections`,
+        explanation: "Specify the navigation library, styling approach, and platform considerations for React Native.",
+      },
+    ],
+    keywords: [
+      {
+        term: "React Native",
+        meaning: "Framework for building native mobile apps using React and JavaScript",
+        usage: "Use React Native to build iOS and Android apps with your React knowledge",
+      },
+      {
+        term: "Expo",
+        meaning: "Development platform that simplifies React Native development",
+        usage: "Start with Expo to avoid native build configuration complexity",
+      },
+      {
+        term: "Native Module",
+        meaning: "Bridge to access native platform features from JavaScript",
+        usage: "Use native modules for camera, GPS, and other device features",
+      },
+    ],
+    instructorNotes: "Compare React Native to Flutter. Show Expo development workflow. Demonstrate AI-assisted component generation.",
+  },
+  "9-3": {
+    objectives: [
+      "Build iOS apps with SwiftUI and AI",
+      "Understand Apple development ecosystem",
+      "Use Xcode with AI assistants",
+    ],
+    summary: "SwiftUI is Apple's modern framework for building iOS apps. AI tools can help generate SwiftUI code even if you're new to Swift.",
+    theory: `**SwiftUI** is Apple's declarative UI framework, similar to React in concept but built for Apple platforms.
+
+**AI for iOS development:**
+- ChatGPT/Gemini for SwiftUI code
+- GitHub Copilot in Xcode
+- Claude for architecture advice
+
+**SwiftUI basics:**
+- Declarative syntax
+- State-driven UI updates
+- Preview canvas for instant feedback
+- Built-in accessibility
+
+**When to choose iOS-only:**
+- Apple Watch/TV apps
+- Deep iOS integration
+- Performance-critical apps
+- Apple ecosystem features
+
+**Development tools:**
+- Xcode (required)
+- Swift Playgrounds for learning
+- TestFlight for beta testing
+- App Store Connect for publishing`,
+    examples: [
+      {
+        title: "SwiftUI View Generation",
+        before: "Make a settings page",
+        after: `Create a SwiftUI Settings view for an iOS app.
+
+Structure:
+- Use List with sections
+- Profile section with avatar
+- Preferences section with toggles
+- About section with app info
+
+Features needed:
+- @AppStorage for persisting settings
+- NavigationStack for drill-down
+- Toggle for notifications, dark mode
+- Button to clear cache
+- Link to privacy policy
+
+Styling:
+- Follow Human Interface Guidelines
+- System colors for proper dark mode
+- SF Symbols for icons`,
+        explanation: "Reference Apple's guidelines and use SwiftUI-specific patterns like @AppStorage and NavigationStack.",
+      },
+    ],
+    keywords: [
+      {
+        term: "SwiftUI",
+        meaning: "Apple's declarative framework for building UIs across all Apple platforms",
+        usage: "Use SwiftUI to build modern iOS apps with less code than UIKit",
+      },
+      {
+        term: "Xcode",
+        meaning: "Apple's IDE for developing iOS, macOS, and other Apple platform apps",
+        usage: "Use Xcode to write, test, and deploy iOS applications",
+      },
+      {
+        term: "@State",
+        meaning: "Property wrapper that creates mutable state in SwiftUI views",
+        usage: "Use @State to track values that change and trigger UI updates",
+      },
+    ],
+    instructorNotes: "Show Xcode and SwiftUI previews. Demonstrate AI code generation for SwiftUI. Discuss when to choose native iOS vs cross-platform.",
+  },
+  "9-4": {
+    objectives: [
+      "Build Android apps with Jetpack Compose",
+      "Use Android Studio AI features",
+      "Understand Material Design 3",
+    ],
+    summary: "Jetpack Compose is Android's modern UI toolkit. Android Studio now includes AI assistants to help you write Kotlin code faster.",
+    theory: `**Jetpack Compose** is Android's declarative UI framework, similar to SwiftUI and React.
+
+**Android Studio AI:**
+- Studio Bot for code help
+- Gemini integration
+- Code completion
+- Error explanations
+
+**Compose advantages:**
+- Less code than XML layouts
+- Reactive UI updates
+- Better preview tooling
+- Material Design 3 built-in
+
+**Material Design 3:**
+- Dynamic color from wallpaper
+- Updated components
+- Better accessibility
+- Consistent cross-device UI
+
+**Development workflow:**
+1. Design in Figma with Material plugin
+2. Generate Compose code with AI
+3. Test with Preview annotations
+4. Build with Gradle
+5. Publish to Play Store`,
+    examples: [
+      {
+        title: "Compose Screen with AI",
+        before: "Build a home screen",
+        after: `Create a Jetpack Compose home screen for a news app.
+
+Layout:
+- TopAppBar with search icon
+- LazyColumn for article list
+- FloatingActionButton for filters
+
+Each article card should have:
+- Image (AsyncImage with Coil)
+- Title and source
+- Time ago and bookmark icon
+- Click to navigate to detail
+
+Styling:
+- Material Design 3 components
+- Dynamic color support
+- Light and dark themes
+- Proper content padding`,
+        explanation: "Use Compose-specific components and libraries like Coil. Reference Material Design 3 for modern Android styling.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Jetpack Compose",
+        meaning: "Android's modern declarative UI toolkit for building native interfaces",
+        usage: "Use Compose to build Android UIs with Kotlin instead of XML",
+      },
+      {
+        term: "Android Studio",
+        meaning: "Google's official IDE for Android app development",
+        usage: "Use Android Studio to develop, test, and debug Android applications",
+      },
+      {
+        term: "Material Design",
+        meaning: "Google's design system for building consistent, beautiful apps",
+        usage: "Follow Material Design guidelines for standard Android UI patterns",
+      },
+    ],
+    instructorNotes: "Demo Android Studio with Gemini. Show Compose previews. Compare with XML-based development. Demonstrate AI code generation.",
+  },
+  "9-5": {
+    objectives: [
+      "Choose the right cross-platform strategy",
+      "Understand trade-offs of each approach",
+      "Build maintainable multi-platform apps",
+    ],
+    summary: "Different cross-platform approaches have different trade-offs. Choose based on your team's skills, app requirements, and long-term goals.",
+    theory: `**Cross-platform options:**
+
+**Flutter:**
+- Best UI consistency
+- Single codebase
+- Good performance
+- Learning Dart required
+
+**React Native:**
+- Use existing React skills
+- Large ecosystem
+- OTA updates
+- Native feel with effort
+
+**Web-based (Capacitor/Ionic):**
+- Use web technologies
+- Easy to start
+- Lower performance
+- Limited native access
+
+**Decision factors:**
+1. Team expertise
+2. App complexity
+3. Performance needs
+4. Time to market
+5. Maintenance plan
+
+**When to go native:**
+- Performance critical
+- Heavy native features
+- Platform-specific design
+- Long-term investment`,
+    examples: [
+      {
+        title: "Platform Decision Framework",
+        before: "Should I use Flutter or React Native?",
+        after: `Help me choose between Flutter and React Native for my project.
+
+Project details:
+- E-commerce app with catalog and checkout
+- Need push notifications
+- Payment integration (Stripe)
+- User authentication
+- Offline support for cart
+
+Team situation:
+- 2 developers, both know React
+- 6 month timeline
+- MVP first, then iterate
+
+Constraints:
+- Must work on iOS and Android
+- Needs to feel native
+- Budget for one codebase only
+
+Please compare:
+1. Development speed
+2. Performance for our use case
+3. Long-term maintainability
+4. Library availability`,
+        explanation: "Provide project specifics, team skills, and constraints to get tailored cross-platform recommendations.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Cross-Platform",
+        meaning: "Code that runs on multiple platforms (iOS, Android, web) from one source",
+        usage: "Use cross-platform frameworks to reduce development time and maintenance",
+      },
+      {
+        term: "Native",
+        meaning: "Code written specifically for one platform using its official tools",
+        usage: "Go native when you need maximum performance or platform-specific features",
+      },
+      {
+        term: "PWA",
+        meaning: "Progressive Web App - web app with native-like capabilities",
+        usage: "Consider PWA if your app is content-focused and doesn't need deep native access",
+      },
+    ],
+    instructorNotes: "Present a decision matrix. Discuss real-world examples of each approach. Have students evaluate their own project needs.",
+  },
+  // ============ MODULE 10: Game & Simulation Development ============
+  "10-1": {
+    objectives: [
+      "Integrate AI into Unity projects",
+      "Use ML-Agents for game AI",
+      "Generate game assets with AI",
+    ],
+    summary: "Unity is the most popular game engine. AI can help generate code, create assets, and even train game AI behaviors using machine learning.",
+    theory: `**Unity + AI:**
+Unity is a powerful game engine that can be enhanced with AI in multiple ways.
+
+**AI for Unity development:**
+- ChatGPT/Gemini for C# scripts
+- Copilot in Visual Studio
+- AI asset generation
+- ML-Agents for NPC behavior
+
+**Unity ML-Agents:**
+- Train AI using reinforcement learning
+- Create intelligent NPCs
+- Game testing automation
+- Procedural content
+
+**Asset generation:**
+- Midjourney for textures
+- AI 3D model generation
+- Sound effects with AI
+- Music generation
+
+**Common Unity AI uses:**
+- Pathfinding (NavMesh)
+- Behavior trees
+- State machines
+- Procedural generation`,
+    examples: [
+      {
+        title: "Unity Script with AI",
+        before: "Make a player controller",
+        after: `Create a Unity C# script for a 3D platformer player controller.
+
+Features:
+- WASD/Arrow keys movement
+- Space to jump (with coyote time)
+- Camera-relative movement
+- Ground detection with raycast
+- Smooth acceleration/deceleration
+
+Technical requirements:
+- Use CharacterController component
+- Serialize fields for tuning
+- Support gamepad input
+- Implement gravity properly
+
+Parameters to expose:
+- Move speed (default 5)
+- Jump height (default 2)
+- Gravity multiplier (default 2)
+- Coyote time (default 0.15s)`,
+        explanation: "Specify Unity components, input methods, and expose parameters for designer tuning.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Unity",
+        meaning: "Popular game engine for 2D and 3D games across all platforms",
+        usage: "Use Unity to build games for mobile, PC, console, and VR",
+      },
+      {
+        term: "ML-Agents",
+        meaning: "Unity toolkit for training game AI using machine learning",
+        usage: "Use ML-Agents to create intelligent NPCs that learn behaviors",
+      },
+      {
+        term: "C#",
+        meaning: "Programming language used for Unity game scripting",
+        usage: "Write C# scripts to control game objects and implement game logic",
+      },
+    ],
+    instructorNotes: "Demo Unity with AI code generation. Show ML-Agents training. Generate game assets with Midjourney or DALL-E.",
+  },
+  "10-2": {
+    objectives: [
+      "Use AI with Unreal Engine",
+      "Generate Blueprints and C++",
+      "Create realistic game environments",
+    ],
+    summary: "Unreal Engine powers AAA games and realistic simulations. AI can help with Blueprint logic, C++ code, and creating stunning visual assets.",
+    theory: `**Unreal Engine + AI:**
+Unreal Engine 5 offers cutting-edge graphics and can benefit from AI assistance.
+
+**AI for Unreal development:**
+- ChatGPT for C++ and Blueprints
+- GitHub Copilot in VS/Rider
+- AI texture generation
+- Procedural world building
+
+**Unreal strengths:**
+- Photorealistic rendering
+- Nanite (geometry streaming)
+- Lumen (global illumination)
+- MetaHumans
+
+**Blueprint AI assistance:**
+- Describe logic in plain English
+- Convert to Blueprint node setup
+- Debug complex node graphs
+- Optimize performance
+
+**AI asset creation:**
+- AI-generated textures
+- Environment concept art
+- Sound and music
+- Animation assistance`,
+    examples: [
+      {
+        title: "Unreal Blueprint Logic",
+        before: "Make an inventory system",
+        after: `Create an Unreal Engine Blueprint for an inventory system.
+
+Core functionality:
+- Array of item structs (ID, name, quantity, icon)
+- Add and remove items
+- Stack same items
+- Weight limit check
+
+UI integration:
+- Update widget on change
+- Show/hide inventory panel with I key
+- Drag and drop support
+- Context menu for items
+
+Events needed:
+- OnItemAdded
+- OnItemRemoved
+- OnInventoryFull
+- OnWeightExceeded
+
+Please provide:
+1. Item struct definition
+2. Inventory component Blueprint
+3. Key function descriptions
+4. Widget binding approach`,
+        explanation: "Describe the data structure, UI needs, and events for complete Blueprint architecture guidance.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Unreal Engine",
+        meaning: "Epic Games' AAA game engine known for stunning graphics",
+        usage: "Use Unreal for high-fidelity games, simulations, and virtual production",
+      },
+      {
+        term: "Blueprint",
+        meaning: "Unreal's visual scripting system - programming without code",
+        usage: "Use Blueprints to create game logic visually with connected nodes",
+      },
+      {
+        term: "Nanite",
+        meaning: "Unreal 5's virtualized geometry system for film-quality assets",
+        usage: "Nanite lets you use highly detailed 3D models without performance hit",
+      },
+    ],
+    instructorNotes: "Compare Unity and Unreal. Show Blueprint generation with AI. Demonstrate MetaHumans and Nanite for realistic content.",
+  },
+  "10-3": {
+    objectives: [
+      "Build 2D games efficiently",
+      "Use AI for game art and sprites",
+      "Implement common 2D mechanics",
+    ],
+    summary: "2D game development is great for learning and indie games. AI can generate pixel art, sprites, and help with game logic.",
+    theory: `**2D Game Development:**
+2D games are faster to develop and perfect for learning game design fundamentals.
+
+**Popular 2D engines:**
+- Unity 2D
+- Godot
+- GameMaker
+- Phaser (web)
+
+**AI for 2D games:**
+- Pixel art generation
+- Sprite sheet creation
+- Tile map generation
+- Sound effects
+
+**Common 2D mechanics:**
+- Platformer physics
+- Top-down movement
+- Tile-based levels
+- Collision detection
+
+**Art generation tools:**
+- Midjourney for concepts
+- PixelLab for sprites
+- Remove.bg for assets
+- Soundraw for music`,
+    examples: [
+      {
+        title: "2D Platformer Mechanics",
+        before: "Make a platformer",
+        after: `Create a 2D platformer character controller in Godot 4.
+
+Player mechanics:
+- Smooth horizontal movement with acceleration
+- Variable jump height (hold for higher)
+- Wall slide and wall jump
+- Coyote time (jump after leaving platform)
+- Jump buffering
+
+Animation states:
+- Idle, Run, Jump, Fall, Wall slide
+- Blend between states smoothly
+- Flip sprite based on direction
+
+Physics settings:
+- Gravity: 1200
+- Max fall speed: 400
+- Move speed: 200
+- Jump velocity: 500
+
+Please provide GDScript code with comments.`,
+        explanation: "Include specific physics values and animation states for a polished 2D character controller.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Sprite",
+        meaning: "2D image used to represent game objects, characters, or items",
+        usage: "Create sprite sheets with AI tools for animated game characters",
+      },
+      {
+        term: "Tilemap",
+        meaning: "Grid-based system for building 2D game levels from reusable tiles",
+        usage: "Use tilemaps to efficiently build and modify 2D game levels",
+      },
+      {
+        term: "Godot",
+        meaning: "Free, open-source game engine popular for 2D games",
+        usage: "Use Godot for 2D games with its intuitive scene system and GDScript",
+      },
+    ],
+    instructorNotes: "Build a simple platformer live. Generate pixel art with AI. Show how to create a sprite sheet for animations.",
+  },
+  "10-4": {
+    objectives: [
+      "Create 3D simulations",
+      "Use physics engines effectively",
+      "Build training and visualization tools",
+    ],
+    summary: "3D simulations are used for training, visualization, and testing. AI can help create realistic environments and behaviors.",
+    theory: `**3D Simulation use cases:**
+- Training simulations
+- Architectural visualization
+- Scientific modeling
+- Digital twins
+- VR experiences
+
+**Building simulations:**
+1. Define the scenario
+2. Create the environment
+3. Add physics and interactions
+4. Implement behaviors
+5. Collect data/feedback
+
+**AI applications:**
+- Environment generation
+- Realistic NPC behavior
+- Physics optimization
+- Data analysis
+
+**Tools for simulation:**
+- Unity with HDRP
+- Unreal Engine
+- Blender for assets
+- NVIDIA Omniverse
+
+**Physics considerations:**
+- Rigid body dynamics
+- Soft body simulation
+- Fluid dynamics
+- Particle systems`,
+    examples: [
+      {
+        title: "Training Simulation",
+        before: "Make a driving simulator",
+        after: `Design a driving training simulation in Unity.
+
+Simulation requirements:
+- Realistic vehicle physics (wheel colliders)
+- Traffic system with AI vehicles
+- Weather effects (rain, fog, night)
+- Various road types and scenarios
+
+Training scenarios:
+- Highway merging
+- City navigation
+- Emergency braking
+- Parking (parallel, perpendicular)
+
+Metrics to track:
+- Speed violations
+- Lane departures
+- Reaction times
+- Near-miss events
+
+Technical needs:
+- VR support (optional)
+- Session recording
+- Performance report generation
+- Adjustable difficulty`,
+        explanation: "Define training objectives, scenarios, and metrics for an effective simulation design.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Physics Engine",
+        meaning: "Software that simulates realistic physical interactions in games",
+        usage: "Use physics engines for realistic collisions, gravity, and object behavior",
+      },
+      {
+        term: "Digital Twin",
+        meaning: "Virtual replica of a physical system for simulation and analysis",
+        usage: "Create digital twins to test scenarios without real-world risk",
+      },
+      {
+        term: "HDRP",
+        meaning: "Unity's High Definition Render Pipeline for photorealistic graphics",
+        usage: "Use HDRP for realistic lighting and materials in simulations",
+      },
+    ],
+    instructorNotes: "Show real-world simulation examples. Demonstrate basic physics setup. Discuss data collection and analysis.",
+  },
+  "10-5": {
+    objectives: [
+      "Generate game assets with AI",
+      "Create consistent art styles",
+      "Optimize assets for games",
+    ],
+    summary: "AI can generate textures, sprites, 3D models, and audio for games. Learning to prompt for game assets saves time and enables solo development.",
+    theory: `**AI asset generation:**
+AI tools can create many types of game assets quickly.
+
+**Visual assets:**
+- Textures and materials
+- Character sprites
+- Environment art
+- UI elements
+- Icons and items
+
+**Audio assets:**
+- Sound effects
+- Background music
+- Voice (with care)
+- Ambient sounds
+
+**3D assets (emerging):**
+- AI 3D model generation
+- Texture to 3D
+- Model variations
+
+**Best practices:**
+- Maintain style consistency
+- Generate variations
+- Use as base, then refine
+- Respect licensing
+
+**Workflow:**
+1. Define art style
+2. Generate base assets
+3. Edit and refine
+4. Import to engine
+5. Optimize for performance`,
+    examples: [
+      {
+        title: "Game Art Style Guide",
+        before: "Make game sprites",
+        after: `Generate a consistent set of game assets for a fantasy RPG.
+
+Art style:
+- Pixel art, 32x32 base size
+- Limited palette (16 colors max)
+- Slightly desaturated, earthy tones
+- Clear silhouettes
+
+Assets needed:
+1. Player character (4 directions, idle + walk)
+2. 5 enemy types (slime, skeleton, bat, wolf, boss)
+3. Tileset (grass, dirt, stone, water edges)
+4. Items (sword, potion, key, chest)
+5. UI elements (hearts, mana, buttons)
+
+Technical requirements:
+- Transparent backgrounds
+- Consistent lighting direction (top-left)
+- No anti-aliasing on edges
+- Power-of-2 dimensions
+
+Please generate prompts for each asset type.`,
+        explanation: "Define a clear art style, palette, and technical requirements for consistent game assets.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Sprite Sheet",
+        meaning: "Single image containing multiple sprites for animation or variation",
+        usage: "Organize character animations in a sprite sheet for efficient loading",
+      },
+      {
+        term: "Tileset",
+        meaning: "Collection of tiles used to build game levels and environments",
+        usage: "Create reusable tilesets for efficient level design",
+      },
+      {
+        term: "Art Style",
+        meaning: "Visual aesthetic that defines the look and feel of a game",
+        usage: "Maintain consistent art style by using the same prompts and parameters",
+      },
+    ],
+    instructorNotes: "Generate assets live with AI tools. Show import and optimization process. Discuss maintaining consistency across assets.",
+  },
+  // ============ MODULE 11: Images & Videos Development ============
+  "11-1": {
+    objectives: [
+      "Master Midjourney for image generation",
+      "Understand prompt engineering for images",
+      "Create consistent visual styles",
+    ],
+    summary: "Midjourney is one of the most powerful AI image generators. Learning its prompting syntax unlocks stunning visual creation.",
+    theory: `**Midjourney basics:**
+Midjourney generates images from text prompts with exceptional artistic quality.
+
+**Prompt structure:**
+/imagine [subject], [style], [details], [parameters]
+
+**Key parameters:**
+- --ar (aspect ratio)
+- --v (version)
+- --stylize (creativity level)
+- --chaos (variation)
+- --no (exclude elements)
+
+**Effective prompting:**
+1. Be specific about subject
+2. Describe style and mood
+3. Add lighting and color
+4. Reference artists or genres
+5. Use quality boosters
+
+**Style consistency:**
+- Save successful prompts
+- Use --sref for style reference
+- Create prompt templates
+- Document what works`,
+    examples: [
+      {
+        title: "Midjourney Prompt",
+        before: "A fantasy castle",
+        after: `/imagine A majestic fantasy castle perched on a cliff overlooking a misty valley, Gothic architecture with tall spires and flying buttresses, warm sunset lighting with dramatic clouds, oil painting style, rich colors, detailed stonework, fantasy art, epic scale, cinematic composition --ar 16:9 --v 6 --stylize 750`,
+        explanation: "Include subject, setting, architecture, lighting, style, and technical parameters for best results.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Midjourney",
+        meaning: "AI image generator known for artistic, high-quality outputs",
+        usage: "Use Midjourney for concept art, illustrations, and creative visuals",
+      },
+      {
+        term: "Aspect Ratio",
+        meaning: "Width to height proportion of an image",
+        usage: "Use --ar 16:9 for cinematic, --ar 1:1 for social media",
+      },
+      {
+        term: "Stylize",
+        meaning: "Parameter controlling how artistic vs. literal the output is",
+        usage: "Higher stylize values (750-1000) give more artistic interpretation",
+      },
+    ],
+    instructorNotes: "Show live Midjourney generation. Compare different parameter settings. Create a style guide for a project.",
+  },
+  "11-2": {
+    objectives: [
+      "Use DALL-E for image generation",
+      "Edit existing images with AI",
+      "Integrate DALL-E via API",
+    ],
+    summary: "DALL-E is OpenAI's image generator with strong editing capabilities. It excels at following instructions and can edit specific parts of images.",
+    theory: `**DALL-E features:**
+- Natural language understanding
+- Image editing (inpainting)
+- Outpainting (extend images)
+- Variations of images
+- API access
+
+**Strengths:**
+- Follows instructions well
+- Good at text in images
+- Editing capabilities
+- Easy API integration
+
+**Use cases:**
+- Product mockups
+- Social media graphics
+- Content illustrations
+- Photo editing
+
+**API integration:**
+- OpenAI API access
+- Generate from text
+- Edit existing images
+- Create variations
+
+**Best practices:**
+- Be descriptive and clear
+- Specify style explicitly
+- Use editing for refinement
+- Generate multiple options`,
+    examples: [
+      {
+        title: "DALL-E Image Edit",
+        before: "Fix this image",
+        after: `Edit this product photo:
+
+Original: [upload product image]
+
+Changes needed:
+1. Replace the background with a clean white studio backdrop
+2. Add soft shadow beneath the product
+3. Enhance the lighting to look professional
+4. Keep the product exactly as is
+
+Output requirements:
+- Same dimensions as original
+- High resolution
+- Clean, e-commerce ready style`,
+        explanation: "Describe exactly what to change and what to preserve when editing images.",
+      },
+    ],
+    keywords: [
+      {
+        term: "DALL-E",
+        meaning: "OpenAI's AI image generator with strong instruction following",
+        usage: "Use DALL-E for precise image generation and editing tasks",
+      },
+      {
+        term: "Inpainting",
+        meaning: "AI technique to edit or fill in parts of an existing image",
+        usage: "Use inpainting to remove objects or change specific areas of an image",
+      },
+      {
+        term: "Outpainting",
+        meaning: "Extending an image beyond its original borders",
+        usage: "Use outpainting to expand an image while maintaining consistency",
+      },
+    ],
+    instructorNotes: "Demonstrate DALL-E editing features. Show API integration. Compare with Midjourney for different use cases.",
+  },
+  "11-3": {
+    objectives: [
+      "Set up and use Stable Diffusion",
+      "Understand local vs. cloud generation",
+      "Create custom models and LoRAs",
+    ],
+    summary: "Stable Diffusion is an open-source image generator you can run locally. It offers unlimited generation and can be customized with your own trained models.",
+    theory: `**Stable Diffusion advantages:**
+- Free and open source
+- Run locally (unlimited)
+- Highly customizable
+- Custom model training
+
+**Setup options:**
+- Automatic1111 WebUI
+- ComfyUI (node-based)
+- Cloud services
+- API providers
+
+**Key concepts:**
+- Checkpoints (base models)
+- LoRA (small trained additions)
+- VAE (image quality)
+- Samplers (generation methods)
+
+**Customization:**
+- Train on your own images
+- Style transfer with LoRA
+- ControlNet for guidance
+- Custom embeddings
+
+**Best for:**
+- High volume generation
+- Custom styles needed
+- Privacy concerns
+- Technical users`,
+    examples: [
+      {
+        title: "Stable Diffusion Prompt",
+        before: "Professional headshot",
+        after: `Positive prompt:
+professional corporate headshot, 35mm photograph, sharp focus, natural lighting, neutral background, confident expression, business attire, high resolution, professional photography
+
+Negative prompt:
+blurry, distorted face, bad anatomy, low quality, cartoon, illustration, painting, multiple people, text, watermark
+
+Settings:
+- Sampler: DPM++ 2M Karras
+- Steps: 30
+- CFG Scale: 7
+- Size: 512x768`,
+        explanation: "Include positive and negative prompts with technical settings for consistent results.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Stable Diffusion",
+        meaning: "Open-source AI image generator that can run locally",
+        usage: "Use Stable Diffusion for unlimited local image generation",
+      },
+      {
+        term: "LoRA",
+        meaning: "Small trained model that adds specific styles or subjects",
+        usage: "Use LoRAs to generate images in specific art styles or of specific subjects",
+      },
+      {
+        term: "ControlNet",
+        meaning: "Tool that guides image generation using reference images",
+        usage: "Use ControlNet for precise pose, depth, or edge control in generation",
+      },
+    ],
+    instructorNotes: "Demo local Stable Diffusion setup. Show LoRA application. Compare cloud vs local generation trade-offs.",
+  },
+  "11-4": {
+    objectives: [
+      "Generate videos with AI",
+      "Understand video AI tools",
+      "Create animations and motion",
+    ],
+    summary: "AI video generation is rapidly evolving. Tools can now create short videos from text, animate images, and generate motion graphics.",
+    theory: `**Video AI tools:**
+- Runway Gen-3
+- Pika Labs
+- Kling AI
+- Sora (OpenAI)
+- Luma Dream Machine
+
+**Video types:**
+- Text to video
+- Image to video
+- Video to video
+- Motion graphics
+
+**Current capabilities:**
+- Short clips (4-16 seconds)
+- Consistent characters (improving)
+- Camera movements
+- Style transfer
+
+**Use cases:**
+- Social media content
+- Concept visualization
+- Music videos
+- Advertising previews
+- Product animations
+
+**Best practices:**
+- Start with strong prompts
+- Use image-to-video for control
+- Generate multiple options
+- Edit and combine clips`,
+    examples: [
+      {
+        title: "AI Video Prompt",
+        before: "Make a video of nature",
+        after: `Create a cinematic video clip:
+
+Scene: A serene mountain lake at golden hour, mist rising from the water, pine trees in silhouette
+
+Camera movement: Slow dolly forward toward the lake, gentle parallax on trees
+
+Duration: 5 seconds
+
+Style: Cinematic, film grain, warm color grading, 24fps
+
+Mood: Peaceful, contemplative, nature documentary feel
+
+Elements to include:
+- Subtle water ripples
+- Light rays through mist
+- Bird flying across frame`,
+        explanation: "Describe scene, camera movement, duration, and style for cohesive video generation.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Runway",
+        meaning: "AI creative suite with powerful video generation tools",
+        usage: "Use Runway Gen-3 for high-quality AI video generation",
+      },
+      {
+        term: "Text to Video",
+        meaning: "Generating video directly from text descriptions",
+        usage: "Use text-to-video for quick concept visualization and prototyping",
+      },
+      {
+        term: "Image to Video",
+        meaning: "Animating a still image into a video clip",
+        usage: "Use image-to-video for more control over the starting frame",
+      },
+    ],
+    instructorNotes: "Demo multiple video AI tools. Compare quality and use cases. Show workflow for combining generated clips.",
+  },
+  "11-5": {
+    objectives: [
+      "Edit videos using AI tools",
+      "Automate video workflows",
+      "Enhance footage with AI",
+    ],
+    summary: "AI video editing tools can upscale, stabilize, remove objects, generate captions, and automate tedious editing tasks.",
+    theory: `**AI video editing tools:**
+- Runway (effects, removal)
+- Topaz Video AI (upscaling)
+- Descript (transcript editing)
+- CapCut (auto-editing)
+- Adobe Premiere AI
+
+**AI editing features:**
+- Object removal
+- Background replacement
+- Upscaling and enhancement
+- Automatic captions
+- Transcript-based editing
+
+**Workflow automation:**
+- Auto-generate clips from long content
+- Silence and filler removal
+- Color matching
+- Audio enhancement
+
+**Enhancement:**
+- Upscaling (4K, 8K)
+- Frame interpolation
+- Noise reduction
+- Stabilization
+
+**Best workflow:**
+1. Rough edit traditionally
+2. Apply AI enhancements
+3. Fine-tune results
+4. Export and review`,
+    examples: [
+      {
+        title: "AI Video Enhancement",
+        before: "Make my video better",
+        after: `Enhance this video footage:
+
+Current issues:
+- Shot on phone, 1080p
+- Some shaky handheld shots
+- Audio has background noise
+- No captions
+
+Enhancement requests:
+1. Upscale to 4K using Topaz
+2. Apply stabilization to shaky clips
+3. Reduce background noise, enhance voice
+4. Auto-generate captions (burn in or SRT)
+5. Color grade for consistent look
+
+Output specs:
+- 4K resolution
+- H.264 codec
+- Separate SRT caption file
+- Color graded LUT applied`,
+        explanation: "List specific issues and desired enhancements with output specifications.",
+      },
+    ],
+    keywords: [
+      {
+        term: "Upscaling",
+        meaning: "AI enhancement of video resolution (e.g., 1080p to 4K)",
+        usage: "Use AI upscaling to improve quality of older or lower-resolution footage",
+      },
+      {
+        term: "Transcript Editing",
+        meaning: "Editing video by editing its text transcript",
+        usage: "Use Descript to edit videos by deleting or rearranging text",
+      },
+      {
+        term: "Frame Interpolation",
+        meaning: "AI-generated frames to increase video smoothness",
+        usage: "Use frame interpolation to convert 30fps video to smooth 60fps",
+      },
+    ],
+    instructorNotes: "Demo multiple AI editing tools. Show before/after comparisons. Discuss when AI enhancement is appropriate.",
   },
 };
 
