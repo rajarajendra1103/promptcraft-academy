@@ -1,47 +1,20 @@
-// Centralized course data - Open Source and Free to Use
+// ============================================
+// PromptCraft Academy - Course Data
+// Free and Open Source
+// ============================================
 
 // Stats for display
 export const stats = {
-  totalModules: 11,
-  totalLessons: 67,
-  totalTemplates: 250,
-  hours: 18,
+  totalCourses: 3,
+  totalModules: 26,
+  totalLessons: 234,
+  totalTemplates: 500,
+  hours: 60,
 };
 
-// Section definitions for curriculum organization
-export interface Section {
-  id: string;
-  title: string;
-  description: string;
-  moduleIds: number[];
-}
-
-export const sections: Section[] = [
-  {
-    id: "web-development",
-    title: "Web Development",
-    description: "Master web development with AI - from prompts to full-stack applications.",
-    moduleIds: [1, 2, 3, 4, 5, 6, 7, 8],
-  },
-  {
-    id: "app-development",
-    title: "App Development",
-    description: "Build mobile and cross-platform applications using AI tools.",
-    moduleIds: [9],
-  },
-  {
-    id: "games-simulation",
-    title: "Games & Simulation Development",
-    description: "Create games, 3D simulations, and interactive experiences with AI.",
-    moduleIds: [10],
-  },
-  {
-    id: "images-videos",
-    title: "Images & Videos Development",
-    description: "Generate, edit, and enhance visual content using AI.",
-    moduleIds: [11],
-  },
-];
+// ============================================
+// TYPE DEFINITIONS
+// ============================================
 
 export interface Lesson {
   id: string;
@@ -53,21 +26,20 @@ export interface Lesson {
 }
 
 export interface Module {
-  id: number;
+  id: string;
   title: string;
   description: string;
   lessons: Lesson[];
   level: "beginner" | "intermediate" | "advanced";
 }
 
-export interface PromptTemplate {
+export interface Course {
   id: string;
   title: string;
   description: string;
-  category: string;
-  level: "beginner" | "intermediate" | "advanced";
-  template: string;
-  variables: string[];
+  icon: string;
+  color: string;
+  modules: Module[];
 }
 
 export interface LessonExample {
@@ -83,5678 +55,1386 @@ export interface KeywordDefinition {
   usage: string;
 }
 
+export interface LessonLink {
+  type: "video" | "article" | "docs";
+  title: string;
+  url: string;
+}
+
 export interface LessonContent {
   objectives: string[];
   summary: string;
   theory: string;
   examples: LessonExample[];
   keywords: KeywordDefinition[];
+  links: LessonLink[];
   instructorNotes: string;
 }
 
-// All course modules with lessons
-export const modules: Module[] = [
+// ============================================
+// COURSES DATA
+// ============================================
+
+export const courses: Course[] = [
+  // ==========================================
+  // COURSE 1: WEB DEVELOPMENT
+  // ==========================================
   {
-    id: 1,
-    title: "Idea to Prompts",
-    description: "Transform raw ideas into structured, effective prompts.",
-    lessons: [
-      { id: "1-1", title: "Introduction to Prompt Engineering", duration: "15 min", completed: false, level: "beginner", prerequisites: [] },
-      { id: "1-2", title: "Anatomy of an Effective Prompt", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-1"] },
-      { id: "1-3", title: "Problem Decomposition", duration: "25 min", completed: false, level: "beginner", prerequisites: ["1-2"] },
-      { id: "1-4", title: "Context and Role Setting", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-2"] },
-      { id: "1-5", title: "Output Format Specification", duration: "15 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "1-6", title: "Iteration and Refinement", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-4", "1-5"] },
+    id: "web-development",
+    title: "Web Development",
+    description: "Master web development with AI - from prompts to full-stack applications.",
+    icon: "Globe",
+    color: "primary",
+    modules: [
+      {
+        id: "WP-IP",
+        title: "Idea → Prompts (Website Planning & Structure)",
+        description: "Transform website ideas into structured prompts and planning documents.",
+        level: "beginner",
+        lessons: [
+          { id: "WP-IP-01", title: "Introduction to Prompt Engineering", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-IP-02", title: "Anatomy of an Effective Prompt", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-IP-01"] },
+          { id: "WP-IP-03", title: "Converting a Website Idea into a Clear Goal", duration: "20 min", completed: false, level: "beginner", prerequisites: ["WP-IP-02"] },
+          { id: "WP-IP-04", title: "Website Type Identification", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-IP-03"] },
+          { id: "WP-IP-05", title: "Generating Feature Lists for a Website", duration: "20 min", completed: false, level: "beginner", prerequisites: ["WP-IP-04"] },
+          { id: "WP-IP-06", title: "Creating User Personas with Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-IP-05"] },
+          { id: "WP-IP-07", title: "Website Sitemap & Page Structure Generation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-IP-06"] },
+          { id: "WP-IP-08", title: "Writing Functional Requirements using AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-IP-07"] },
+          { id: "WP-IP-09", title: "Content Strategy & Page Copy Planning", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-IP-08"] },
+          { id: "WP-IP-10", title: "Breaking Website into Development Tasks", duration: "25 min", completed: false, level: "advanced", prerequisites: ["WP-IP-09"] },
+          { id: "WP-IP-11", title: "SEO Requirements & Keywords using Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-IP-10"] },
+        ],
+      },
+      {
+        id: "WP-FE",
+        title: "Frontend Prompts (UI Coding)",
+        description: "Generate production-ready frontend code with AI prompts.",
+        level: "intermediate",
+        lessons: [
+          { id: "WP-FE-01", title: "Generating HTML Structure using Prompts", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-IP-02"] },
+          { id: "WP-FE-02", title: "CSS Styling with Tailwind / Bootstrap", duration: "30 min", completed: false, level: "beginner", prerequisites: ["WP-FE-01"] },
+          { id: "WP-FE-03", title: "Responsive Design Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-FE-02"] },
+          { id: "WP-FE-04", title: "React / Vue Component Generation", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["WP-FE-03"] },
+          { id: "WP-FE-05", title: "Navigation Bar & Footer Design", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-FE-02"] },
+          { id: "WP-FE-06", title: "Form Creation & Validation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-FE-04"] },
+          { id: "WP-FE-07", title: "Animations & Scroll Effects", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-FE-06"] },
+          { id: "WP-FE-08", title: "Accessibility in Frontend (ARIA, contrast)", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-FE-07"] },
+          { id: "WP-FE-09", title: "Performance Optimization Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-FE-08"] },
+        ],
+      },
+      {
+        id: "WP-UX",
+        title: "UI/UX Prompts (Design Experience)",
+        description: "Create stunning user experiences with AI-assisted design.",
+        level: "intermediate",
+        lessons: [
+          { id: "WP-UX-01", title: "Website Wireframe Creation", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-IP-07"] },
+          { id: "WP-UX-02", title: "Design System for Websites", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-UX-01"] },
+          { id: "WP-UX-03", title: "Color Palette & Typography Selection", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-UX-01"] },
+          { id: "WP-UX-04", title: "Figma Layout Prompting", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-UX-02"] },
+          { id: "WP-UX-05", title: "Hero Section Design Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-UX-03"] },
+          { id: "WP-UX-06", title: "Conversion-Optimized Layouts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-UX-05"] },
+          { id: "WP-UX-07", title: "Accessibility & UX Testing", duration: "25 min", completed: false, level: "advanced", prerequisites: ["WP-UX-06"] },
+          { id: "WP-UX-08", title: "UX Copywriting for Web", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-UX-05"] },
+          { id: "WP-UX-09", title: "Usability Audit using AI", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-UX-07"] },
+        ],
+      },
+      {
+        id: "WP-BE",
+        title: "Backend Prompts & Connections",
+        description: "Build robust backend systems and APIs with AI assistance.",
+        level: "intermediate",
+        lessons: [
+          { id: "WP-BE-01", title: "Website Backend Architecture Design", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-IP-08"] },
+          { id: "WP-BE-02", title: "API Design for Forms & Auth", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-BE-01"] },
+          { id: "WP-BE-03", title: "Authentication Systems", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["WP-BE-02"] },
+          { id: "WP-BE-04", title: "CMS Backend Design", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-BE-03"] },
+          { id: "WP-BE-05", title: "Connecting Frontend to Backend", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-BE-04"] },
+          { id: "WP-BE-06", title: "Contact Form & Email Integration", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-BE-05"] },
+          { id: "WP-BE-07", title: "Payment Gateway Prompting", duration: "35 min", completed: false, level: "advanced", prerequisites: ["WP-BE-06"] },
+          { id: "WP-BE-08", title: "Security & Input Validation", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-BE-07"] },
+          { id: "WP-BE-09", title: "Backend Testing Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-BE-08"] },
+        ],
+      },
+      {
+        id: "WP-DB",
+        title: "DB Design & Prompts (Website Data)",
+        description: "Design and manage databases for web applications.",
+        level: "intermediate",
+        lessons: [
+          { id: "WP-DB-01", title: "Identifying Website Data Entities", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-BE-01"] },
+          { id: "WP-DB-02", title: "SQL Schema for Websites", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-DB-01"] },
+          { id: "WP-DB-03", title: "CMS Database Design", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-DB-02"] },
+          { id: "WP-DB-04", title: "NoSQL for Blogs & Content Sites", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-DB-02"] },
+          { id: "WP-DB-05", title: "User Data Storage & Privacy", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-DB-03"] },
+          { id: "WP-DB-06", title: "Query Optimization", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-DB-04"] },
+          { id: "WP-DB-07", title: "Migrations & Versioning", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-DB-02"] },
+          { id: "WP-DB-08", title: "Analytics Data Storage", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-DB-05"] },
+          { id: "WP-DB-09", title: "Backup & Recovery Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-DB-06"] },
+        ],
+      },
+      {
+        id: "WP-DP",
+        title: "Deployment & Tooling (Website Hosting)",
+        description: "Deploy and maintain production websites with CI/CD.",
+        level: "advanced",
+        lessons: [
+          { id: "WP-DP-01", title: "Preparing Website for Deployment", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-FE-09"] },
+          { id: "WP-DP-02", title: "Generating Dockerfile", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-DP-01"] },
+          { id: "WP-DP-03", title: "CI/CD for Websites", duration: "35 min", completed: false, level: "advanced", prerequisites: ["WP-DP-02"] },
+          { id: "WP-DP-04", title: "Deploying to Vercel / Netlify", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-DP-01"] },
+          { id: "WP-DP-05", title: "Hosting with Custom Domains", duration: "20 min", completed: false, level: "beginner", prerequisites: ["WP-DP-04"] },
+          { id: "WP-DP-06", title: "Environment Variables", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["WP-DP-04"] },
+          { id: "WP-DP-07", title: "SSL & Security Setup", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-DP-05"] },
+          { id: "WP-DP-08", title: "Website Monitoring & Logs", duration: "25 min", completed: false, level: "advanced", prerequisites: ["WP-DP-07"] },
+          { id: "WP-DP-09", title: "Scaling & Performance Tuning", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-DP-08"] },
+        ],
+      },
+      {
+        id: "WP-AS",
+        title: "Assets & Creative Prompts (Website Branding)",
+        description: "Generate visual assets and branding elements with AI.",
+        level: "beginner",
+        lessons: [
+          { id: "WP-AS-01", title: "Website Logo Design Prompts", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-AS-02", title: "Hero Image Generation", duration: "25 min", completed: false, level: "beginner", prerequisites: ["WP-AS-01"] },
+          { id: "WP-AS-03", title: "Icon Set Creation", duration: "20 min", completed: false, level: "beginner", prerequisites: ["WP-AS-01"] },
+          { id: "WP-AS-04", title: "Background Patterns & Textures", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["WP-AS-02"] },
+          { id: "WP-AS-05", title: "Illustrations for Sections", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-AS-03"] },
+          { id: "WP-AS-06", title: "Social Media Preview Images", duration: "20 min", completed: false, level: "beginner", prerequisites: ["WP-AS-02"] },
+          { id: "WP-AS-07", title: "Favicon & App Icon Generation", duration: "15 min", completed: false, level: "beginner", prerequisites: ["WP-AS-01"] },
+          { id: "WP-AS-08", title: "Image Optimization for Web", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-AS-05"] },
+          { id: "WP-AS-09", title: "Copyright & Licensing Awareness", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+        ],
+      },
+      {
+        id: "WP-AI",
+        title: "AI Tools & Advanced Usage",
+        description: "Master AI development tools for web projects.",
+        level: "intermediate",
+        lessons: [
+          { id: "WP-AI-01", title: "Lovable - AI Web App Builder", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-AI-02", title: "Bolt.new - Instant Full-Stack Apps", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-AI-03", title: "Cursor - AI Code Editor", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-AI-01"] },
+          { id: "WP-AI-04", title: "Emergent AI & Anti Gravity", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-AI-01"] },
+          { id: "WP-AI-05", title: "Replit AI & Windsurf", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-AI-06", title: "ChatGPT - Conversational AI", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "WP-AI-07", title: "Gemini AI & Google AI Studio", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["WP-AI-06"] },
+          { id: "WP-AI-08", title: "Grok AI by xAI", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["WP-AI-06"] },
+          { id: "WP-AI-09", title: "AI Tools Comparison & Workflow", duration: "30 min", completed: false, level: "advanced", prerequisites: ["WP-AI-03", "WP-AI-07"] },
+        ],
+      },
     ],
-    level: "beginner",
   },
+
+  // ==========================================
+  // COURSE 2: APP DEVELOPMENT
+  // ==========================================
   {
-    id: 2,
-    title: "Frontend Prompts",
-    description: "Generate React components, forms, and UI logic.",
-    lessons: [
-      { id: "2-1", title: "Component Generation Basics", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "2-2", title: "Props and TypeScript Types", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["2-1"] },
-      { id: "2-3", title: "State Management Prompts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["2-2"] },
-      { id: "2-4", title: "Form Generation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["2-2"] },
-      { id: "2-5", title: "Responsive Design Prompts", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["2-1"] },
+    id: "app-development",
+    title: "App Development",
+    description: "Build mobile and cross-platform applications using AI tools.",
+    icon: "Smartphone",
+    color: "accent",
+    modules: [
+      {
+        id: "AP-IP",
+        title: "Idea → Prompts",
+        description: "Transform app ideas into actionable development plans.",
+        level: "beginner",
+        lessons: [
+          { id: "AP-IP-01", title: "Introduction to Prompt Engineering", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-IP-02", title: "Anatomy of an Effective Prompt", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-IP-01"] },
+          { id: "AP-IP-03", title: "Turning an App Idea into a Problem Statement", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-IP-02"] },
+          { id: "AP-IP-04", title: "Idea to Feature List using Prompts", duration: "20 min", completed: false, level: "beginner", prerequisites: ["AP-IP-03"] },
+          { id: "AP-IP-05", title: "Features to User Stories & Acceptance Criteria", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-04"] },
+          { id: "AP-IP-06", title: "Breaking Features into Technical Tasks", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-05"] },
+          { id: "AP-IP-07", title: "Writing Constraints & Scope in Prompts", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-06"] },
+          { id: "AP-IP-08", title: "Creating a PRD using AI", duration: "35 min", completed: false, level: "advanced", prerequisites: ["AP-IP-07"] },
+          { id: "AP-IP-09", title: "App Flow & Screen Mapping", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-08"] },
+          { id: "AP-IP-10", title: "Estimating Time, Cost, and Resources", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-IP-09"] },
+          { id: "AP-IP-11", title: "Validating Ideas with Market Research", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-IP-10"] },
+        ],
+      },
+      {
+        id: "AP-FE",
+        title: "Frontend Prompts",
+        description: "Generate mobile and cross-platform UI components.",
+        level: "intermediate",
+        lessons: [
+          { id: "AP-FE-01", title: "Generating App Layouts (Web & Mobile)", duration: "30 min", completed: false, level: "beginner", prerequisites: ["AP-IP-09"] },
+          { id: "AP-FE-02", title: "React / Flutter / HTML Components", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-01"] },
+          { id: "AP-FE-03", title: "State Management Prompts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-02"] },
+          { id: "AP-FE-04", title: "Responsive Design Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-02"] },
+          { id: "AP-FE-05", title: "Accessibility in Frontend", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-04"] },
+          { id: "AP-FE-06", title: "Animations & Micro-interactions", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-04"] },
+          { id: "AP-FE-07", title: "API Integration Prompts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-03"] },
+          { id: "AP-FE-08", title: "Frontend Testing Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-FE-07"] },
+          { id: "AP-FE-09", title: "Performance Optimization Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-FE-08"] },
+        ],
+      },
+      {
+        id: "AP-UX",
+        title: "UI/UX Prompts",
+        description: "Design intuitive and beautiful app interfaces.",
+        level: "intermediate",
+        lessons: [
+          { id: "AP-UX-01", title: "App Wireframes using Prompts", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-IP-09"] },
+          { id: "AP-UX-02", title: "Design System Creation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-UX-01"] },
+          { id: "AP-UX-03", title: "Color Palette & Typography Generation", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-UX-01"] },
+          { id: "AP-UX-04", title: "Component Design (Buttons, Cards, Forms)", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-UX-02"] },
+          { id: "AP-UX-05", title: "Figma Prompting for UI Layouts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-UX-03"] },
+          { id: "AP-UX-06", title: "UX Copywriting (Micro text, Errors)", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-UX-04"] },
+          { id: "AP-UX-07", title: "Accessibility & Contrast Checking", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-UX-04"] },
+          { id: "AP-UX-08", title: "User Journey & Experience Mapping", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-UX-06"] },
+          { id: "AP-UX-09", title: "Usability Testing Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-UX-08"] },
+        ],
+      },
+      {
+        id: "AP-BE",
+        title: "Backend Prompts & Connections",
+        description: "Build scalable app backends and APIs.",
+        level: "intermediate",
+        lessons: [
+          { id: "AP-BE-01", title: "Designing App Backend Architecture", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-08"] },
+          { id: "AP-BE-02", title: "REST API Design Prompts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-BE-01"] },
+          { id: "AP-BE-03", title: "Authentication & Authorization", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["AP-BE-02"] },
+          { id: "AP-BE-04", title: "CRUD API Generation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-BE-02"] },
+          { id: "AP-BE-05", title: "Error Handling & Validation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-BE-04"] },
+          { id: "AP-BE-06", title: "Connecting Frontend to Backend", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-BE-05"] },
+          { id: "AP-BE-07", title: "Third-Party API Integration", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-BE-06"] },
+          { id: "AP-BE-08", title: "Backend Testing Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-BE-07"] },
+          { id: "AP-BE-09", title: "Security Best Practices with AI", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-BE-08"] },
+        ],
+      },
+      {
+        id: "AP-DB",
+        title: "DB Design & Prompts",
+        description: "Design and optimize app databases.",
+        level: "intermediate",
+        lessons: [
+          { id: "AP-DB-01", title: "Identifying App Entities & Relationships", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-BE-01"] },
+          { id: "AP-DB-02", title: "SQL Schema Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-DB-01"] },
+          { id: "AP-DB-03", title: "NoSQL Schema Design", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-DB-01"] },
+          { id: "AP-DB-04", title: "Indexing & Performance Prompts", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-DB-02"] },
+          { id: "AP-DB-05", title: "Migration Scripts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-DB-02"] },
+          { id: "AP-DB-06", title: "ORM Model Generation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-DB-02"] },
+          { id: "AP-DB-07", title: "Backup & Recovery Strategy", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-DB-04"] },
+          { id: "AP-DB-08", title: "Sample Queries & Optimization", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-DB-04"] },
+          { id: "AP-DB-09", title: "Real-time Data & Caching Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-DB-08"] },
+        ],
+      },
+      {
+        id: "AP-DP",
+        title: "Deployment & Tooling",
+        description: "Deploy apps to app stores and cloud platforms.",
+        level: "advanced",
+        lessons: [
+          { id: "AP-DP-01", title: "Preparing App for Production", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-FE-09"] },
+          { id: "AP-DP-02", title: "Dockerfile Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-DP-01"] },
+          { id: "AP-DP-03", title: "docker-compose for Full Stack", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-DP-02"] },
+          { id: "AP-DP-04", title: "CI/CD with GitHub Actions", duration: "35 min", completed: false, level: "advanced", prerequisites: ["AP-DP-03"] },
+          { id: "AP-DP-05", title: "Environment Variables & Secrets", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["AP-DP-01"] },
+          { id: "AP-DP-06", title: "Cloud Deployment (Vercel, AWS, Firebase)", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["AP-DP-05"] },
+          { id: "AP-DP-07", title: "Logging & Monitoring", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-DP-06"] },
+          { id: "AP-DP-08", title: "Scaling & Load Handling", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-DP-07"] },
+          { id: "AP-DP-09", title: "Rollback & Versioning Strategies", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-DP-08"] },
+        ],
+      },
+      {
+        id: "AP-AS",
+        title: "Assets & Creative Prompts",
+        description: "Generate app icons, screenshots, and marketing materials.",
+        level: "beginner",
+        lessons: [
+          { id: "AP-AS-01", title: "App Logo Design Prompts", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-AS-02", title: "Icon Set Generation", duration: "20 min", completed: false, level: "beginner", prerequisites: ["AP-AS-01"] },
+          { id: "AP-AS-03", title: "App Screenshots & Mockups", duration: "25 min", completed: false, level: "beginner", prerequisites: ["AP-AS-01"] },
+          { id: "AP-AS-04", title: "Hero Images & Marketing Graphics", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AS-03"] },
+          { id: "AP-AS-05", title: "App UI Illustration Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AS-02"] },
+          { id: "AP-AS-06", title: "Sound Effects & Music Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: [] },
+          { id: "AP-AS-07", title: "Branding Guidelines using AI", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-AS-04"] },
+          { id: "AP-AS-08", title: "Preparing Assets for Production", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AS-05"] },
+          { id: "AP-AS-09", title: "Copyright & Licensing Awareness", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+        ],
+      },
+      {
+        id: "AP-AI",
+        title: "AI Tools & Usage",
+        description: "Master AI tools for app development workflows.",
+        level: "intermediate",
+        lessons: [
+          { id: "AP-AI-01", title: "Writing Effective System Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-IP-02"] },
+          { id: "AP-AI-02", title: "Prompt Chaining for App Development", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-AI-01"] },
+          { id: "AP-AI-03", title: "Few-Shot & Example-Based Prompting", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AI-02"] },
+          { id: "AP-AI-04", title: "Debugging Bad AI Outputs", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AI-03"] },
+          { id: "AP-AI-05", title: "RAG for App Projects", duration: "35 min", completed: false, level: "advanced", prerequisites: ["AP-AI-04"] },
+          { id: "AP-AI-06", title: "Versioning & Improving Prompts", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-AI-05"] },
+          { id: "AP-AI-07", title: "Evaluating AI Responses", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-AI-06"] },
+          { id: "AP-AI-08", title: "Security & Ethical Use of AI", duration: "25 min", completed: false, level: "advanced", prerequisites: ["AP-AI-07"] },
+          { id: "AP-AI-09", title: "Building AI-Powered Features into Apps", duration: "35 min", completed: false, level: "advanced", prerequisites: ["AP-AI-08"] },
+          { id: "AP-AI-10", title: "Lovable - AI Web App Builder", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-AI-11", title: "Bolt.new - Instant Full-Stack Apps", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-AI-12", title: "V0 by Vercel - UI Generation", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-AI-13", title: "Cursor - AI Code Editor", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["AP-AI-10"] },
+          { id: "AP-AI-14", title: "Android Studio AI & Mobile Tools", duration: "30 min", completed: false, level: "intermediate", prerequisites: [] },
+          { id: "AP-AI-15", title: "ChatGPT & Gemini AI", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "AP-AI-16", title: "Grok AI by xAI", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["AP-AI-15"] },
+          { id: "AP-AI-17", title: "AI Tools Comparison & Workflow", duration: "30 min", completed: false, level: "advanced", prerequisites: ["AP-AI-13", "AP-AI-15"] },
+        ],
+      },
     ],
-    level: "intermediate",
   },
+
+  // ==========================================
+  // COURSE 3: GAME & SIMULATION DEVELOPMENT
+  // ==========================================
   {
-    id: 3,
-    title: "UI/UX Design Prompts",
-    description: "Create design systems, colors, layouts, and user flows.",
-    lessons: [
-      { id: "3-1", title: "Design Token Generation", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "3-2", title: "Color Palette Creation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["3-1"] },
-      { id: "3-3", title: "Typography Systems", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["3-1"] },
-      { id: "3-4", title: "Layout and Spacing", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["3-1"] },
-      { id: "3-5", title: "User Flow Description", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["3-4"] },
-    ],
-    level: "intermediate",
-  },
-  {
-    id: 4,
-    title: "Backend & API Prompts",
-    description: "Generate server code, REST APIs, and integrations.",
-    lessons: [
-      { id: "4-1", title: "API Design Fundamentals", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "4-2", title: "REST Endpoint Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["4-1"] },
-      { id: "4-3", title: "Authentication Patterns", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["4-2"] },
-      { id: "4-4", title: "Error Handling Prompts", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["4-2"] },
-      { id: "4-5", title: "Third-Party API Integration", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["4-2"] },
-    ],
-    level: "intermediate",
-  },
-  {
-    id: 5,
-    title: "Database Design Prompts",
-    description: "Generate schemas, migrations, and SQL queries.",
-    lessons: [
-      { id: "5-1", title: "Data Modeling Basics", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "5-2", title: "SQL Schema Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["5-1"] },
-      { id: "5-3", title: "Query Writing Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["5-2"] },
-      { id: "5-4", title: "Migration Scripts", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["5-2"] },
-      { id: "5-5", title: "Database Relationships", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["5-2"] },
-    ],
-    level: "intermediate",
-  },
-  {
-    id: 6,
-    title: "DevOps & Deployment",
-    description: "Docker, CI/CD, cloud deployment, and infrastructure.",
-    lessons: [
-      { id: "6-1", title: "Docker Configuration", duration: "30 min", completed: false, level: "advanced", prerequisites: ["4-2"] },
-      { id: "6-2", title: "CI/CD Pipeline Setup", duration: "25 min", completed: false, level: "advanced", prerequisites: ["6-1"] },
-      { id: "6-3", title: "Cloud Deployment", duration: "30 min", completed: false, level: "advanced", prerequisites: ["6-1"] },
-      { id: "6-4", title: "Environment Variables", duration: "15 min", completed: false, level: "advanced", prerequisites: ["6-1"] },
-      { id: "6-5", title: "Monitoring and Logging", duration: "20 min", completed: false, level: "advanced", prerequisites: ["6-3"] },
-    ],
-    level: "advanced",
-  },
-  {
-    id: 7,
-    title: "Assets & Creative Prompts",
-    description: "Generate logos, images, icons, and audio with AI.",
-    lessons: [
-      { id: "7-1", title: "Image Generation Basics", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "7-2", title: "Logo and Brand Assets", duration: "25 min", completed: false, level: "beginner", prerequisites: ["7-1"] },
-      { id: "7-3", title: "Icon Generation", duration: "20 min", completed: false, level: "beginner", prerequisites: ["7-1"] },
-      { id: "7-4", title: "Background and Patterns", duration: "20 min", completed: false, level: "beginner", prerequisites: ["7-1"] },
-      { id: "7-5", title: "Music and Audio Prompts", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-3"] },
-    ],
-    level: "beginner",
-  },
-  {
-    id: 8,
-    title: "AI Tools & Advanced Usage",
-    description: "Popular AI tools for building apps, websites, and creative projects.",
-    lessons: [
-      { id: "8-1", title: "Lovable - AI Web App Builder", duration: "25 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-2", title: "Bolt.new - Instant Full-Stack Apps", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-3", title: "V0 by Vercel - UI Generation", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-4", title: "Cursor - AI Code Editor", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "8-5", title: "Emergent AI & Anti Gravity", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "8-6", title: "Android Studio AI & Mobile Tools", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "8-7", title: "Replit AI & Windsurf", duration: "20 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-8", title: "ChatGPT - Conversational AI", duration: "25 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "8-9", title: "Gemini AI & Google AI Studio", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["1-3"] },
-      { id: "8-10", title: "Grok AI by xAI", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["1-3"] },
-      { id: "8-11", title: "AI Tools Comparison & Workflow", duration: "25 min", completed: false, level: "advanced", prerequisites: ["8-1", "8-2", "8-3"] },
-    ],
-    level: "intermediate",
-  },
-  {
-    id: 9,
-    title: "App Development with AI",
-    description: "Build mobile and web applications using AI-powered development tools.",
-    lessons: [
-      { id: "9-1", title: "Flutter & FlutterFlow Basics", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "9-2", title: "React Native with AI", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["2-1"] },
-      { id: "9-3", title: "Building iOS Apps with AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["9-1"] },
-      { id: "9-4", title: "Android App Development", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["9-1"] },
-      { id: "9-5", title: "Cross-Platform Strategies", duration: "25 min", completed: false, level: "advanced", prerequisites: ["9-2"] },
-    ],
-    level: "intermediate",
-  },
-  {
-    id: 10,
+    id: "game-development",
     title: "Game & Simulation Development",
     description: "Create games, 3D simulations, and interactive experiences with AI.",
-    lessons: [
-      { id: "10-1", title: "Unity AI Integration", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "10-2", title: "Unreal Engine with AI", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["1-6"] },
-      { id: "10-3", title: "2D Game Development", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "10-4", title: "3D Simulation Basics", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["10-1"] },
-      { id: "10-5", title: "Game Asset Generation", duration: "25 min", completed: false, level: "beginner", prerequisites: ["7-1"] },
+    icon: "Gamepad2",
+    color: "destructive",
+    modules: [
+      {
+        id: "GS-IP",
+        title: "Idea → Prompts (Game Concept Design)",
+        description: "Transform game ideas into comprehensive design documents.",
+        level: "beginner",
+        lessons: [
+          { id: "GS-IP-01", title: "Introduction to Prompt Engineering", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "GS-IP-02", title: "Anatomy of an Effective Prompt", duration: "25 min", completed: false, level: "beginner", prerequisites: ["GS-IP-01"] },
+          { id: "GS-IP-03", title: "Defining Game Genre, Platform, and Audience", duration: "25 min", completed: false, level: "beginner", prerequisites: ["GS-IP-02"] },
+          { id: "GS-IP-04", title: "Converting a Game Idea into a Clear Vision", duration: "25 min", completed: false, level: "beginner", prerequisites: ["GS-IP-03"] },
+          { id: "GS-IP-05", title: "Core Gameplay Loop Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-04"] },
+          { id: "GS-IP-06", title: "Writing a Game Design Document (GDD)", duration: "40 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-05"] },
+          { id: "GS-IP-07", title: "Feature List & Mechanics Breakdown", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-06"] },
+          { id: "GS-IP-08", title: "Player Objectives, Rewards, and Progression", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-07"] },
+          { id: "GS-IP-09", title: "Simulation Rules & Constraints Definition", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-IP-08"] },
+          { id: "GS-IP-10", title: "Breaking the Game into Development Tasks", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-IP-09"] },
+          { id: "GS-IP-11", title: "Feasibility, Performance & Scope Estimation", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-IP-10"] },
+        ],
+      },
+      {
+        id: "GS-FE",
+        title: "Frontend Prompts (Game Logic & Client)",
+        description: "Build game mechanics, physics, and client-side systems.",
+        level: "intermediate",
+        lessons: [
+          { id: "GS-FE-01", title: "Player Movement & Control System", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-06"] },
+          { id: "GS-FE-02", title: "Camera Systems (First/Third-person, Top-down)", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-FE-01"] },
+          { id: "GS-FE-03", title: "Physics & Collision System Prompts", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["GS-FE-02"] },
+          { id: "GS-FE-04", title: "Player Stats (Health, Stamina, Mana)", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-FE-01"] },
+          { id: "GS-FE-05", title: "Input Handling (Keyboard, Touch, Controller)", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-FE-01"] },
+          { id: "GS-FE-06", title: "Game State Management (Pause, Save, Load)", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-FE-04"] },
+          { id: "GS-FE-07", title: "AI-Assisted Optimization for Game Scripts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-FE-06"] },
+          { id: "GS-FE-08", title: "Debugging Gameplay Logic using Prompts", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-FE-07"] },
+          { id: "GS-FE-09", title: "Frontend Performance & Memory Optimization", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-FE-08"] },
+        ],
+      },
+      {
+        id: "GS-UX",
+        title: "UI/UX Prompts (Game Interfaces)",
+        description: "Design HUDs, menus, and player-facing interfaces.",
+        level: "intermediate",
+        lessons: [
+          { id: "GS-UX-01", title: "HUD Design (Health bar, Score, Mini-map)", duration: "30 min", completed: false, level: "beginner", prerequisites: ["GS-IP-06"] },
+          { id: "GS-UX-02", title: "Menu Systems (Main menu, Settings, Pause)", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-UX-01"] },
+          { id: "GS-UX-03", title: "Inventory & Skill Tree UI", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["GS-UX-02"] },
+          { id: "GS-UX-04", title: "Quest, Mission, and Objective UI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-UX-02"] },
+          { id: "GS-UX-05", title: "Game UI Animations & Transitions", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-UX-03"] },
+          { id: "GS-UX-06", title: "Accessibility in Games (Colorblind, subtitles)", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-UX-05"] },
+          { id: "GS-UX-07", title: "Mobile vs PC vs Console UI Differences", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-UX-06"] },
+          { id: "GS-UX-08", title: "Player Feedback & UX Testing Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-UX-07"] },
+          { id: "GS-UX-09", title: "UX Flow from Start Screen to Game Over", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-UX-08"] },
+        ],
+      },
+      {
+        id: "GS-BE",
+        title: "Backend Prompts (Game Servers & Logic)",
+        description: "Build multiplayer servers, matchmaking, and game APIs.",
+        level: "advanced",
+        lessons: [
+          { id: "GS-BE-01", title: "Game Backend Architecture (SP, MP, MMO)", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-10"] },
+          { id: "GS-BE-02", title: "Player Authentication & Profiles", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-BE-01"] },
+          { id: "GS-BE-03", title: "Multiplayer State Synchronization", duration: "40 min", completed: false, level: "advanced", prerequisites: ["GS-BE-02"] },
+          { id: "GS-BE-04", title: "Matchmaking System Design", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-BE-03"] },
+          { id: "GS-BE-05", title: "Leaderboards & Ranking APIs", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-BE-02"] },
+          { id: "GS-BE-06", title: "In-Game Purchases & Economy APIs", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-BE-05"] },
+          { id: "GS-BE-07", title: "Anti-Cheat & Security Prompts", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-BE-06"] },
+          { id: "GS-BE-08", title: "Logging, Monitoring & Crash Reports", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-BE-07"] },
+          { id: "GS-BE-09", title: "Backend Testing & Load Simulation", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-BE-08"] },
+        ],
+      },
+      {
+        id: "GS-DB",
+        title: "DB Design (Game Data & Storage)",
+        description: "Design databases for game saves, inventories, and player data.",
+        level: "intermediate",
+        lessons: [
+          { id: "GS-DB-01", title: "Identifying Game Entities (Players, NPCs, Items)", duration: "25 min", completed: false, level: "beginner", prerequisites: ["GS-IP-07"] },
+          { id: "GS-DB-02", title: "Player Progress & Save Data Schema", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-DB-01"] },
+          { id: "GS-DB-03", title: "Inventory, Skills & Achievements Schema", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-DB-02"] },
+          { id: "GS-DB-04", title: "World State & Simulation Data Storage", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-DB-03"] },
+          { id: "GS-DB-05", title: "SQL vs NoSQL for Games", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-DB-02"] },
+          { id: "GS-DB-06", title: "Caching & Real-Time Data", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-DB-05"] },
+          { id: "GS-DB-07", title: "Backup, Restore & Save Systems", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-DB-06"] },
+          { id: "GS-DB-08", title: "Analytics & Telemetry Storage", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-DB-07"] },
+          { id: "GS-DB-09", title: "Database Optimization for Large Player Bases", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-DB-08"] },
+        ],
+      },
+      {
+        id: "GS-AS",
+        title: "Assets & Creative Prompts",
+        description: "Generate game art, audio, and world design assets.",
+        level: "beginner",
+        lessons: [
+          { id: "GS-AS-01", title: "Game Logo & Branding Prompts", duration: "25 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "GS-AS-02", title: "Character Concept Art Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-AS-01"] },
+          { id: "GS-AS-03", title: "Environment & World Art Prompts", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-AS-02"] },
+          { id: "GS-AS-04", title: "Textures, Materials & Sprites", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-AS-03"] },
+          { id: "GS-AS-05", title: "UI Icon & HUD Asset Creation", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-AS-01"] },
+          { id: "GS-AS-06", title: "Music & Ambient Sound Generation", duration: "30 min", completed: false, level: "intermediate", prerequisites: [] },
+          { id: "GS-AS-07", title: "Sound Effects (Footsteps, Weapons, UI)", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-AS-06"] },
+          { id: "GS-AS-08", title: "Asset Optimization for Performance", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-AS-04"] },
+          { id: "GS-AS-09", title: "Licensing & Copyright for Game Assets", duration: "20 min", completed: false, level: "beginner", prerequisites: [] },
+        ],
+      },
+      {
+        id: "GS-LV",
+        title: "Level Development & Content Pipeline",
+        description: "Design levels, quests, and procedural content systems.",
+        level: "advanced",
+        lessons: [
+          { id: "GS-LV-01", title: "Level Design Prompting Basics", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-06"] },
+          { id: "GS-LV-02", title: "Procedural Level Generation", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-LV-01"] },
+          { id: "GS-LV-03", title: "Difficulty Scaling Across Levels", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-LV-01"] },
+          { id: "GS-LV-04", title: "Enemy Placement & Spawn Logic", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-LV-03"] },
+          { id: "GS-LV-05", title: "Quest & Mission Design", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-LV-03"] },
+          { id: "GS-LV-06", title: "Integrating Levels into Unity/Unreal", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-LV-04"] },
+          { id: "GS-LV-07", title: "World Streaming & Chunk Loading", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-LV-06"] },
+          { id: "GS-LV-08", title: "Testing & Balancing Levels", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-LV-07"] },
+          { id: "GS-LV-09", title: "Level Optimization for FPS & Memory", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-LV-08"] },
+        ],
+      },
+      {
+        id: "GS-MN",
+        title: "Game Maintenance & Live Updates",
+        description: "Maintain live games, balance updates, and new content.",
+        level: "advanced",
+        lessons: [
+          { id: "GS-MN-01", title: "Bug Detection & Fixing using AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-FE-08"] },
+          { id: "GS-MN-02", title: "Game Balance Updates", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-MN-01"] },
+          { id: "GS-MN-03", title: "Adding New Content (Maps, Characters, Items)", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-MN-02"] },
+          { id: "GS-MN-04", title: "Performance Optimization in Live Games", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-MN-03"] },
+          { id: "GS-MN-05", title: "Patch Notes Generation", duration: "20 min", completed: false, level: "intermediate", prerequisites: ["GS-MN-02"] },
+          { id: "GS-MN-06", title: "Player Feedback Analysis", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-MN-05"] },
+          { id: "GS-MN-07", title: "Server Scaling for Player Growth", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-MN-06"] },
+          { id: "GS-MN-08", title: "Event-Based Content Updates", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-MN-07"] },
+          { id: "GS-MN-09", title: "Long-Term Game Roadmap Planning", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-MN-08"] },
+        ],
+      },
+      {
+        id: "GS-AI",
+        title: "AI Tools & Usage (Games)",
+        description: "Master AI tools for game development workflows.",
+        level: "intermediate",
+        lessons: [
+          { id: "GS-AI-01", title: "System Prompts for Game Dev Roles", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-IP-02"] },
+          { id: "GS-AI-02", title: "Prompt Chaining for Full Game Pipelines", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-AI-01"] },
+          { id: "GS-AI-03", title: "Few-Shot Prompting for Game Mechanics", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-AI-01"] },
+          { id: "GS-AI-04", title: "Debugging AI-Generated Game Code", duration: "25 min", completed: false, level: "intermediate", prerequisites: ["GS-AI-03"] },
+          { id: "GS-AI-05", title: "RAG for Game Lore, Rules & Assets", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-AI-04"] },
+          { id: "GS-AI-06", title: "Evaluating AI Output for Playability", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-AI-05"] },
+          { id: "GS-AI-07", title: "AI for Procedural Content Generation", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-AI-06"] },
+          { id: "GS-AI-08", title: "AI Ethics & Player Safety", duration: "25 min", completed: false, level: "advanced", prerequisites: ["GS-AI-07"] },
+          { id: "GS-AI-09", title: "Building AI-Powered Game Features", duration: "35 min", completed: false, level: "advanced", prerequisites: ["GS-AI-08"] },
+          { id: "GS-AI-10", title: "Rosebud AI for Game Development", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "GS-AI-11", title: "Core AI Game Engines & Systems", duration: "35 min", completed: false, level: "intermediate", prerequisites: [] },
+          { id: "GS-AI-12", title: "World Building & Asset Generation Tools", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["GS-AI-11"] },
+          { id: "GS-AI-13", title: "NPC Personality & Dialogue Tools", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-AI-12"] },
+          { id: "GS-AI-14", title: "Animation & Simulation AI Tools", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-AI-12"] },
+          { id: "GS-AI-15", title: "ChatGPT, Gemini & Grok for Games", duration: "30 min", completed: false, level: "beginner", prerequisites: [] },
+          { id: "GS-AI-16", title: "AI Tools Comparison & Workflow", duration: "30 min", completed: false, level: "advanced", prerequisites: ["GS-AI-13", "GS-AI-14"] },
+        ],
+      },
     ],
-    level: "intermediate",
-  },
-  {
-    id: 11,
-    title: "Images & Videos Development",
-    description: "Generate, edit, and enhance images and videos using AI tools.",
-    lessons: [
-      { id: "11-1", title: "Midjourney Masterclass", duration: "30 min", completed: false, level: "beginner", prerequisites: ["1-3"] },
-      { id: "11-2", title: "DALL-E & Image Editing", duration: "25 min", completed: false, level: "beginner", prerequisites: ["11-1"] },
-      { id: "11-3", title: "Stable Diffusion Guide", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["11-1"] },
-      { id: "11-4", title: "AI Video Generation", duration: "35 min", completed: false, level: "intermediate", prerequisites: ["11-1"] },
-      { id: "11-5", title: "Video Editing with AI", duration: "30 min", completed: false, level: "intermediate", prerequisites: ["11-4"] },
-    ],
-    level: "intermediate",
   },
 ];
 
-// All lesson content with full details
+// ============================================
+// LESSON LINKS (YouTube & Tutorial Resources)
+// ============================================
+
+export const lessonLinks: Record<string, LessonLink[]> = {
+  // Web Development - Idea to Prompts
+  "WP-IP-01": [
+    { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+    { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+  ],
+  "WP-IP-02": [
+    { type: "video", title: "How to Write Perfect Prompts", url: "https://www.youtube.com/watch?v=jC4v5AS4RIM" },
+    { type: "docs", title: "Prompting Guide", url: "https://www.promptingguide.ai/" },
+  ],
+  "WP-IP-03": [
+    { type: "video", title: "Website Planning with AI", url: "https://www.youtube.com/watch?v=QGfWNj2eXQE" },
+    { type: "article", title: "Project Scoping Guide", url: "https://learnprompting.org/docs/basics/decomposition" },
+  ],
+  "WP-IP-04": [
+    { type: "video", title: "Types of Websites Explained", url: "https://www.youtube.com/watch?v=q3N0kJwLNB0" },
+    { type: "article", title: "Website Types Guide", url: "https://www.wix.com/blog/types-of-websites" },
+  ],
+  "WP-IP-05": [
+    { type: "video", title: "Feature List Creation", url: "https://www.youtube.com/watch?v=KwP-08VvJsU" },
+    { type: "docs", title: "Product Features Guide", url: "https://www.atlassian.com/agile/product-management/requirements" },
+  ],
+  "WP-IP-06": [
+    { type: "video", title: "Creating User Personas", url: "https://www.youtube.com/watch?v=u44pBnAn7cM" },
+    { type: "article", title: "User Persona Templates", url: "https://www.hubspot.com/make-my-persona" },
+  ],
+  "WP-IP-07": [
+    { type: "video", title: "Website Sitemap Tutorial", url: "https://www.youtube.com/watch?v=7SqTR0DpnLw" },
+    { type: "article", title: "Information Architecture", url: "https://www.nngroup.com/articles/ia-101/" },
+  ],
+  "WP-IP-08": [
+    { type: "video", title: "Writing Requirements Docs", url: "https://www.youtube.com/watch?v=s3JldKoA0zw" },
+    { type: "docs", title: "Functional Requirements", url: "https://www.guru99.com/functional-requirement-specification-example.html" },
+  ],
+  "WP-IP-09": [
+    { type: "video", title: "Content Strategy Guide", url: "https://www.youtube.com/watch?v=3qd-RHhYjOU" },
+    { type: "article", title: "Content Planning", url: "https://contentmarketinginstitute.com/developing-a-strategy/" },
+  ],
+  "WP-IP-10": [
+    { type: "video", title: "Breaking Down Projects", url: "https://www.youtube.com/watch?v=SYTxG69wqPo" },
+    { type: "article", title: "Task Breakdown Structure", url: "https://www.atlassian.com/agile/project-management/user-stories" },
+  ],
+  "WP-IP-11": [
+    { type: "video", title: "SEO for Beginners", url: "https://www.youtube.com/watch?v=xsVTqzratPs" },
+    { type: "docs", title: "SEO Starter Guide", url: "https://developers.google.com/search/docs/fundamentals/seo-starter-guide" },
+  ],
+
+  // Web Development - Frontend
+  "WP-FE-01": [
+    { type: "video", title: "HTML Crash Course", url: "https://www.youtube.com/watch?v=UB1O30fR-EE" },
+    { type: "docs", title: "MDN HTML Guide", url: "https://developer.mozilla.org/en-US/docs/Learn/HTML" },
+  ],
+  "WP-FE-02": [
+    { type: "video", title: "Tailwind CSS Tutorial", url: "https://www.youtube.com/watch?v=dFgzHOX84xQ" },
+    { type: "docs", title: "Tailwind Documentation", url: "https://tailwindcss.com/docs" },
+  ],
+  "WP-FE-03": [
+    { type: "video", title: "Responsive Design Tutorial", url: "https://www.youtube.com/watch?v=srvUrASNj0s" },
+    { type: "article", title: "Responsive Web Design", url: "https://web.dev/responsive-web-design-basics/" },
+  ],
+  "WP-FE-04": [
+    { type: "video", title: "React Components Tutorial", url: "https://www.youtube.com/watch?v=bMknfKXIFA8" },
+    { type: "docs", title: "React Documentation", url: "https://react.dev/learn" },
+  ],
+  "WP-FE-05": [
+    { type: "video", title: "Navigation Design Tutorial", url: "https://www.youtube.com/watch?v=PwWHL3RyQgk" },
+    { type: "article", title: "Navigation Best Practices", url: "https://www.nngroup.com/articles/navigation-ia-tests/" },
+  ],
+  "WP-FE-06": [
+    { type: "video", title: "React Forms Tutorial", url: "https://www.youtube.com/watch?v=SdzMBWT2CDQ" },
+    { type: "docs", title: "React Hook Form", url: "https://react-hook-form.com/get-started" },
+  ],
+  "WP-FE-07": [
+    { type: "video", title: "CSS Animations Tutorial", url: "https://www.youtube.com/watch?v=YszONjKpgg4" },
+    { type: "docs", title: "Framer Motion", url: "https://www.framer.com/motion/" },
+  ],
+  "WP-FE-08": [
+    { type: "video", title: "Web Accessibility Guide", url: "https://www.youtube.com/watch?v=z8xUCzTv8Y0" },
+    { type: "docs", title: "WCAG Guidelines", url: "https://www.w3.org/WAI/WCAG21/quickref/" },
+  ],
+  "WP-FE-09": [
+    { type: "video", title: "Web Performance Optimization", url: "https://www.youtube.com/watch?v=0fONene3OIA" },
+    { type: "docs", title: "Web Vitals", url: "https://web.dev/vitals/" },
+  ],
+
+  // Web Development - UI/UX
+  "WP-UX-01": [
+    { type: "video", title: "Wireframing Tutorial", url: "https://www.youtube.com/watch?v=qpH7-KFWZRI" },
+    { type: "article", title: "Wireframe Guide", url: "https://www.figma.com/resource-library/what-is-wireframing/" },
+  ],
+  "WP-UX-02": [
+    { type: "video", title: "Design Systems Tutorial", url: "https://www.youtube.com/watch?v=wIuVvCuiJhU" },
+    { type: "docs", title: "Design Tokens", url: "https://www.designtokens.dev/" },
+  ],
+  "WP-UX-03": [
+    { type: "video", title: "Color Theory for Designers", url: "https://www.youtube.com/watch?v=AvgCkHrcj90" },
+    { type: "article", title: "Coolors Palette Generator", url: "https://coolors.co/" },
+  ],
+  "WP-UX-04": [
+    { type: "video", title: "Figma Tutorial for Beginners", url: "https://www.youtube.com/watch?v=FTFaQWZBqQ8" },
+    { type: "docs", title: "Figma Learn", url: "https://www.figma.com/resources/learn-design/" },
+  ],
+  "WP-UX-05": [
+    { type: "video", title: "Hero Section Design", url: "https://www.youtube.com/watch?v=mJgBOIoGihA" },
+    { type: "article", title: "Hero Section Best Practices", url: "https://uxplanet.org/hero-section-design-best-practices-6752c789a820" },
+  ],
+  "WP-UX-06": [
+    { type: "video", title: "Conversion Optimization", url: "https://www.youtube.com/watch?v=kPKPrpQsaLk" },
+    { type: "article", title: "CRO Guide", url: "https://www.optimizely.com/optimization-glossary/conversion-rate-optimization/" },
+  ],
+  "WP-UX-07": [
+    { type: "video", title: "UX Accessibility Testing", url: "https://www.youtube.com/watch?v=cOmehxAU_4s" },
+    { type: "docs", title: "A11y Project", url: "https://www.a11yproject.com/" },
+  ],
+  "WP-UX-08": [
+    { type: "video", title: "UX Writing Tips", url: "https://www.youtube.com/watch?v=RNTXbsS7d4E" },
+    { type: "article", title: "UX Copy Guidelines", url: "https://www.nngroup.com/articles/ux-writing-study-guide/" },
+  ],
+  "WP-UX-09": [
+    { type: "video", title: "Usability Testing Guide", url: "https://www.youtube.com/watch?v=BrVnBdW6_rE" },
+    { type: "article", title: "Usability Testing Methods", url: "https://www.nngroup.com/articles/usability-testing-101/" },
+  ],
+
+  // Web Development - Backend
+  "WP-BE-01": [
+    { type: "video", title: "Backend Architecture Basics", url: "https://www.youtube.com/watch?v=oJQTNq7y3-s" },
+    { type: "article", title: "System Design Guide", url: "https://www.freecodecamp.org/news/systems-design-for-interviews/" },
+  ],
+  "WP-BE-02": [
+    { type: "video", title: "REST API Design", url: "https://www.youtube.com/watch?v=-MTSQjw5DrM" },
+    { type: "docs", title: "OpenAPI Specification", url: "https://swagger.io/specification/" },
+  ],
+  "WP-BE-03": [
+    { type: "video", title: "Authentication Tutorial", url: "https://www.youtube.com/watch?v=2PPSXonhIck" },
+    { type: "docs", title: "Auth0 Documentation", url: "https://auth0.com/docs" },
+  ],
+  "WP-BE-04": [
+    { type: "video", title: "CMS Development Guide", url: "https://www.youtube.com/watch?v=Xprz8TQwn7w" },
+    { type: "article", title: "Headless CMS Guide", url: "https://www.sanity.io/headless-cms" },
+  ],
+  "WP-BE-05": [
+    { type: "video", title: "Frontend Backend Connection", url: "https://www.youtube.com/watch?v=Law7wfdg_ls" },
+    { type: "docs", title: "Fetch API Guide", url: "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" },
+  ],
+  "WP-BE-06": [
+    { type: "video", title: "Email Integration Tutorial", url: "https://www.youtube.com/watch?v=Va1mN0FJpGM" },
+    { type: "docs", title: "SendGrid Documentation", url: "https://docs.sendgrid.com/" },
+  ],
+  "WP-BE-07": [
+    { type: "video", title: "Stripe Integration Tutorial", url: "https://www.youtube.com/watch?v=1r-F3FIONl8" },
+    { type: "docs", title: "Stripe Documentation", url: "https://stripe.com/docs" },
+  ],
+  "WP-BE-08": [
+    { type: "video", title: "Web Security Basics", url: "https://www.youtube.com/watch?v=F-sFp_0XR7c" },
+    { type: "docs", title: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/" },
+  ],
+  "WP-BE-09": [
+    { type: "video", title: "API Testing Tutorial", url: "https://www.youtube.com/watch?v=VywxIQ2ZXw4" },
+    { type: "docs", title: "Jest Testing", url: "https://jestjs.io/docs/getting-started" },
+  ],
+
+  // Web Development - Database
+  "WP-DB-01": [
+    { type: "video", title: "Database Design Basics", url: "https://www.youtube.com/watch?v=ztHopE5Wnpc" },
+    { type: "article", title: "ER Diagrams Guide", url: "https://www.lucidchart.com/pages/er-diagrams" },
+  ],
+  "WP-DB-02": [
+    { type: "video", title: "SQL Tutorial", url: "https://www.youtube.com/watch?v=HXV3zeQKqGY" },
+    { type: "docs", title: "PostgreSQL Documentation", url: "https://www.postgresql.org/docs/" },
+  ],
+  "WP-DB-03": [
+    { type: "video", title: "CMS Database Design", url: "https://www.youtube.com/watch?v=W2Z7fbCLSTw" },
+    { type: "article", title: "Content Modeling", url: "https://www.contentful.com/help/content-modelling-basics/" },
+  ],
+  "WP-DB-04": [
+    { type: "video", title: "MongoDB Tutorial", url: "https://www.youtube.com/watch?v=ofme2o29ngU" },
+    { type: "docs", title: "MongoDB Documentation", url: "https://www.mongodb.com/docs/" },
+  ],
+  "WP-DB-05": [
+    { type: "video", title: "Data Privacy Guide", url: "https://www.youtube.com/watch?v=9bZkp7q19f0" },
+    { type: "article", title: "GDPR Compliance", url: "https://gdpr.eu/what-is-gdpr/" },
+  ],
+  "WP-DB-06": [
+    { type: "video", title: "SQL Query Optimization", url: "https://www.youtube.com/watch?v=BHwzDmr6d7s" },
+    { type: "article", title: "Query Optimization Guide", url: "https://www.sqlshack.com/query-optimization-techniques-in-sql-server/" },
+  ],
+  "WP-DB-07": [
+    { type: "video", title: "Database Migrations Tutorial", url: "https://www.youtube.com/watch?v=K90gZq6fgXQ" },
+    { type: "docs", title: "Prisma Migrate", url: "https://www.prisma.io/docs/concepts/components/prisma-migrate" },
+  ],
+  "WP-DB-08": [
+    { type: "video", title: "Analytics Database Design", url: "https://www.youtube.com/watch?v=M8oi7nSaWps" },
+    { type: "article", title: "Data Warehouse Design", url: "https://www.tableau.com/learn/articles/data-warehouse" },
+  ],
+  "WP-DB-09": [
+    { type: "video", title: "Database Backup Strategies", url: "https://www.youtube.com/watch?v=rFv5q0xNJsQ" },
+    { type: "docs", title: "PostgreSQL Backup", url: "https://www.postgresql.org/docs/current/backup.html" },
+  ],
+
+  // Web Development - Deployment
+  "WP-DP-01": [
+    { type: "video", title: "Preparing for Production", url: "https://www.youtube.com/watch?v=SBvmnHTQIPY" },
+    { type: "docs", title: "Production Checklist", url: "https://web.dev/performance/" },
+  ],
+  "WP-DP-02": [
+    { type: "video", title: "Docker Tutorial", url: "https://www.youtube.com/watch?v=fqMOX6JJhGo" },
+    { type: "docs", title: "Docker Documentation", url: "https://docs.docker.com/" },
+  ],
+  "WP-DP-03": [
+    { type: "video", title: "CI/CD Tutorial", url: "https://www.youtube.com/watch?v=scEDHsr3APg" },
+    { type: "docs", title: "GitHub Actions", url: "https://docs.github.com/en/actions" },
+  ],
+  "WP-DP-04": [
+    { type: "video", title: "Vercel Deployment Tutorial", url: "https://www.youtube.com/watch?v=yF5sHD9DUCA" },
+    { type: "docs", title: "Vercel Documentation", url: "https://vercel.com/docs" },
+  ],
+  "WP-DP-05": [
+    { type: "video", title: "Custom Domain Setup", url: "https://www.youtube.com/watch?v=bDtxF7qSofg" },
+    { type: "docs", title: "DNS Configuration", url: "https://www.cloudflare.com/learning/dns/what-is-dns/" },
+  ],
+  "WP-DP-06": [
+    { type: "video", title: "Environment Variables Guide", url: "https://www.youtube.com/watch?v=GZq3oh9meNM" },
+    { type: "article", title: "12 Factor App Config", url: "https://12factor.net/config" },
+  ],
+  "WP-DP-07": [
+    { type: "video", title: "SSL Certificate Tutorial", url: "https://www.youtube.com/watch?v=33VYnE7Bzpk" },
+    { type: "docs", title: "Let's Encrypt", url: "https://letsencrypt.org/docs/" },
+  ],
+  "WP-DP-08": [
+    { type: "video", title: "Website Monitoring Guide", url: "https://www.youtube.com/watch?v=8csL2BtVn_U" },
+    { type: "docs", title: "Grafana Documentation", url: "https://grafana.com/docs/grafana/latest/" },
+  ],
+  "WP-DP-09": [
+    { type: "video", title: "Web App Scaling Tutorial", url: "https://www.youtube.com/watch?v=sCR3SAVdyCc" },
+    { type: "article", title: "Scaling Web Apps", url: "https://www.digitalocean.com/resources/articles/scalability" },
+  ],
+
+  // Web Development - Assets
+  "WP-AS-01": [
+    { type: "video", title: "AI Logo Design Tutorial", url: "https://www.youtube.com/watch?v=pmGhj6GHjfg" },
+    { type: "article", title: "Logo Design Tips", url: "https://www.canva.com/learn/logo-design/" },
+  ],
+  "WP-AS-02": [
+    { type: "video", title: "Hero Image with AI", url: "https://www.youtube.com/watch?v=jPmUJ7umT8g" },
+    { type: "docs", title: "Midjourney Documentation", url: "https://docs.midjourney.com/" },
+  ],
+  "WP-AS-03": [
+    { type: "video", title: "Icon Design Tutorial", url: "https://www.youtube.com/watch?v=FLiKfJlpnqs" },
+    { type: "article", title: "SVG Icons Guide", url: "https://www.svgrepo.com/" },
+  ],
+  "WP-AS-04": [
+    { type: "video", title: "Pattern Generation with AI", url: "https://www.youtube.com/watch?v=KYzlpRvWZ6c" },
+    { type: "article", title: "Pattern Design", url: "https://www.patternpad.com/" },
+  ],
+  "WP-AS-05": [
+    { type: "video", title: "AI Illustrations Tutorial", url: "https://www.youtube.com/watch?v=3qZ0g3xLKHI" },
+    { type: "article", title: "Illustration Styles", url: "https://www.adobe.com/creativecloud/illustration.html" },
+  ],
+  "WP-AS-06": [
+    { type: "video", title: "Social Media Images Tutorial", url: "https://www.youtube.com/watch?v=VJ7a8jN0Xo8" },
+    { type: "docs", title: "Open Graph Protocol", url: "https://ogp.me/" },
+  ],
+  "WP-AS-07": [
+    { type: "video", title: "Favicon Creation Tutorial", url: "https://www.youtube.com/watch?v=GPOsC6PCmQY" },
+    { type: "article", title: "Favicon Generator", url: "https://favicon.io/" },
+  ],
+  "WP-AS-08": [
+    { type: "video", title: "Image Optimization Guide", url: "https://www.youtube.com/watch?v=LUtqTLD1yX8" },
+    { type: "docs", title: "Image Optimization", url: "https://web.dev/fast/#optimize-your-images" },
+  ],
+  "WP-AS-09": [
+    { type: "video", title: "Copyright for Creators", url: "https://www.youtube.com/watch?v=1Jwo5qc78QU" },
+    { type: "article", title: "Creative Commons", url: "https://creativecommons.org/about/cclicenses/" },
+  ],
+
+  // Web Development - AI Tools
+  "WP-AI-01": [
+    { type: "video", title: "Lovable Tutorial", url: "https://www.youtube.com/watch?v=9KHLTZaJcR8" },
+    { type: "docs", title: "Lovable Documentation", url: "https://docs.lovable.dev/" },
+  ],
+  "WP-AI-02": [
+    { type: "video", title: "Bolt.new Tutorial", url: "https://www.youtube.com/watch?v=dh0hEkc_0wQ" },
+    { type: "docs", title: "Bolt.new Guide", url: "https://bolt.new/" },
+  ],
+  "WP-AI-03": [
+    { type: "video", title: "Cursor AI Tutorial", url: "https://www.youtube.com/watch?v=tjFnifvEEcY" },
+    { type: "docs", title: "Cursor Documentation", url: "https://cursor.sh/" },
+  ],
+  "WP-AI-04": [
+    { type: "video", title: "AI Code Generation Tools", url: "https://www.youtube.com/watch?v=5yx5fPqWOcw" },
+    { type: "article", title: "AI Coding Tools Comparison", url: "https://www.emergentmind.com/" },
+  ],
+  "WP-AI-05": [
+    { type: "video", title: "Replit AI Tutorial", url: "https://www.youtube.com/watch?v=hPeOqvJr2oI" },
+    { type: "docs", title: "Replit Documentation", url: "https://replit.com/" },
+  ],
+  "WP-AI-06": [
+    { type: "video", title: "ChatGPT for Coding", url: "https://www.youtube.com/watch?v=VznoKyh6AXs" },
+    { type: "docs", title: "ChatGPT Guide", url: "https://chat.openai.com/" },
+  ],
+  "WP-AI-07": [
+    { type: "video", title: "Gemini AI Tutorial", url: "https://www.youtube.com/watch?v=UIZAiXYceBI" },
+    { type: "docs", title: "Google AI Studio", url: "https://ai.google.dev/" },
+  ],
+  "WP-AI-08": [
+    { type: "video", title: "Grok AI Overview", url: "https://www.youtube.com/watch?v=XF0yYxf2G3o" },
+    { type: "docs", title: "Grok AI", url: "https://grok.x.ai/" },
+  ],
+  "WP-AI-09": [
+    { type: "video", title: "AI Tools Comparison", url: "https://www.youtube.com/watch?v=bO7FQsCcbD8" },
+    { type: "article", title: "AI Dev Tools Guide", url: "https://www.promptingguide.ai/tools" },
+  ],
+
+  // App Development - Idea to Prompts
+  "AP-IP-01": [
+    { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+    { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+  ],
+  "AP-IP-02": [
+    { type: "video", title: "How to Write Perfect Prompts", url: "https://www.youtube.com/watch?v=jC4v5AS4RIM" },
+    { type: "docs", title: "Prompting Guide", url: "https://www.promptingguide.ai/" },
+  ],
+  "AP-IP-03": [
+    { type: "video", title: "Problem Statement Writing", url: "https://www.youtube.com/watch?v=QGfWNj2eXQE" },
+    { type: "article", title: "Problem Framing Guide", url: "https://designsprintkit.withgoogle.com/methodology/phase1-understand" },
+  ],
+  "AP-IP-04": [
+    { type: "video", title: "Feature List Creation", url: "https://www.youtube.com/watch?v=KwP-08VvJsU" },
+    { type: "docs", title: "Product Features Guide", url: "https://www.atlassian.com/agile/product-management/requirements" },
+  ],
+  "AP-IP-05": [
+    { type: "video", title: "User Stories Tutorial", url: "https://www.youtube.com/watch?v=apOvF9NVguA" },
+    { type: "article", title: "Writing User Stories", url: "https://www.atlassian.com/agile/project-management/user-stories" },
+  ],
+  "AP-IP-06": [
+    { type: "video", title: "Task Breakdown Tutorial", url: "https://www.youtube.com/watch?v=SYTxG69wqPo" },
+    { type: "article", title: "Work Breakdown Structure", url: "https://www.projectmanager.com/guides/work-breakdown-structure" },
+  ],
+  "AP-IP-07": [
+    { type: "video", title: "Project Scoping Guide", url: "https://www.youtube.com/watch?v=3A7uWQJmZxc" },
+    { type: "article", title: "Scope Definition", url: "https://www.pmi.org/learning/library/defining-project-scope-6182" },
+  ],
+  "AP-IP-08": [
+    { type: "video", title: "PRD Writing Tutorial", url: "https://www.youtube.com/watch?v=yUOC-Y0f5ZQ" },
+    { type: "article", title: "PRD Template", url: "https://www.notion.so/templates/product-requirement-document" },
+  ],
+  "AP-IP-09": [
+    { type: "video", title: "App Flow Design", url: "https://www.youtube.com/watch?v=7SqTR0DpnLw" },
+    { type: "article", title: "User Flow Design", url: "https://www.figma.com/resource-library/ux-flows/" },
+  ],
+  "AP-IP-10": [
+    { type: "video", title: "Project Estimation Guide", url: "https://www.youtube.com/watch?v=AUW5ZqQP-qw" },
+    { type: "article", title: "Software Estimation", url: "https://www.atlassian.com/agile/project-management/estimation" },
+  ],
+  "AP-IP-11": [
+    { type: "video", title: "Market Research with AI", url: "https://www.youtube.com/watch?v=nU-IIXBWlS4" },
+    { type: "article", title: "Idea Validation Guide", url: "https://www.ycombinator.com/library/5q-how-to-talk-to-users" },
+  ],
+
+  // App Development - Frontend (continued...)
+  "AP-FE-01": [
+    { type: "video", title: "App Layout Design", url: "https://www.youtube.com/watch?v=0-S5a0eXPoc" },
+    { type: "docs", title: "React Native Layout", url: "https://reactnative.dev/docs/flexbox" },
+  ],
+  "AP-FE-02": [
+    { type: "video", title: "React Components Tutorial", url: "https://www.youtube.com/watch?v=bMknfKXIFA8" },
+    { type: "docs", title: "Flutter Widgets", url: "https://docs.flutter.dev/development/ui/widgets" },
+  ],
+  "AP-FE-03": [
+    { type: "video", title: "State Management Guide", url: "https://www.youtube.com/watch?v=CVpUuw9XSjY" },
+    { type: "docs", title: "Redux Toolkit", url: "https://redux-toolkit.js.org/" },
+  ],
+  "AP-FE-04": [
+    { type: "video", title: "Responsive App Design", url: "https://www.youtube.com/watch?v=srvUrASNj0s" },
+    { type: "article", title: "Responsive Patterns", url: "https://web.dev/responsive-web-design-basics/" },
+  ],
+  "AP-FE-05": [
+    { type: "video", title: "Mobile Accessibility Guide", url: "https://www.youtube.com/watch?v=z8xUCzTv8Y0" },
+    { type: "docs", title: "Mobile A11y Guidelines", url: "https://www.w3.org/TR/mobile-accessibility-mapping/" },
+  ],
+  "AP-FE-06": [
+    { type: "video", title: "Micro-interactions Tutorial", url: "https://www.youtube.com/watch?v=YszONjKpgg4" },
+    { type: "docs", title: "React Spring", url: "https://www.react-spring.dev/" },
+  ],
+  "AP-FE-07": [
+    { type: "video", title: "API Integration Tutorial", url: "https://www.youtube.com/watch?v=Law7wfdg_ls" },
+    { type: "docs", title: "TanStack Query", url: "https://tanstack.com/query/latest" },
+  ],
+  "AP-FE-08": [
+    { type: "video", title: "Frontend Testing Tutorial", url: "https://www.youtube.com/watch?v=8Xwq35cPwYg" },
+    { type: "docs", title: "Testing Library", url: "https://testing-library.com/docs/" },
+  ],
+  "AP-FE-09": [
+    { type: "video", title: "App Performance Guide", url: "https://www.youtube.com/watch?v=0fONene3OIA" },
+    { type: "docs", title: "React Performance", url: "https://react.dev/reference/react/memo" },
+  ],
+
+  // Game Development - Idea to Prompts
+  "GS-IP-01": [
+    { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+    { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+  ],
+  "GS-IP-02": [
+    { type: "video", title: "How to Write Perfect Prompts", url: "https://www.youtube.com/watch?v=jC4v5AS4RIM" },
+    { type: "docs", title: "Prompting Guide", url: "https://www.promptingguide.ai/" },
+  ],
+  "GS-IP-03": [
+    { type: "video", title: "Game Design Fundamentals", url: "https://www.youtube.com/watch?v=zQvWMdWhFCc" },
+    { type: "article", title: "Game Genre Guide", url: "https://gamedesigning.org/gaming/game-genres/" },
+  ],
+  "GS-IP-04": [
+    { type: "video", title: "Game Vision Document", url: "https://www.youtube.com/watch?v=PMXf0e8n2Oc" },
+    { type: "article", title: "Game Concept Development", url: "https://gamedev.net/tutorials/game-design/" },
+  ],
+  "GS-IP-05": [
+    { type: "video", title: "Gameplay Loop Design", url: "https://www.youtube.com/watch?v=H4kbJObhcHw" },
+    { type: "article", title: "Core Loop Guide", url: "https://www.gamedeveloper.com/design/the-core-of-game-loops" },
+  ],
+  "GS-IP-06": [
+    { type: "video", title: "GDD Tutorial", url: "https://www.youtube.com/watch?v=QIIa9ZVj0z8" },
+    { type: "article", title: "GDD Template", url: "https://www.gamedeveloper.com/business/how-to-write-a-game-design-document" },
+  ],
+  "GS-IP-07": [
+    { type: "video", title: "Game Mechanics Design", url: "https://www.youtube.com/watch?v=y_NgJlNRBqQ" },
+    { type: "article", title: "Mechanics Framework", url: "https://www.gdcvault.com/play/1020174/30-Things-I-Hate-About" },
+  ],
+  "GS-IP-08": [
+    { type: "video", title: "Progression Systems", url: "https://www.youtube.com/watch?v=tWtvrPTbQ_c" },
+    { type: "article", title: "Reward Systems Guide", url: "https://www.gamedeveloper.com/design/decoding-player-motivation" },
+  ],
+  "GS-IP-09": [
+    { type: "video", title: "Simulation Game Design", url: "https://www.youtube.com/watch?v=cRmihFU8m4g" },
+    { type: "article", title: "Simulation Rules", url: "https://gamedev.net/tutorials/game-design/simulation/" },
+  ],
+  "GS-IP-10": [
+    { type: "video", title: "Game Project Management", url: "https://www.youtube.com/watch?v=SYTxG69wqPo" },
+    { type: "article", title: "Agile for Games", url: "https://www.gamedeveloper.com/production/using-agile-game-development" },
+  ],
+  "GS-IP-11": [
+    { type: "video", title: "Game Scope Management", url: "https://www.youtube.com/watch?v=3A7uWQJmZxc" },
+    { type: "article", title: "Feasibility Analysis", url: "https://gamedev.net/tutorials/business/project-management/" },
+  ],
+
+  // Game Development - Frontend (Game Logic)
+  "GS-FE-01": [
+    { type: "video", title: "Player Movement Tutorial", url: "https://www.youtube.com/watch?v=whzomFgjT50" },
+    { type: "docs", title: "Unity Movement", url: "https://docs.unity3d.com/Manual/class-CharacterController.html" },
+  ],
+  "GS-FE-02": [
+    { type: "video", title: "Camera Systems Tutorial", url: "https://www.youtube.com/watch?v=537B1kJp9YQ" },
+    { type: "docs", title: "Cinemachine", url: "https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manual/index.html" },
+  ],
+  "GS-FE-03": [
+    { type: "video", title: "Physics in Games", url: "https://www.youtube.com/watch?v=nBkiSJ5z-hE" },
+    { type: "docs", title: "Unity Physics", url: "https://docs.unity3d.com/Manual/PhysicsSection.html" },
+  ],
+  "GS-FE-04": [
+    { type: "video", title: "Player Stats System", url: "https://www.youtube.com/watch?v=Wh_WGXjGNt4" },
+    { type: "article", title: "RPG Stats Design", url: "https://gamedev.net/tutorials/game-design/game-mechanics/" },
+  ],
+  "GS-FE-05": [
+    { type: "video", title: "Input System Tutorial", url: "https://www.youtube.com/watch?v=m5WsmlEOFiA" },
+    { type: "docs", title: "Unity Input System", url: "https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html" },
+  ],
+  "GS-FE-06": [
+    { type: "video", title: "Save System Tutorial", url: "https://www.youtube.com/watch?v=XOjd_qU2Ido" },
+    { type: "article", title: "Game State Management", url: "https://gamedev.net/tutorials/programming/general-and-gameplay-programming/save-load-system/" },
+  ],
+  "GS-FE-07": [
+    { type: "video", title: "Game Script Optimization", url: "https://www.youtube.com/watch?v=Q2tDcqc3nLU" },
+    { type: "docs", title: "Unity Optimization", url: "https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity.html" },
+  ],
+  "GS-FE-08": [
+    { type: "video", title: "Debugging Game Logic", url: "https://www.youtube.com/watch?v=bVc8SsZ4VVk" },
+    { type: "docs", title: "Unity Debugging", url: "https://docs.unity3d.com/Manual/ManagedCodeDebugging.html" },
+  ],
+  "GS-FE-09": [
+    { type: "video", title: "Memory Optimization", url: "https://www.youtube.com/watch?v=mQ2KTRn4BMI" },
+    { type: "docs", title: "Unity Memory", url: "https://docs.unity3d.com/Manual/performance-memory.html" },
+  ],
+
+  // Game Development - UI/UX
+  "GS-UX-01": [
+    { type: "video", title: "Game HUD Design", url: "https://www.youtube.com/watch?v=EOjB4aOx2v8" },
+    { type: "article", title: "HUD Design Best Practices", url: "https://www.gamedeveloper.com/design/designing-ui-for-games" },
+  ],
+  "GS-UX-02": [
+    { type: "video", title: "Game Menu Design", url: "https://www.youtube.com/watch?v=NYabDLH7dNE" },
+    { type: "docs", title: "Unity UI", url: "https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/index.html" },
+  ],
+  "GS-UX-03": [
+    { type: "video", title: "Inventory System Tutorial", url: "https://www.youtube.com/watch?v=2WnAOV7nHW0" },
+    { type: "article", title: "Inventory UI Design", url: "https://gamedevbeginner.com/how-to-make-an-inventory-system-in-unity/" },
+  ],
+  "GS-UX-04": [
+    { type: "video", title: "Quest UI Design", url: "https://www.youtube.com/watch?v=bVLNip0X3G8" },
+    { type: "article", title: "Objective Systems", url: "https://gamedev.net/tutorials/game-design/game-mechanics/quest-design/" },
+  ],
+  "GS-UX-05": [
+    { type: "video", title: "UI Animation Tutorial", url: "https://www.youtube.com/watch?v=YqMpVCPX2Ks" },
+    { type: "docs", title: "DoTween", url: "http://dotween.demigiant.com/documentation.php" },
+  ],
+  "GS-UX-06": [
+    { type: "video", title: "Game Accessibility Guide", url: "https://www.youtube.com/watch?v=Ld4F5Ud5I_s" },
+    { type: "docs", title: "Game Accessibility", url: "https://gameaccessibilityguidelines.com/" },
+  ],
+  "GS-UX-07": [
+    { type: "video", title: "Multi-platform UI Design", url: "https://www.youtube.com/watch?v=Q2uMGnlxKlE" },
+    { type: "article", title: "Cross-platform UI", url: "https://www.gamedeveloper.com/design/ui-design-for-multiple-platforms" },
+  ],
+  "GS-UX-08": [
+    { type: "video", title: "Player Feedback Design", url: "https://www.youtube.com/watch?v=pmSAG51BybY" },
+    { type: "article", title: "UX Testing for Games", url: "https://www.nngroup.com/articles/game-usability-testing/" },
+  ],
+  "GS-UX-09": [
+    { type: "video", title: "Game UX Flow Design", url: "https://www.youtube.com/watch?v=C7307qRmlMI" },
+    { type: "article", title: "Game User Experience", url: "https://www.interaction-design.org/literature/topics/game-design" },
+  ],
+
+  // Game Development - AI Tools
+  "GS-AI-10": [
+    { type: "video", title: "Rosebud AI Tutorial", url: "https://www.youtube.com/watch?v=OaGZL9KqhBk" },
+    { type: "docs", title: "Rosebud AI", url: "https://www.rosebud.ai/" },
+  ],
+  "GS-AI-11": [
+    { type: "video", title: "AI Game Engines Overview", url: "https://www.youtube.com/watch?v=3VGF_F4QFGc" },
+    { type: "article", title: "AI Game Development", url: "https://www.gamedeveloper.com/ai/ai-in-games" },
+  ],
+  "GS-AI-12": [
+    { type: "video", title: "AI Asset Generation", url: "https://www.youtube.com/watch?v=nVWH8KLMjEs" },
+    { type: "article", title: "AI Game Assets", url: "https://www.unrealengine.com/en-US/blog/ai-and-machine-learning-in-unreal-engine" },
+  ],
+  "GS-AI-13": [
+    { type: "video", title: "NPC Dialogue Systems", url: "https://www.youtube.com/watch?v=C3VCrx5ovK8" },
+    { type: "article", title: "AI NPC Dialogue", url: "https://www.convai.com/" },
+  ],
+  "GS-AI-14": [
+    { type: "video", title: "AI Animation Tools", url: "https://www.youtube.com/watch?v=6gvNQf68vCw" },
+    { type: "docs", title: "AI Motion Capture", url: "https://deepmotion.com/" },
+  ],
+  "GS-AI-15": [
+    { type: "video", title: "ChatGPT for Game Dev", url: "https://www.youtube.com/watch?v=VznoKyh6AXs" },
+    { type: "docs", title: "Gemini AI", url: "https://ai.google.dev/" },
+  ],
+  "GS-AI-16": [
+    { type: "video", title: "AI Game Dev Workflow", url: "https://www.youtube.com/watch?v=bO7FQsCcbD8" },
+    { type: "article", title: "AI Tools Comparison", url: "https://www.promptingguide.ai/tools" },
+  ],
+};
+
+// ============================================
+// LESSON CONTENT
+// ============================================
+
 export const lessonContent: Record<string, LessonContent> = {
-  // ============ MODULE 1: Idea to Prompts ============
-  "1-1": {
+  // WEB DEVELOPMENT - Idea to Prompts
+  "WP-IP-01": {
     objectives: [
-      "Understand what a prompt is and how AI uses it",
-      "Learn why clear prompts produce better results",
-      "Recognize the difference between good and bad prompts",
+      "Understand what prompt engineering is and why it matters",
+      "Learn the core principles of effective prompts",
+      "Write your first structured prompts",
     ],
-    summary: "Prompt engineering is the skill of writing clear instructions for AI. Good prompts tell the AI exactly what you want, while bad prompts are vague and leave too much to interpretation.",
-    theory: `A **prompt** is the text you give to an AI model. Think of it like giving directions to someone. The clearer your directions, the better they can help you.
+    summary: "Prompt engineering is the skill of communicating effectively with AI to get the results you want. This lesson introduces the fundamentals.",
+    theory: `**What is Prompt Engineering?**
 
-AI models do not read minds. They only know what you tell them. If you say "make a website," the AI has to guess what kind of website, what colors, what features. But if you say "create a landing page for a coffee shop with a brown color scheme and a menu section," the AI knows exactly what to do.
+Prompt engineering is the practice of crafting inputs (prompts) to get the best outputs from AI systems. Think of it like learning a new language—the better you communicate, the better the AI responds.
 
-**Three rules for good prompts:**
-1. **Be specific** - say exactly what you want
-2. **Give context** - explain the situation
-3. **Show the format** - describe how the output should look
+**Why does it matter?**
+- AI can only work with what you tell it
+- Good prompts = good results
+- Bad prompts = wasted time and frustration
 
-Think of prompts like recipes. A recipe that says "cook some food" is useless. A recipe that says "bake chocolate chip cookies at 350°F for 12 minutes" is useful.
+**The Three Pillars:**
+1. **Clarity** - Be specific about what you want
+2. **Context** - Give the AI relevant background
+3. **Constraints** - Set boundaries and expectations
 
-**Why does this matter?**
-- Better prompts = less back-and-forth
-- Better prompts = more accurate outputs
-- Better prompts = faster development
-
-The difference between a beginner and an expert is often just how well they write their prompts.`,
+**Simple Example:**
+Instead of "make a website", try "create a landing page for a coffee shop with a hero section, menu preview, and contact form."`,
     examples: [
       {
-        title: "Simple Task Prompt",
-        before: "Write code for a button",
-        after: `Create a React button component with Tailwind CSS.
-
-Requirements:
-- Primary and secondary variants
-- Accept a "label" prop for the text
-- Accept an "onClick" handler
-- Include hover and focus states
-- Use TypeScript`,
-        explanation: "The improved prompt specifies the technology (React, Tailwind), variants, props, and interactions. The AI now knows exactly what to build.",
-      },
-      {
-        title: "Feature Request",
-        before: "Help with my app",
-        after: `I am building a todo list app in React with TypeScript.
-
-Current state: I have a basic list that shows tasks.
-
-Need help with:
-- Adding ability to mark tasks complete
-- Storing tasks in localStorage
-- Filtering by status (all/active/completed)
-
-Please provide the updated component code.`,
-        explanation: "The improved prompt gives context (todo app, React, TypeScript), current state, specific features needed, and expected output format.",
+        title: "From Vague to Clear",
+        before: "Help me make a website",
+        after: `Create a single-page website for "Sunrise Coffee Shop" with:
+- Hero section with tagline and CTA
+- Featured menu items (3-4 items)
+- Location and hours section
+- Contact form
+Style: Warm colors, modern, mobile-friendly`,
+        explanation: "Adding specifics about the business, structure, and style gives the AI everything it needs to generate useful code.",
       },
     ],
     keywords: [
-      {
-        term: "Prompt",
-        meaning: "The text instruction you give to an AI to get a response",
-        usage: "Write a clear prompt to generate a login form component",
-      },
-      {
-        term: "Context",
-        meaning: "Background information that helps AI understand your situation",
-        usage: "Add context like 'I am building an e-commerce site' before asking for code",
-      },
-      {
-        term: "Iteration",
-        meaning: "The process of improving prompts step by step based on results",
-        usage: "If the AI output is not right, iterate by refining your prompt",
-      },
+      { term: "Prompt", meaning: "The input text you give to an AI", usage: "Write a clear prompt to get better AI responses" },
+      { term: "Context", meaning: "Background information that helps AI understand your request", usage: "Add context about your project so the AI knows what you're building" },
+      { term: "Constraints", meaning: "Limits and rules for the AI to follow", usage: "Add constraints like 'use Tailwind CSS' or 'keep it under 100 lines'" },
     ],
-    instructorNotes: "Focus on the 'why' before the 'how.' Students often try to write complex prompts too early. Start with simple examples and build up. Emphasize that iteration is normal—your first prompt rarely produces perfect results.",
+    links: [
+      { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+      { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+    ],
+    instructorNotes: "Start with live examples. Show the same task with a bad prompt vs a good prompt. Let students see the difference in AI output quality.",
   },
-  "1-2": {
+
+  "WP-IP-02": {
     objectives: [
-      "Learn the CREST framework for structuring prompts",
-      "Understand each component of an effective prompt",
-      "Apply the framework to create consistent outputs",
+      "Learn the structure of an effective prompt",
+      "Understand each component: role, task, context, constraints",
+      "Practice building prompts step by step",
     ],
-    summary: "The CREST framework provides a repeatable structure for writing prompts: Context, Role, Examples, Specifics, and Tone. Using this framework ensures you never forget important details.",
-    theory: `The **CREST Framework** gives you a checklist for every prompt:
+    summary: "Every effective prompt has key components. This lesson breaks down the anatomy of prompts so you can build them consistently.",
+    theory: `**The Anatomy of a Great Prompt:**
 
-**C - Context**
-What is the background? What are you building? What is the current state?
-Example: "I am building an e-commerce site with React and Supabase."
+1. **Role** - Who should the AI act as?
+   Example: "You are a senior React developer..."
 
-**R - Role**
-Who should the AI pretend to be? This shapes the response style.
-Example: "Act as a senior React developer with 10 years of experience."
+2. **Task** - What do you want done?
+   Example: "Create a responsive navigation component..."
 
-**E - Examples**
-Show what you want. Examples are worth 1000 words.
-Example: "Here is a similar component for reference: [code]"
+3. **Context** - What's the situation?
+   Example: "For an e-commerce site targeting young adults..."
 
-**S - Specifics**
-What are the requirements? Be explicit about constraints.
-Example: "Must use TypeScript, handle loading states, follow WCAG accessibility."
+4. **Constraints** - What are the rules?
+   Example: "Use Tailwind CSS, TypeScript, mobile-first..."
 
-**T - Tone**
-What style should the response use? Code comments? Explanations?
-Example: "Include brief comments explaining complex logic."
+5. **Examples** (optional) - Show what you want
+   Example: "Similar to Stripe's navigation bar..."
 
-Not every prompt needs all five parts. A simple prompt might only need Specifics. A complex architecture discussion might need all five.
+6. **Output Format** - How should it be delivered?
+   Example: "Provide the code with comments explaining each section..."
 
-Rule of thumb: If you get unexpected results, you probably forgot one of the CREST components.`,
+**The CRISPE Framework:**
+- **C**apacity: What role should the AI take?
+- **R**equest: What is the specific task?
+- **I**nformation: What context is needed?
+- **S**tyle: What format or style?
+- **P**ersona: Who is the audience?
+- **E**xperiment: What variations to try?`,
     examples: [
       {
-        title: "Login Form with CREST",
-        before: "Write a login form",
-        after: `# Context
-Building a SaaS dashboard with React 18, Tailwind CSS, and Supabase auth.
+        title: "Building a Complete Prompt",
+        before: "Make a login form",
+        after: `**Role:** You are a senior frontend developer specializing in React and TypeScript.
 
-# Role
-Senior React developer focused on security best practices.
+**Task:** Create a login form component with email and password fields.
 
-# Example
-Similar to the Vercel dashboard login—clean, minimal, focused.
+**Context:** This is for a SaaS dashboard. Users are professionals who value clean, efficient interfaces.
 
-# Specifics
-- Email and password fields
-- Client-side validation with Zod
-- Error messages below inputs
-- Loading state on submit
-- "Forgot password" link
-- TypeScript with proper types
+**Constraints:**
+- Use React with TypeScript
+- Style with Tailwind CSS
+- Include form validation with react-hook-form
+- Show loading state during submission
+- Handle errors gracefully
 
-# Tone
-Production-ready code with brief inline comments.`,
-        explanation: "Each CREST component adds clarity. Context sets the stack, Role shapes the security focus, Example provides visual reference, Specifics list requirements, Tone defines code style.",
+**Output:** Provide the complete component code with comments.`,
+        explanation: "Breaking down the prompt into clear sections ensures the AI addresses every requirement.",
       },
     ],
     keywords: [
-      {
-        term: "CREST",
-        meaning: "A framework for prompts: Context, Role, Examples, Specifics, Tone",
-        usage: "Use CREST to structure your prompts for better AI responses",
-      },
-      {
-        term: "Role",
-        meaning: "The persona you ask AI to adopt when responding",
-        usage: "Ask AI to act as a senior developer for more professional code",
-      },
-      {
-        term: "Specifics",
-        meaning: "Detailed requirements and constraints for the output",
-        usage: "Add specifics like 'use TypeScript' and 'include error handling'",
-      },
+      { term: "Role", meaning: "The persona or expertise the AI should adopt", usage: "Set the role to 'senior developer' for production-quality code" },
+      { term: "Task", meaning: "The specific action you want the AI to perform", usage: "Make your task clear and actionable" },
+      { term: "CRISPE", meaning: "A framework for structuring prompts", usage: "Use CRISPE to ensure you cover all aspects of your prompt" },
     ],
-    instructorNotes: "Have students memorize CREST by practicing with real prompts. Create a CREST checklist they can reference. Common mistake: students skip Examples because they think it takes too long—show them how examples dramatically improve output quality.",
-  },
-  "1-3": {
-    objectives: [
-      "Break complex problems into smaller, manageable prompts",
-      "Understand the divide and conquer approach",
-      "Learn to sequence prompts for complex features",
+    links: [
+      { type: "video", title: "How to Write Perfect Prompts", url: "https://www.youtube.com/watch?v=jC4v5AS4RIM" },
+      { type: "docs", title: "Prompting Guide", url: "https://www.promptingguide.ai/" },
     ],
-    summary: "Large features should not be built in one prompt. Decomposition means breaking a big task into smaller prompts that each do one thing well. This leads to better results and easier debugging.",
-    theory: `**Why decompose?**
-AI works best on focused tasks. Asking for a "complete e-commerce site" will give mediocre results. Asking for "a product card component" gives excellent results.
-
-**The Decomposition Process:**
-1. **Identify the goal** - What is the end result?
-2. **List the parts** - What components make up the whole?
-3. **Order by dependency** - What needs to exist first?
-4. **Create focused prompts** - One prompt per part
-
-**Example: Building a Blog**
-Bad approach: "Build me a complete blog with posts, comments, and admin."
-
-Good approach:
-- Prompt 1: Create the blog post data model
-- Prompt 2: Build the post list component
-- Prompt 3: Build the single post view
-- Prompt 4: Add the comment section
-- Prompt 5: Create the admin CRUD interface
-
-Rule of thumb: If your prompt has more than 3 "and" statements, break it up.
-
-**Benefits:**
-- Easier to test each piece
-- Easier to spot what went wrong
-- Can reuse components
-- Better quality per piece`,
-    examples: [
-      {
-        title: "Decomposing a User Profile Feature",
-        before: "Build a user profile page with avatar upload, bio editing, settings, password change, and notification preferences",
-        after: `Step 1: Create ProfileHeader component with avatar display and edit button
-
-Step 2: Build AvatarUpload component with:
-- File picker
-- Image preview
-- Upload to storage
-- Error handling
-
-Step 3: Create BioEditor component with:
-- Textarea for bio
-- Character counter
-- Save/cancel buttons
-
-Step 4: Build SettingsForm for general settings
-Step 5: Build PasswordChangeForm
-Step 6: Build NotificationPreferences
-Step 7: Combine all in ProfilePage layout`,
-        explanation: "Each step is now a focused prompt. You can test the avatar upload independently. If the bio editor has issues, you know exactly where to look.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Decomposition",
-        meaning: "Breaking a large task into smaller, manageable pieces",
-        usage: "Use decomposition to split a dashboard into header, sidebar, and content prompts",
-      },
-      {
-        term: "Component",
-        meaning: "A reusable piece of UI that does one specific thing",
-        usage: "Create a Button component that can be reused across your app",
-      },
-      {
-        term: "Dependency",
-        meaning: "When one part requires another part to exist first",
-        usage: "The cart page has a dependency on the product component",
-      },
-    ],
-    instructorNotes: "Use a real feature and decompose it live with students. Show how easy it is to spot the problem when something breaks in a focused component vs. a monolithic prompt.",
-  },
-  "1-4": {
-    objectives: [
-      "Set proper context for AI prompts",
-      "Use role-playing to shape AI responses",
-      "Understand how context affects output quality",
-    ],
-    summary: "Context and role setting tell the AI who it should be and what situation it is in. This dramatically changes the quality and style of responses.",
-    theory: `**Context Setting:**
-Context is the background information that helps AI understand your situation. Good context includes:
-
-- What you are building (app type, purpose)
-- Technology stack (React, TypeScript, Tailwind)
-- Current state (what exists already)
-- Constraints (must work on mobile, needs to be fast)
-
-**Role Setting:**
-Roles give AI a persona to adopt. Different roles produce different outputs:
-
-- "Act as a senior developer" → More robust, production-ready code
-- "Act as a teacher" → More explanations, simpler examples
-- "Act as a code reviewer" → Focus on improvements and issues
-
-**Combining Context and Role:**
-The best prompts combine both:
-"You are a senior React developer. I am building a SaaS dashboard and need help with..."
-
-**Common Roles:**
-- Senior [Technology] Developer
-- UI/UX Designer
-- Security Expert
-- Performance Specialist
-- Technical Writer`,
-    examples: [
-      {
-        title: "Context and Role Combined",
-        before: "Help me with authentication",
-        after: `Role: You are a senior full-stack developer with expertise in security and authentication patterns.
-
-Context:
-- Building a B2B SaaS application
-- Using React 18, TypeScript, Supabase
-- Need enterprise-grade security
-- Must support SSO in the future
-- Currently have basic email/password
-
-Request: Design the authentication flow including signup, login, password reset, and session management.`,
-        explanation: "The role (security expert) shapes the response toward best practices. The context (B2B SaaS, future SSO) ensures the solution scales appropriately.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Context",
-        meaning: "Background information about your project and situation",
-        usage: "Provide context like tech stack and project type before asking questions",
-      },
-      {
-        term: "Role",
-        meaning: "The persona or expertise level you want AI to adopt",
-        usage: "Ask AI to act as a senior developer for production-quality code",
-      },
-      {
-        term: "Persona",
-        meaning: "A character or identity that AI takes on when responding",
-        usage: "Create a helpful assistant persona for customer support bots",
-      },
-    ],
-    instructorNotes: "Show the same prompt with different roles and compare outputs. The difference is often dramatic and makes the concept click for students.",
-  },
-  "1-5": {
-    objectives: [
-      "Specify output formats clearly",
-      "Use structured output for reliable parsing",
-      "Control code style and documentation level",
-    ],
-    summary: "Output format specification tells AI exactly how to structure its response. This makes outputs predictable and easier to use in your workflow.",
-    theory: `**Why specify format?**
-Without format specification, AI guesses what you want. Sometimes you get prose when you need code. Sometimes you get code when you need a list.
-
-**Format types:**
-- **Code blocks** - Specify language, file structure
-- **JSON** - For structured data extraction
-- **Markdown** - For documentation
-- **Lists** - For step-by-step instructions
-- **Tables** - For comparisons
-
-**Code format specifics:**
-- File name and location
-- Include imports or not
-- Comments level (none, brief, detailed)
-- TypeScript types inline or separate
-
-**Example format instructions:**
-"Return only the code, no explanations."
-"Return as JSON with keys: title, description, steps"
-"Format as a markdown table with columns: Feature, Description, Priority"
-
-**Pro tip:** Use few-shot examples to show exact format:
-"Format like this example: { task: 'Buy milk', done: false }"`,
-    examples: [
-      {
-        title: "Structured Output Request",
-        before: "Give me some color ideas",
-        after: `Generate a color palette for a professional finance app.
-
-Return as JSON with this exact structure:
-{
-  "primary": "#hex",
-  "secondary": "#hex",
-  "accent": "#hex",
-  "background": "#hex",
-  "text": "#hex",
-  "error": "#hex",
-  "success": "#hex",
-  "warning": "#hex"
-}
-
-Include only the JSON, no other text.`,
-        explanation: "The exact JSON structure ensures the output can be directly used in code without parsing or reformatting.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Format",
-        meaning: "The structure and layout of AI output (code, JSON, list, etc.)",
-        usage: "Specify format as JSON to get structured, parseable data",
-      },
-      {
-        term: "JSON",
-        meaning: "A data format using key-value pairs that code can easily read",
-        usage: "Ask AI to return data as JSON for easy integration",
-      },
-      {
-        term: "Structured Output",
-        meaning: "AI response organized in a specific, predictable format",
-        usage: "Request structured output for reliable parsing in your app",
-      },
-    ],
-    instructorNotes: "Show how ambiguous format requests lead to inconsistent outputs. Then show how specific format requests give exactly what you need every time.",
-  },
-  "1-6": {
-    objectives: [
-      "Improve prompts through iteration",
-      "Debug and refine AI outputs",
-      "Build a systematic improvement process",
-    ],
-    summary: "Iteration is the process of improving prompts based on results. Great prompts are rarely written on the first try. Learning to iterate efficiently is a key skill.",
-    theory: `**The Iteration Cycle:**
-1. **Write** - Create your initial prompt
-2. **Run** - Get the AI output
-3. **Analyze** - What is wrong or missing?
-4. **Refine** - Add clarity where needed
-5. **Repeat** - Until satisfied
-
-**Common problems and fixes:**
-
-**Output too generic:**
-- Add more specifics
-- Include examples
-- Set a role
-
-**Output wrong format:**
-- Be explicit about format
-- Show an example of desired format
-
-**Missing requirements:**
-- List requirements explicitly
-- Use numbered lists
-- Say "must include" for critical items
-
-**Too long/short:**
-- Specify length: "in 3 sentences" or "detailed explanation"
-
-**Wrong tone:**
-- Set tone explicitly: "professional", "casual", "technical"
-
-**Iteration tips:**
-- Save your prompts and their results
-- Note what changes improved output
-- Build a library of working prompts
-- Learn from failures`,
-    examples: [
-      {
-        title: "Iterating on a Prompt",
-        before: "Make a navbar → (result: too basic, no mobile, no styling)",
-        after: `Iteration 1: "Make a navbar"
-Result: Basic HTML list of links
-
-Iteration 2: "Make a React navbar with Tailwind"
-Result: Better, but no mobile menu
-
-Iteration 3: "Make a React navbar with Tailwind, include mobile hamburger menu"
-Result: Good, but links are hardcoded
-
-Final: "Create a React navbar component with Tailwind CSS.
-- Accept 'links' prop as array of {label, href}
-- Desktop: horizontal links
-- Mobile: hamburger icon that opens vertical menu
-- Include logo on the left
-- TypeScript with proper types
-- Add smooth transition for mobile menu"
-
-Result: Exactly what was needed`,
-        explanation: "Each iteration added specifics based on what was missing. The final prompt is detailed because we learned what details matter.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Iteration",
-        meaning: "Repeating a process to improve results each time",
-        usage: "Use iteration to refine prompts until you get the desired output",
-      },
-      {
-        term: "Refine",
-        meaning: "To improve by adding clarity or removing ambiguity",
-        usage: "Refine your prompt by adding specific requirements",
-      },
-      {
-        term: "Debug",
-        meaning: "Finding and fixing problems in code or prompts",
-        usage: "Debug your prompt by analyzing why the output was wrong",
-      },
-    ],
-    instructorNotes: "Walk through a live iteration session. Show raw, unedited prompting where things go wrong and you fix them. Students learn most from seeing the process, not just the final result.",
+    instructorNotes: "Have students practice building prompts piece by piece. Start with just role + task, then add context, then constraints.",
   },
 
-  // ============ MODULE 2: Frontend Prompts ============
-  "2-1": {
+  // App Development - Idea to Prompts
+  "AP-IP-01": {
     objectives: [
-      "Generate React components with AI",
-      "Structure component generation prompts",
-      "Get production-ready component code",
-    ],
-    summary: "Component generation is one of the most common uses of AI in frontend development. Learning to prompt for components saves hours of boilerplate coding.",
-    theory: `**Component prompt structure:**
-
-1. **Component type** - Button, Card, Modal, Form, etc.
-2. **Technology** - React, TypeScript, CSS framework
-3. **Props** - What data does it accept?
-4. **States** - Loading, error, empty, etc.
-5. **Behavior** - Click handlers, animations
-6. **Styling** - Design tokens, responsive breakpoints
-
-**Good component prompts include:**
-- Clear component name
-- Explicit prop interface
-- All variants needed
-- Accessibility requirements
-- Example usage
-
-**Common mistakes:**
-- Not specifying TypeScript
-- Forgetting loading/error states
-- No accessibility considerations
-- Hardcoded values instead of props`,
-    examples: [
-      {
-        title: "Card Component Prompt",
-        before: "Make a card component",
-        after: `Create a React Card component with TypeScript and Tailwind CSS.
-
-Props interface:
-- title: string
-- description: string (optional)
-- image: string (optional, URL)
-- onClick: function (optional)
-- variant: "default" | "featured" | "compact"
-
-Requirements:
-- Hover effect with subtle shadow increase
-- If image exists, show at top
-- If onClick exists, cursor pointer and clickable
-- Responsive: full width on mobile, fixed width on desktop
-- Include aria-label for accessibility when clickable
-
-Return the component code with the interface.`,
-        explanation: "Every prop is typed, variants are defined, behavior is clear, and accessibility is considered.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Component",
-        meaning: "A reusable piece of UI code that accepts data and renders HTML",
-        usage: "Create a Button component to reuse across all pages",
-      },
-      {
-        term: "Props",
-        meaning: "Data passed into a component to customize its behavior",
-        usage: "Pass a title prop to display different headings in the Card",
-      },
-      {
-        term: "Render",
-        meaning: "The process of displaying a component on the screen",
-        usage: "The component will render a button when the page loads",
-      },
-    ],
-    instructorNotes: "Start with simple components and build complexity. Show the difference between prompting for a button vs a complex form. Emphasize that good prompts prevent refactoring later.",
-  },
-  "2-2": {
-    objectives: [
-      "Generate proper TypeScript interfaces",
-      "Prompt for type-safe components",
-      "Handle complex prop types",
-    ],
-    summary: "TypeScript types make components safer and easier to use. Prompting for proper types from the start saves debugging time later.",
-    theory: `**Why TypeScript in prompts:**
-- Catches errors at compile time
-- Better autocomplete in editors
-- Self-documenting code
-- Easier refactoring
-
-**Prompting for types:**
-- Ask for interface definitions
-- Specify optional vs required props
-- Include union types for variants
-- Request generic types when needed
-
-**Type patterns to request:**
-- Props interface (component inputs)
-- State types (component internal data)
-- Event handler types (onClick, onChange)
-- API response types (data from server)
-
-**Example type patterns:**
-"Include a Props interface with proper types"
-"Use union types for the status: 'idle' | 'loading' | 'error' | 'success'"
-"Make the onClick prop optional but typed as () => void"`,
-    examples: [
-      {
-        title: "Typed Data Table",
-        before: "Make a table component",
-        after: `Create a generic DataTable component with TypeScript and Tailwind.
-
-Type requirements:
-interface Column<T> {
-  key: keyof T;
-  header: string;
-  render?: (value: T[keyof T], row: T) => React.ReactNode;
-}
-
-interface DataTableProps<T> {
-  data: T[];
-  columns: Column<T>[];
-  onRowClick?: (row: T) => void;
-  loading?: boolean;
-  emptyMessage?: string;
-}
-
-The component should:
-- Accept any data shape via generic T
-- Support custom cell rendering
-- Handle loading and empty states
-- Be fully type-safe
-
-Include example usage with a User type.`,
-        explanation: "Generic types make the table reusable for any data. The Column interface allows custom rendering while maintaining type safety.",
-      },
-    ],
-    keywords: [
-      {
-        term: "TypeScript",
-        meaning: "A programming language that adds types to JavaScript for safety",
-        usage: "Use TypeScript to catch errors before running your code",
-      },
-      {
-        term: "Interface",
-        meaning: "A definition of what properties an object must have",
-        usage: "Create an interface for User with name and email properties",
-      },
-      {
-        term: "Generic",
-        meaning: "A type that works with any data type, specified when used",
-        usage: "Use a generic type to make the table work with any data",
-      },
-    ],
-    instructorNotes: "Show how TypeScript errors catch bugs early. Demonstrate autocomplete benefits. Generics can be confusing—start with simple examples.",
-  },
-  "2-3": {
-    objectives: [
-      "Prompt for state management solutions",
-      "Generate hooks for complex state",
-      "Handle form state and validation",
-    ],
-    summary: "State management is crucial for interactive UIs. Good prompts for state logic result in predictable, testable code.",
-    theory: `**State types to prompt for:**
-
-**Local state (useState):**
-- Simple toggles, counters
-- Form field values
-- UI state (open/closed, selected tab)
-
-**Complex state (useReducer):**
-- Multiple related values
-- Complex update logic
-- State machines
-
-**Custom hooks:**
-- Reusable state logic
-- API calls with loading/error
-- Form handling
-
-**Prompting for state:**
-- Describe the data being managed
-- List all possible state transitions
-- Specify initial values
-- Define error states
-
-**State prompt checklist:**
-- What data needs to be stored?
-- What actions change the state?
-- What are the loading/error states?
-- Should state persist (localStorage)?`,
-    examples: [
-      {
-        title: "Shopping Cart State",
-        before: "Add cart functionality",
-        after: `Create a useCart custom hook with TypeScript.
-
-State structure:
-- items: CartItem[] (id, name, price, quantity)
-- isOpen: boolean (cart drawer visibility)
-- loading: boolean
-- error: string | null
-
-Actions:
-- addItem(product: Product) - add or increment quantity
-- removeItem(itemId: string) - remove completely
-- updateQuantity(itemId: string, quantity: number)
-- clearCart()
-- toggleCart()
-
-Derived values:
-- itemCount: total number of items
-- subtotal: sum of (price * quantity)
-
-Include:
-- Persist to localStorage
-- Optimistic updates
-- Error handling for invalid operations`,
-        explanation: "The prompt specifies state shape, all actions, derived values, and persistence. This results in a complete, production-ready hook.",
-      },
-    ],
-    keywords: [
-      {
-        term: "State",
-        meaning: "Data that changes over time and affects what the UI shows",
-        usage: "Use state to track if a modal is open or closed",
-      },
-      {
-        term: "Hook",
-        meaning: "A function that lets you use React features like state in components",
-        usage: "Create a custom hook to share cart logic across components",
-      },
-      {
-        term: "Reducer",
-        meaning: "A function that takes current state and action, returns new state",
-        usage: "Use a reducer for complex state with many update actions",
-      },
-    ],
-    instructorNotes: "State management is where many apps get complicated. Emphasize starting simple and only adding complexity when needed. Show how good prompts prevent spaghetti state.",
-  },
-  "2-4": {
-    objectives: [
-      "Generate form components with validation",
-      "Handle complex form state",
-      "Create accessible form UIs",
-    ],
-    summary: "Forms are complex—they need validation, error handling, accessibility, and good UX. Detailed prompts help generate forms that handle all edge cases.",
-    theory: `**Form prompt components:**
-
-**Fields:**
-- Input types (text, email, password, number)
-- Select dropdowns
-- Checkboxes and radios
-- Textareas
-- Custom inputs (date picker, file upload)
-
-**Validation:**
-- Required fields
-- Format validation (email, phone)
-- Length constraints
-- Custom rules
-- When to validate (blur, submit, change)
-
-**UX considerations:**
-- Error message placement
-- Loading states on submit
-- Success feedback
-- Field grouping
-- Progressive disclosure
-
-**Accessibility:**
-- Labels linked to inputs
-- Error announcements
-- Keyboard navigation
-- Focus management`,
-    examples: [
-      {
-        title: "Registration Form",
-        before: "Make a signup form",
-        after: `Create a registration form with React Hook Form, Zod, and Tailwind.
-
-Fields:
-- Full name (required, 2-50 chars)
-- Email (required, valid email format)
-- Password (required, min 8 chars, 1 uppercase, 1 number)
-- Confirm password (must match password)
-- Terms checkbox (required)
-
-Features:
-- Show validation errors below each field
-- Validate on blur
-- Disable submit until form is valid
-- Show loading spinner on submit
-- Success toast on completion
-- Accessible: proper labels, aria-describedby for errors
-
-Include:
-- Zod schema
-- Form component with react-hook-form
-- All TypeScript types`,
-        explanation: "The prompt covers fields, validation rules, UX requirements, and accessibility. This creates a complete, production-ready form.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Validation",
-        meaning: "Checking if user input meets required rules before accepting it",
-        usage: "Add validation to ensure email fields contain a valid email",
-      },
-      {
-        term: "Form State",
-        meaning: "The current values, errors, and status of a form",
-        usage: "Track form state to show errors and control submit button",
-      },
-      {
-        term: "Accessible",
-        meaning: "Designed so people with disabilities can use it",
-        usage: "Make forms accessible by linking labels to inputs",
-      },
-    ],
-    instructorNotes: "Forms have many edge cases. Walk through a real form being built, showing how each prompt addition handles another edge case.",
-  },
-  "2-5": {
-    objectives: [
-      "Prompt for responsive layouts",
-      "Generate mobile-first components",
-      "Handle breakpoints effectively",
-    ],
-    summary: "Responsive design ensures your UI works on all screen sizes. Good prompts specify behavior at each breakpoint.",
-    theory: `**Responsive prompting:**
-
-**Breakpoints to consider:**
-- Mobile: < 640px
-- Tablet: 640px - 1024px
-- Desktop: > 1024px
-
-**Common responsive patterns:**
-- Stack to grid (vertical on mobile, grid on desktop)
-- Show/hide elements (mobile menu vs desktop nav)
-- Change spacing (smaller padding on mobile)
-- Adjust font sizes
-- Reorder content
-
-**Prompt structure:**
-1. Describe mobile layout first (mobile-first)
-2. Describe tablet changes
-3. Describe desktop layout
-
-**Tailwind breakpoint prefixes:**
-- sm: 640px
-- md: 768px
-- lg: 1024px
-- xl: 1280px
-
-**What to specify:**
-- Layout changes (flex direction, grid columns)
-- Visibility changes (show/hide)
-- Size changes (padding, font size)
-- Interaction changes (hover on desktop only)`,
-    examples: [
-      {
-        title: "Responsive Product Grid",
-        before: "Make a product grid",
-        after: `Create a responsive ProductGrid component with Tailwind.
-
-Layout:
-- Mobile (< 640px): Single column, full-width cards
-- Tablet (640px-1024px): 2 columns
-- Desktop (> 1024px): 3-4 columns
-
-Card behavior:
-- Mobile: Stack image above content
-- Desktop: Add hover effect with shadow and slight scale
-
-Props:
-- products: Product[] (id, name, price, image)
-- loading: boolean
-- onProductClick: (id: string) => void
-
-Include:
-- Gap between items that adjusts per breakpoint
-- Loading skeleton grid
-- Empty state message`,
-        explanation: "Each breakpoint has explicit layout rules. The card also changes behavior between mobile and desktop.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Responsive",
-        meaning: "Design that adjusts layout based on screen size",
-        usage: "Make the layout responsive so it works on phones and desktops",
-      },
-      {
-        term: "Breakpoint",
-        meaning: "A screen width where the layout changes",
-        usage: "At the tablet breakpoint, switch from 1 column to 2 columns",
-      },
-      {
-        term: "Mobile-first",
-        meaning: "Designing for small screens first, then adding larger layouts",
-        usage: "Use mobile-first approach: start with stack, add grid for desktop",
-      },
-    ],
-    instructorNotes: "Show the same component at different screen sizes. Resize the browser live to demonstrate breakpoint transitions. Mobile-first is the key concept.",
-  },
-
-  // ============ MODULE 3: UI/UX Design Prompts ============
-  "3-1": {
-    objectives: [
-      "Generate design token systems",
-      "Create consistent design variables",
-      "Build scalable design foundations",
-    ],
-    summary: "Design tokens are the building blocks of a design system—colors, spacing, typography, and more stored as variables. Prompting for tokens creates consistent, maintainable designs.",
-    theory: `**What are design tokens?**
-Design tokens are named values that store design decisions:
-- Colors: primary, secondary, error, success
-- Spacing: xs, sm, md, lg, xl
-- Typography: heading sizes, body text, fonts
-- Shadows: subtle, medium, strong
-- Borders: radius, width
-
-**Why use tokens?**
-- Change one value, update everywhere
-- Consistent spacing and colors
-- Easy dark/light mode switching
-- Better communication with designers
-
-**Token categories:**
-- **Primitive tokens**: Raw values (blue-500: #3B82F6)
-- **Semantic tokens**: Purpose-based (primary: blue-500)
-- **Component tokens**: Specific use (button-bg: primary)
-
-**Token format options:**
-- CSS custom properties (--color-primary)
-- JavaScript objects (theme.colors.primary)
-- JSON files (design-tokens.json)
-- Tailwind config (extend: { colors: {} })`,
-    examples: [
-      {
-        title: "Complete Token System",
-        before: "Give me some design tokens",
-        after: `Create a comprehensive design token system for a fintech app.
-
-Format as Tailwind config extending the theme.
-
-Colors:
-- Primary: Professional blue (trust, stability)
-- Secondary: Slate gray
-- Accent: Subtle gold (premium feel)
-- Semantic: success, warning, error, info
-- Neutrals: 10-step gray scale
-
-Spacing:
-- Base unit: 4px
-- Scale: 0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64
-
-Typography:
-- Font families: sans (Inter), mono (JetBrains Mono)
-- Sizes: xs, sm, base, lg, xl, 2xl, 3xl, 4xl
-- Line heights and letter spacing per size
-
-Shadows:
-- sm, md, lg, xl for elevation levels
-
-Border radius:
-- none, sm, md, lg, full
-
-Include both light and dark mode values.`,
-        explanation: "This prompt creates a complete, professional token system. The app type (fintech) guides the color psychology and overall feel.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Design Token",
-        meaning: "A named variable storing a design value like color or spacing",
-        usage: "Use design tokens so changing --primary updates all buttons",
-      },
-      {
-        term: "Semantic",
-        meaning: "Named for purpose rather than appearance",
-        usage: "Use semantic token 'error' instead of 'red' for error messages",
-      },
-      {
-        term: "Theme",
-        meaning: "A collection of design tokens that define an app's look",
-        usage: "Switch themes to change from light mode to dark mode",
-      },
-    ],
-    instructorNotes: "Show how changing one token value cascades through the entire app. Demonstrate light/dark mode switching with semantic tokens.",
-  },
-  "3-2": {
-    objectives: [
-      "Generate effective color palettes",
-      "Understand color psychology",
-      "Create accessible color combinations",
-    ],
-    summary: "Color palettes set the emotional tone of an app. Good color prompts consider psychology, accessibility, and practical usage.",
-    theory: `**Color psychology:**
-- Blue: Trust, stability, professionalism (finance, healthcare)
-- Green: Growth, nature, success (eco, finance)
-- Red: Urgency, energy, warning (alerts, sales)
-- Purple: Luxury, creativity (premium, creative)
-- Orange: Friendly, energetic (food, social)
-- Black: Sophisticated, premium (luxury, fashion)
-
-**Palette components:**
-- Primary: Main brand color
-- Secondary: Supporting color
-- Accent: Highlights and CTAs
-- Neutrals: Text, backgrounds, borders
-- Semantic: Error, success, warning, info
-
-**Accessibility:**
-- Minimum contrast ratio 4.5:1 for normal text
-- 3:1 for large text and icons
-- Never rely on color alone for meaning
-
-**Palette generation:**
-- Start with primary brand color
-- Generate complementary/analogous colors
-- Create 5-10 shades per color (50-950)
-- Test on real UI elements`,
-    examples: [
-      {
-        title: "SaaS Palette Generation",
-        before: "Give me colors",
-        after: `Generate a color palette for a project management SaaS.
-
-Brand personality: Professional but approachable, modern, trustworthy
-
-Primary: A confident blue that works for dashboards
-- Generate shades from 50 (lightest) to 950 (darkest)
-
-Secondary: A complementary neutral
-- Cool gray scale for text and backgrounds
-
-Accent: An energetic color for CTAs and highlights
-- Should pop against both light and dark backgrounds
-
-Semantic:
-- Success: Green (completed tasks)
-- Warning: Amber (deadlines approaching)
-- Error: Red (failed actions)
-- Info: Blue (notifications)
-
-Requirements:
-- All text colors must pass WCAG AA contrast
-- Include hover state shades
-- Provide both hex and HSL values
-- Include dark mode variants`,
-        explanation: "The prompt considers the app type, required contrast, dark mode, and provides clear guidance for each color purpose.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Palette",
-        meaning: "A set of colors chosen to work well together",
-        usage: "Create a palette with primary, secondary, and accent colors",
-      },
-      {
-        term: "Contrast",
-        meaning: "The difference in brightness between two colors",
-        usage: "Ensure enough contrast between text and background for readability",
-      },
-      {
-        term: "Semantic Colors",
-        meaning: "Colors named for their meaning, like error or success",
-        usage: "Use semantic colors so error messages always appear in red",
-      },
-    ],
-    instructorNotes: "Use a contrast checker tool live. Show how colors that look good can fail accessibility tests. Demonstrate the importance of semantic naming.",
-  },
-  "3-3": {
-    objectives: [
-      "Create typography systems",
-      "Choose font pairings",
-      "Define type scales",
-    ],
-    summary: "Typography systems ensure consistent, readable text throughout an app. Good typography prompts specify fonts, sizes, weights, and spacing.",
-    theory: `**Typography components:**
-
-**Font families:**
-- Heading font: Often bold, distinctive
-- Body font: Readable, neutral
-- Mono font: For code blocks
-
-**Type scale:**
-A set of related font sizes:
-- xs, sm, base, lg, xl, 2xl, 3xl, 4xl
-- Use a ratio (1.25, 1.333, 1.5) for harmony
-
-**Line height:**
-- Headings: Tighter (1.1-1.3)
-- Body text: Looser (1.5-1.7)
-
-**Font weights:**
-- Light: 300
-- Regular: 400
-- Medium: 500
-- Semibold: 600
-- Bold: 700
-
-**Letter spacing:**
-- Headings: Slightly tighter
-- All caps: Wider spacing
-
-**Best practices:**
-- Limit to 2-3 fonts max
-- Use variable fonts for performance
-- Set max line length (60-75 characters)`,
-    examples: [
-      {
-        title: "Typography System",
-        before: "What fonts should I use",
-        after: `Create a typography system for a modern blog platform.
-
-Fonts:
-- Headings: A distinctive serif that feels editorial
-- Body: A highly readable sans-serif
-- Code: A mono font for code snippets
-
-Suggest 3 pairings with Google Fonts links.
-
-Type scale (base 16px, ratio 1.25):
-- xs: 12px
-- sm: 14px
-- base: 16px
-- lg: 20px
-- xl: 24px
-- 2xl: 30px
-- 3xl: 38px
-- 4xl: 48px
-
-For each size, provide:
-- Font size in rem
-- Line height
-- Letter spacing
-- Recommended font weight
-
-Include Tailwind config for the typography system.`,
-        explanation: "This prompt asks for specific pairings, provides a mathematical scale, and requests all the values needed for implementation.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Type Scale",
-        meaning: "A set of related font sizes that work together",
-        usage: "Use a type scale to ensure consistent heading and body sizes",
-      },
-      {
-        term: "Line Height",
-        meaning: "The vertical space between lines of text",
-        usage: "Increase line height for body text to improve readability",
-      },
-      {
-        term: "Font Pairing",
-        meaning: "Two or more fonts chosen to complement each other",
-        usage: "Pair a bold serif for headings with a clean sans-serif for body",
-      },
-    ],
-    instructorNotes: "Show examples of good and bad typography. Demonstrate how line height affects readability. Let students experiment with different type scales.",
-  },
-  "3-4": {
-    objectives: [
-      "Create consistent spacing systems",
-      "Design responsive layouts",
-      "Use grid and flexbox effectively",
-    ],
-    summary: "Layout and spacing create visual hierarchy and organization. Consistent spacing makes UIs feel polished and professional.",
-    theory: `**Spacing systems:**
-
-**Base unit approach:**
-Pick a base unit (4px or 8px) and multiply:
-- 4px: 4, 8, 12, 16, 24, 32, 48, 64, 96
-- This creates harmonious relationships
-
-**Spacing applications:**
-- Padding: Space inside elements
-- Margin: Space between elements
-- Gap: Space in flex/grid layouts
-
-**Layout patterns:**
-- Container with max-width
-- Grid systems (12-column, auto-fit)
-- Stack (vertical) and cluster (horizontal)
-- Sidebar + content layouts
-
-**Responsive spacing:**
-- Smaller spacing on mobile
-- Larger spacing on desktop
-- Consistent ratios across breakpoints
-
-**Visual hierarchy:**
-- Related items = smaller spacing
-- Separate groups = larger spacing
-- Use spacing to group content`,
-    examples: [
-      {
-        title: "Dashboard Layout System",
-        before: "Layout for a dashboard",
-        after: `Create a layout system for an admin dashboard.
-
-Spacing scale (base 4px):
-- 0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 32 (in Tailwind units)
-
-Page structure:
-- Sidebar: 240px fixed, collapsible to 64px on mobile
-- Header: 64px height, sticky
-- Content: Fluid, max-width 1440px, centered
-- Padding: 24px desktop, 16px mobile
-
-Grid system:
-- Dashboard cards: Auto-fit, min 280px
-- Gap: 24px desktop, 16px mobile
-
-Components:
-- Card padding: 24px
-- Section spacing: 48px
-- Related items: 16px
-- Form fields: 24px between groups, 12px within
-
-Include responsive breakpoints for all values.`,
-        explanation: "The prompt establishes a mathematical spacing system and applies it to specific layout components with responsive considerations.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Spacing",
-        meaning: "The empty space between and around elements",
-        usage: "Use consistent spacing tokens like 8px, 16px, 24px throughout",
-      },
-      {
-        term: "Grid",
-        meaning: "A layout system that divides space into columns and rows",
-        usage: "Use a 12-column grid to align elements consistently",
-      },
-      {
-        term: "Visual Hierarchy",
-        meaning: "Arranging elements to show importance and relationships",
-        usage: "Create visual hierarchy with larger headings and grouped content",
-      },
-    ],
-    instructorNotes: "Show how inconsistent spacing makes UIs feel amateurish. Demonstrate the 4px/8px base unit system. Use visual examples of good vs bad spacing.",
-  },
-  "3-5": {
-    objectives: [
-      "Describe user flows in prompts",
-      "Generate multi-step interfaces",
-      "Create connected user experiences",
-    ],
-    summary: "User flows describe how users move through your app to complete tasks. Clear flow descriptions help AI understand the full context when generating related components.",
-    theory: `**User flow components:**
-
-**Entry points:**
-- How does the user start this flow?
-- From navigation, button, link, or deep link
-
-**Steps:**
-- What actions does the user take?
-- What information is collected or displayed?
-
-**Decision points:**
-- Where might the user choose different paths?
-- What conditions change the flow?
-
-**End states:**
-- Success: What happens when complete?
-- Failure: What happens on error?
-- Exit: How can users leave mid-flow?
-
-**Flow documentation:**
-- Start state and requirements
-- Each step with inputs and outputs
-- Transitions between steps
-- Edge cases and error handling
-
-**Common flows:**
-- Onboarding/signup
-- Checkout/purchase
-- Settings/configuration
-- Content creation`,
-    examples: [
-      {
-        title: "Checkout Flow Description",
-        before: "Build a checkout",
-        after: `Create a multi-step checkout flow.
-
-Entry: User clicks "Checkout" from cart (minimum 1 item)
-
-Step 1: Shipping Address
-- Form: name, address, city, zip, country
-- Option: save address for future
-- If logged in: show saved addresses
-- Validation: all fields required
-
-Step 2: Shipping Method
-- Display available methods based on address
-- Show price and estimated delivery
-- Default select cheapest option
-
-Step 3: Payment
-- Credit card form (Stripe Elements)
-- Show order summary sidebar
-- Apply promo code option
-- Show final total with tax
-
-Step 4: Review
-- Display all info from previous steps
-- Edit buttons to return to each step
-- Confirm button
-
-Success: Order confirmation page with:
-- Order number
-- Email confirmation sent
-- Expected delivery date
-- Continue shopping button
-
-Error handling:
-- Payment failure: Show error, stay on payment step
-- Out of stock: Alert and return to cart
-- Session timeout: Save progress, prompt to login`,
-        explanation: "This flow describes every step, decision point, and error case. An AI can generate each component knowing how it connects to others.",
-      },
-    ],
-    keywords: [
-      {
-        term: "User Flow",
-        meaning: "The path a user takes to complete a task in your app",
-        usage: "Map the user flow from login to checkout to find pain points",
-      },
-      {
-        term: "Multi-step",
-        meaning: "A process broken into several screens or stages",
-        usage: "Use a multi-step form for complex processes like checkout",
-      },
-      {
-        term: "Edge Case",
-        meaning: "An unusual situation that still needs to be handled",
-        usage: "Handle edge cases like empty cart or expired session",
-      },
-    ],
-    instructorNotes: "Diagram a flow on a whiteboard first, then translate to prompts. Show how complete flow descriptions result in more connected, coherent components.",
-  },
-
-  // ============ MODULE 4: Backend & API Prompts ============
-  "4-1": {
-    objectives: [
-      "Design APIs with AI assistance",
-      "Understand RESTful principles",
-      "Create API documentation",
-    ],
-    summary: "Good API design makes applications easier to build and maintain. Clear API prompts help generate consistent, well-documented endpoints.",
-    theory: `**REST principles:**
-- Resources (nouns): /users, /posts, /comments
-- Methods (verbs): GET, POST, PUT, PATCH, DELETE
-- Status codes: 200 OK, 201 Created, 400 Bad Request, 404 Not Found
-
-**API design considerations:**
-- Consistent naming conventions
-- Versioning strategy
-- Authentication method
-- Error response format
-- Pagination for lists
-
-**What to include in API prompts:**
-- Resource name and purpose
-- All endpoints (CRUD operations)
-- Request/response schemas
-- Authentication requirements
-- Error handling
-
-**API documentation:**
-- Endpoint URL and method
-- Request parameters and body
-- Response format with examples
-- Error codes and messages`,
-    examples: [
-      {
-        title: "Task API Design",
-        before: "API for tasks",
-        after: `Design a REST API for a task management system.
-
-Base URL: /api/v1
-
-Resources:
-- /tasks - Task collection
-- /tasks/:id - Single task
-- /projects/:projectId/tasks - Tasks in a project
-
-Endpoints:
-
-GET /tasks
-- Query params: status, assignee, projectId, page, limit
-- Response: { data: Task[], meta: { total, page, limit } }
-
-GET /tasks/:id
-- Response: Task object
-
-POST /tasks
-- Body: { title, description?, projectId, assigneeId?, dueDate? }
-- Response: 201 with created Task
-
-PUT /tasks/:id
-- Body: Full task object
-- Response: Updated Task
-
-PATCH /tasks/:id
-- Body: Partial update
-- Response: Updated Task
-
-DELETE /tasks/:id
-- Response: 204 No Content
-
-Task schema:
-{
-  id: string,
-  title: string,
-  description: string,
-  status: "todo" | "in_progress" | "done",
-  projectId: string,
-  assigneeId: string | null,
-  dueDate: string | null,
-  createdAt: string,
-  updatedAt: string
-}
-
-Include standard error response format.`,
-        explanation: "This prompt covers all CRUD operations, query parameters, response schemas, and the data model. An AI can generate complete API code from this.",
-      },
-    ],
-    keywords: [
-      {
-        term: "API",
-        meaning: "Application Programming Interface - how apps talk to each other",
-        usage: "Build an API to let the frontend fetch user data from the server",
-      },
-      {
-        term: "REST",
-        meaning: "A style of API using HTTP methods and resource URLs",
-        usage: "Use REST conventions: GET to read, POST to create, DELETE to remove",
-      },
-      {
-        term: "Endpoint",
-        meaning: "A specific URL where an API receives requests",
-        usage: "Create a /users endpoint to return the list of users",
-      },
-    ],
-    instructorNotes: "Show how consistent API design makes frontend development easier. Demonstrate the difference between well-designed and poorly-designed APIs.",
-  },
-  "4-2": {
-    objectives: [
-      "Generate REST endpoint code",
-      "Handle request validation",
-      "Implement proper error handling",
-    ],
-    summary: "REST endpoint generation is a common backend task. Good prompts specify routes, validation, database operations, and error handling.",
-    theory: `**Endpoint components:**
-
-**Route definition:**
-- HTTP method (GET, POST, etc.)
-- URL path with parameters
-- Middleware (auth, validation)
-
-**Request handling:**
-- Parse body, query, params
-- Validate input data
-- Check authorization
-
-**Business logic:**
-- Database queries
-- Data transformation
-- Side effects (emails, notifications)
-
-**Response:**
-- Status code
-- Response body
-- Headers (pagination, cache)
-
-**Error handling:**
-- Validation errors (400)
-- Not found (404)
-- Server errors (500)
-- Consistent error format`,
-    examples: [
-      {
-        title: "CRUD Endpoints Generation",
-        before: "Make endpoints for products",
-        after: `Generate REST endpoints for products using Express and TypeScript.
-
-Stack: Express, Prisma, Zod validation
-
-Product schema (Prisma):
-- id: String @id
-- name: String
-- description: String?
-- price: Float
-- categoryId: String
-- createdAt: DateTime
-- updatedAt: DateTime
-
-Endpoints to generate:
-
-GET /products
-- Query: category, minPrice, maxPrice, search, page, limit
-- Sorting: sortBy (name, price, createdAt), order (asc, desc)
-- Response: Paginated list
-
-GET /products/:id
-- 404 if not found
-- Include category relation
-
-POST /products
-- Zod validation for body
-- Return 201 with created product
-
-PUT /products/:id
-- Full update, validate all fields
-- 404 if not found
-
-DELETE /products/:id
-- Return 204 on success
-- 404 if not found
-
-Include:
-- Zod schemas for validation
-- Error handling middleware
-- TypeScript types
-- Prisma queries`,
-        explanation: "This prompt specifies the tech stack, validation library, all endpoints with details, and requests reusable patterns like middleware.",
-      },
-    ],
-    keywords: [
-      {
-        term: "CRUD",
-        meaning: "Create, Read, Update, Delete - the four basic data operations",
-        usage: "Build CRUD endpoints to manage products in the database",
-      },
-      {
-        term: "Middleware",
-        meaning: "Code that runs before the main request handler",
-        usage: "Add auth middleware to check if user is logged in before access",
-      },
-      {
-        term: "Validation",
-        meaning: "Checking that input data meets expected rules",
-        usage: "Use Zod validation to ensure price is a positive number",
-      },
-    ],
-    instructorNotes: "Build an endpoint live, showing each layer (route, validation, logic, response). Demonstrate how validation prevents bugs and security issues.",
-  },
-  "4-3": {
-    objectives: [
-      "Implement authentication flows",
-      "Generate secure auth code",
-      "Handle sessions and tokens",
-    ],
-    summary: "Authentication is security-critical. Detailed prompts help generate secure, complete auth implementations.",
-    theory: `**Authentication types:**
-- Session-based: Cookie with session ID
-- Token-based: JWT in header
-- OAuth: Third-party login (Google, GitHub)
-
-**Auth flows to implement:**
-- Registration with email verification
-- Login with password
-- Password reset
-- Session management
-- Logout
-
-**Security considerations:**
-- Password hashing (bcrypt)
-- Token expiration
-- Refresh tokens
-- Rate limiting
-- HTTPS only
-
-**What to specify:**
-- Auth method (JWT, session, OAuth)
-- Token lifetime
-- Refresh strategy
-- Required user fields
-- Verification requirements`,
-    examples: [
-      {
-        title: "JWT Auth Implementation",
-        before: "Add login to my app",
-        after: `Implement JWT authentication for an Express API with TypeScript.
-
-Stack: Express, Prisma, bcrypt, jsonwebtoken
-
-User model:
-- id, email, passwordHash, name, createdAt, verified
-
-Endpoints:
-
-POST /auth/register
-- Input: email, password, name
-- Hash password with bcrypt (10 rounds)
-- Create user (verified: false)
-- Send verification email
-- Return: { message: "Check email" }
-
-POST /auth/verify
-- Input: token (from email link)
-- Set verified: true
-- Return: { message: "Email verified" }
-
-POST /auth/login
-- Input: email, password
-- Check password with bcrypt
-- If not verified, return error
-- Generate JWT (15min expiry)
-- Generate refresh token (7 days)
-- Set refresh token in httpOnly cookie
-- Return: { accessToken, user }
-
-POST /auth/refresh
-- Read refresh token from cookie
-- Verify and issue new access token
-- Return: { accessToken }
-
-POST /auth/logout
-- Clear refresh token cookie
-- Invalidate refresh token in database
-- Return: { message: "Logged out" }
-
-Middleware:
-- requireAuth: Verify JWT, attach user to request
-
-Include:
-- All TypeScript types
-- Error handling
-- Environment variable usage`,
-        explanation: "This prompt covers the complete auth lifecycle with security best practices like httpOnly cookies and token refresh.",
-      },
-    ],
-    keywords: [
-      {
-        term: "JWT",
-        meaning: "JSON Web Token - a secure way to transmit user identity",
-        usage: "Use JWT to authenticate API requests from the frontend",
-      },
-      {
-        term: "Hash",
-        meaning: "Converting password to unreadable text for safe storage",
-        usage: "Hash passwords with bcrypt before storing in database",
-      },
-      {
-        term: "Refresh Token",
-        meaning: "A long-lived token used to get new access tokens",
-        usage: "Use refresh tokens so users stay logged in without re-entering password",
-      },
-    ],
-    instructorNotes: "Security is critical here. Show why each security measure matters. Demonstrate what happens without proper hashing or token expiration.",
-  },
-  "4-4": {
-    objectives: [
-      "Handle errors consistently",
-      "Create error response formats",
-      "Log errors effectively",
-    ],
-    summary: "Good error handling makes debugging easier and improves user experience. Consistent error formats help frontend developers handle failures gracefully.",
-    theory: `**Error handling layers:**
-
-**Validation errors:**
-- Input doesn't match expected format
-- Return 400 with field-specific errors
-
-**Business logic errors:**
-- Duplicate email, insufficient funds
-- Return 400/409 with clear message
-
-**Not found errors:**
-- Resource doesn't exist
-- Return 404 with resource type
-
-**Authorization errors:**
-- Not logged in: 401
-- Not permitted: 403
-
-**Server errors:**
-- Unexpected failures
-- Return 500, log details, hide internals
-
-**Error response format:**
-{
-  error: {
-    code: "VALIDATION_ERROR",
-    message: "Human readable message",
-    details: { field: "email", issue: "Already exists" }
-  }
-}`,
-    examples: [
-      {
-        title: "Error Handling System",
-        before: "Add error handling",
-        after: `Create a comprehensive error handling system for Express with TypeScript.
-
-Error response format:
-{
-  success: false,
-  error: {
-    code: string (e.g., "VALIDATION_ERROR"),
-    message: string (user-friendly),
-    details?: object (field-specific errors),
-    requestId: string (for debugging)
-  }
-}
-
-Error classes to create:
-- AppError (base class)
-- ValidationError (400)
-- NotFoundError (404)
-- UnauthorizedError (401)
-- ForbiddenError (403)
-- ConflictError (409)
-- InternalError (500)
-
-Error middleware:
-- Catch all errors
-- Log with context (requestId, user, path)
-- Format response based on error type
-- In production: Hide stack traces
-- In development: Include stack traces
-
-Integration with Zod:
-- Transform Zod errors into ValidationError format
-
-Logging:
-- Error level for 500s
-- Warn level for 400s
-- Include request context
-
-Example usage in routes.`,
-        explanation: "This creates a complete error handling system with custom error classes, middleware, logging, and consistent response format.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Error Handler",
-        meaning: "Code that catches errors and formats them for response",
-        usage: "Add an error handler to catch all errors and return proper status codes",
-      },
-      {
-        term: "Status Code",
-        meaning: "A number indicating the result of an HTTP request",
-        usage: "Return status code 404 when a resource is not found",
-      },
-      {
-        term: "Logging",
-        meaning: "Recording information about what happens in your app",
-        usage: "Log errors with request details for debugging production issues",
-      },
-    ],
-    instructorNotes: "Show how bad error handling frustrates developers and hides bugs. Demonstrate the difference between good and poor error messages.",
-  },
-  "4-5": {
-    objectives: [
-      "Integrate third-party APIs",
-      "Handle API keys securely",
-      "Manage rate limits and errors",
-    ],
-    summary: "Third-party API integration adds external capabilities to your app. Good prompts specify the API, required operations, error handling, and security.",
-    theory: `**Integration considerations:**
-
-**API selection:**
-- Which API to use?
-- What operations are needed?
-- Rate limits and pricing
-
-**Security:**
-- Store keys in environment variables
-- Never expose keys to frontend
-- Use server-side requests
-
-**Implementation:**
-- Create service wrapper
-- Handle authentication (API key, OAuth)
-- Parse and transform responses
-
-**Error handling:**
-- API errors (invalid key, rate limit)
-- Network errors (timeout, DNS)
-- Retry logic for transient failures
-
-**Best practices:**
-- Cache responses when appropriate
-- Implement circuit breaker for failures
-- Log API usage for debugging
-- Mock for development/testing`,
-    examples: [
-      {
-        title: "Stripe Integration",
-        before: "Add Stripe payments",
-        after: `Create a Stripe integration service with TypeScript.
-
-Operations needed:
-1. Create customer
-2. Create payment intent
-3. List customer payments
-4. Handle webhooks
-
-Service structure:
-
-class StripeService {
-  // Create or retrieve Stripe customer for user
-  async getOrCreateCustomer(userId: string, email: string): Promise<Customer>
-  
-  // Create payment intent for checkout
-  async createPaymentIntent(
-    customerId: string,
-    amount: number,
-    currency: string,
-    metadata?: object
-  ): Promise<PaymentIntent>
-  
-  // List payment history
-  async listPayments(
-    customerId: string,
-    limit?: number
-  ): Promise<Payment[]>
-}
-
-Webhook handler:
-- POST /webhooks/stripe
-- Verify signature
-- Handle events:
-  - payment_intent.succeeded
-  - payment_intent.failed
-  - customer.subscription.updated
-
-Include:
-- Environment variable usage
-- Error handling for Stripe errors
-- TypeScript types
-- Idempotency keys for safe retries`,
-        explanation: "This prompt specifies exact operations, webhook handling, security considerations, and best practices for payment integration.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Integration",
-        meaning: "Connecting your app to an external service or API",
-        usage: "Add Stripe integration to process credit card payments",
-      },
-      {
-        term: "Webhook",
-        meaning: "A URL that receives notifications when events happen",
-        usage: "Set up a webhook to receive Stripe payment confirmations",
-      },
-      {
-        term: "Rate Limit",
-        meaning: "A restriction on how many API requests you can make",
-        usage: "Handle rate limits by waiting and retrying requests",
-      },
-    ],
-    instructorNotes: "Walk through a real API integration. Show how to read API documentation and translate it into implementation prompts. Demonstrate webhook testing.",
-  },
-
-  // ============ MODULE 5: Database Design Prompts ============
-  "5-1": {
-    objectives: [
-      "Design database schemas",
-      "Model entities and relationships",
-      "Normalize data appropriately",
-    ],
-    summary: "Good data models are the foundation of reliable applications. Clear prompts help generate well-structured, normalized database schemas.",
-    theory: `**Data modeling process:**
-1. Identify entities (nouns)
-2. Define attributes (properties)
-3. Establish relationships (connections)
-4. Normalize to reduce redundancy
-
-**Entity types:**
-- Core entities: Users, Products, Orders
-- Junction tables: OrderItems, UserRoles
-- Lookup tables: Categories, Statuses
-
-**Relationship types:**
-- One-to-One: User has one Profile
-- One-to-Many: User has many Posts
-- Many-to-Many: Posts have many Tags
-
-**Common fields:**
-- id: Primary key
-- createdAt, updatedAt: Timestamps
-- Foreign keys for relationships
-
-**What to specify:**
-- All entities and their purpose
-- Field types and constraints
-- Required vs optional fields
-- Unique constraints
-- Indexes for performance`,
-    examples: [
-      {
-        title: "E-commerce Data Model",
-        before: "Database for a store",
-        after: `Design a database schema for an e-commerce platform.
-
-Entities:
-
-User
-- id: UUID, primary key
-- email: String, unique, not null
-- passwordHash: String, not null
-- name: String, not null
-- createdAt: DateTime
-- updatedAt: DateTime
-
-Product
-- id: UUID, primary key
-- name: String, not null
-- description: Text
-- price: Decimal(10,2), not null
-- stock: Integer, default 0
-- categoryId: UUID, foreign key
-- createdAt, updatedAt
-
-Category
-- id: UUID, primary key
-- name: String, unique, not null
-- slug: String, unique, not null
-- parentId: UUID, self-reference (optional)
-
-Order
-- id: UUID, primary key
-- userId: UUID, foreign key
-- status: Enum (pending, paid, shipped, delivered, cancelled)
-- total: Decimal(10,2)
-- shippingAddress: JSON
-- createdAt, updatedAt
-
-OrderItem
-- id: UUID, primary key
-- orderId: UUID, foreign key
-- productId: UUID, foreign key
-- quantity: Integer, not null
-- priceAtTime: Decimal(10,2), not null
-
-Indexes:
-- User: email
-- Product: categoryId, name
-- Order: userId, status, createdAt
-
-Generate as Prisma schema.`,
-        explanation: "This prompt lists all entities, their fields with types, relationships, and performance indexes. The output is directly usable.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Schema",
-        meaning: "The structure that defines tables and their relationships",
-        usage: "Design a schema with users, posts, and comments tables",
-      },
-      {
-        term: "Foreign Key",
-        meaning: "A field that references the primary key of another table",
-        usage: "Add a userId foreign key to connect posts to their author",
-      },
-      {
-        term: "Normalization",
-        meaning: "Organizing data to reduce redundancy and improve integrity",
-        usage: "Normalize by moving categories to a separate table",
-      },
-    ],
-    instructorNotes: "Start with real-world examples. Show how poor data modeling leads to bugs and performance issues. Demonstrate normalization step by step.",
-  },
-  "5-2": {
-    objectives: [
-      "Generate SQL CREATE statements",
-      "Define constraints and indexes",
-      "Create Prisma/ORM schemas",
-    ],
-    summary: "SQL schema generation creates the actual database structure. Detailed prompts ensure proper types, constraints, and performance optimization.",
-    theory: `**SQL schema components:**
-
-**CREATE TABLE:**
-- Column definitions
-- Data types
-- Constraints (NOT NULL, UNIQUE, CHECK)
-- Default values
-
-**Keys:**
-- PRIMARY KEY: Unique identifier
-- FOREIGN KEY: Relationship reference
-- UNIQUE: No duplicates allowed
-
-**Indexes:**
-- Speed up queries
-- Composite indexes for multiple columns
-- Partial indexes for filtered queries
-
-**ORM alternatives:**
-- Prisma: schema.prisma file
-- TypeORM: Decorators on classes
-- Drizzle: TypeScript schema
-
-**What to include:**
-- Exact column types
-- All constraints
-- Foreign key actions (CASCADE, SET NULL)
-- Index definitions`,
-    examples: [
-      {
-        title: "SQL Schema with Constraints",
-        before: "SQL for blog",
-        after: `Generate PostgreSQL schema for a blog platform.
-
-Tables:
-
-users
-- id: UUID, primary key, default gen_random_uuid()
-- email: VARCHAR(255), unique, not null
-- username: VARCHAR(50), unique, not null
-- password_hash: VARCHAR(255), not null
-- avatar_url: TEXT
-- bio: TEXT
-- created_at: TIMESTAMP, default NOW()
-- updated_at: TIMESTAMP, default NOW()
-
-posts
-- id: UUID, primary key
-- author_id: UUID, foreign key -> users(id) ON DELETE CASCADE
-- title: VARCHAR(200), not null
-- slug: VARCHAR(200), unique, not null
-- content: TEXT, not null
-- excerpt: VARCHAR(500)
-- status: VARCHAR(20), check (status IN ('draft', 'published', 'archived'))
-- published_at: TIMESTAMP
-- created_at, updated_at
-
-tags
-- id: UUID, primary key
-- name: VARCHAR(50), unique, not null
-- slug: VARCHAR(50), unique, not null
-
-post_tags (junction table)
-- post_id: UUID, foreign key -> posts(id) ON DELETE CASCADE
-- tag_id: UUID, foreign key -> tags(id) ON DELETE CASCADE
-- PRIMARY KEY (post_id, tag_id)
-
-Indexes:
-- posts: author_id, slug, status, published_at DESC
-- post_tags: both columns
-
-Include trigger for updated_at timestamp.`,
-        explanation: "This prompt specifies PostgreSQL-specific syntax, all constraints, cascade behavior, and performance indexes.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Constraint",
-        meaning: "A rule that limits what data can be stored in a column",
-        usage: "Add a NOT NULL constraint so email is always required",
-      },
-      {
-        term: "Index",
-        meaning: "A database structure that speeds up searches on specific columns",
-        usage: "Create an index on email to make login queries faster",
-      },
-      {
-        term: "CASCADE",
-        meaning: "Automatically delete related records when parent is deleted",
-        usage: "Use CASCADE so deleting a user removes their posts too",
-      },
-    ],
-    instructorNotes: "Show EXPLAIN ANALYZE to demonstrate index impact. Create tables without indexes, then add them and show the speed difference.",
-  },
-  "5-3": {
-    objectives: [
-      "Write effective SQL queries",
-      "Use joins and aggregations",
-      "Optimize query performance",
-    ],
-    summary: "SQL queries retrieve and manipulate data. Good query prompts specify the exact data needed, filters, and performance requirements.",
-    theory: `**Query types:**
-- SELECT: Read data
-- INSERT: Create records
-- UPDATE: Modify records
-- DELETE: Remove records
-
-**Query components:**
-- FROM/JOIN: Which tables
-- WHERE: Filter conditions
-- GROUP BY: Aggregations
-- ORDER BY: Sorting
-- LIMIT/OFFSET: Pagination
-
-**Join types:**
-- INNER JOIN: Only matching rows
-- LEFT JOIN: All left + matching right
-- RIGHT JOIN: All right + matching left
-
-**Aggregations:**
-- COUNT, SUM, AVG, MIN, MAX
-- GROUP BY for categories
-- HAVING for filtering groups
-
-**Performance:**
-- Use indexes on filtered columns
-- Avoid SELECT *
-- Limit result sets
-- Use EXPLAIN to analyze`,
-    examples: [
-      {
-        title: "Complex Query Generation",
-        before: "Query for dashboard stats",
-        after: `Generate SQL queries for an e-commerce dashboard.
-
-Query 1: Sales by category (last 30 days)
-- Group by category name
-- Sum of order totals
-- Count of orders
-- Average order value
-- Only include completed orders
-- Sort by total sales descending
-
-Query 2: Top customers
-- Customer name and email
-- Total spent (all time)
-- Order count
-- Most recent order date
-- Top 10 by total spent
-
-Query 3: Low stock products
-- Products where stock < 10
-- Include category name
-- Current stock level
-- Last sale date
-- Sort by stock ascending
-
-Query 4: Monthly revenue trend
-- Last 12 months
-- Group by month
-- Total revenue
-- Order count
-- Comparison to previous period (% change)
-
-Include:
-- Optimized joins
-- Index recommendations
-- For PostgreSQL syntax`,
-        explanation: "Each query is clearly specified with required fields, filters, aggregations, and sorting. The prompt also requests optimization advice.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Query",
-        meaning: "A request to retrieve or modify data in a database",
-        usage: "Write a query to get all users who signed up this month",
-      },
-      {
-        term: "JOIN",
-        meaning: "Combining rows from two or more tables based on a related column",
-        usage: "Use JOIN to get posts along with their author names",
-      },
-      {
-        term: "Aggregation",
-        meaning: "Calculating values like SUM, COUNT, or AVG across groups",
-        usage: "Use aggregation to get total sales per category",
-      },
-    ],
-    instructorNotes: "Write queries live and show results. Use EXPLAIN to show query plans. Demonstrate how indexes affect performance.",
-  },
-  "5-4": {
-    objectives: [
-      "Create database migrations",
-      "Handle schema changes safely",
-      "Maintain data integrity",
-    ],
-    summary: "Migrations are version-controlled changes to your database schema. Good migration prompts ensure safe, reversible changes that preserve data.",
-    theory: `**Migration concepts:**
-- Forward migration: Apply changes
-- Rollback: Undo changes
-- Version control for schema
-
-**Safe migration practices:**
-- Never delete data without backup
-- Add columns as nullable first
-- Backfill data before adding constraints
-- Test on copy of production data
-
-**Common migrations:**
-- Add table
-- Add/modify/remove column
-- Add/remove index
-- Add/modify constraint
-- Rename table/column
-
-**Migration tools:**
-- Prisma Migrate
-- Flyway
-- Knex migrations
-- Raw SQL files
-
-**What to include:**
-- Up migration (apply)
-- Down migration (rollback)
-- Data transformation if needed
-- Order of operations`,
-    examples: [
-      {
-        title: "Adding a Feature Migration",
-        before: "Add comments to posts",
-        after: `Create a migration to add comments feature to blog.
-
-Context: Existing posts and users tables
-
-Migration: add_comments_table
-
-Up migration:
-1. Create comments table
-   - id: UUID, primary key
-   - post_id: UUID, foreign key -> posts(id) ON DELETE CASCADE
-   - user_id: UUID, foreign key -> users(id) ON DELETE SET NULL
-   - parent_id: UUID, foreign key -> comments(id) ON DELETE CASCADE (for replies)
-   - content: TEXT, not null
-   - created_at, updated_at
-   
-2. Add indexes
-   - post_id (for loading comments on post)
-   - user_id (for user comment history)
-   - parent_id (for loading replies)
-
-3. Add comments_count column to posts
-   - Default 0
-   - Add trigger to increment/decrement on comment add/delete
-
-Down migration:
-1. Remove trigger
-2. Remove comments_count from posts
-3. Drop comments table
-
-Generate for:
-- PostgreSQL SQL
-- Prisma schema update
-- Migration file`,
-        explanation: "This migration adds a new feature with proper indexes, a trigger for denormalized count, and a complete rollback strategy.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Migration",
-        meaning: "A version-controlled change to your database structure",
-        usage: "Create a migration to add the comments table",
-      },
-      {
-        term: "Rollback",
-        meaning: "Undoing a migration to return to the previous state",
-        usage: "Write a rollback to remove the table if the migration fails",
-      },
-      {
-        term: "Backfill",
-        meaning: "Populating data for a new column based on existing data",
-        usage: "Backfill the full_name column by combining first and last names",
-      },
-    ],
-    instructorNotes: "Show a failed migration and recovery. Demonstrate the importance of rollback scripts. Practice on a test database before production.",
-  },
-  "5-5": {
-    objectives: [
-      "Model complex relationships",
-      "Use junction tables effectively",
-      "Handle hierarchical data",
-    ],
-    summary: "Complex relationships require careful modeling. Proper relationship design prevents data anomalies and enables efficient queries.",
-    theory: `**Relationship types:**
-
-**One-to-One:**
-- User has one Profile
-- Use when splitting large tables
-- Foreign key on either side
-
-**One-to-Many:**
-- User has many Posts
-- Foreign key on the "many" side
-- Most common relationship
-
-**Many-to-Many:**
-- Posts have many Tags
-- Requires junction table
-- Junction can have extra fields
-
-**Hierarchical:**
-- Self-referencing relationship
-- Categories with subcategories
-- Comments with replies
-
-**Polymorphic:**
-- Comments on posts OR products
-- Use type + id columns
-- Or separate junction tables
-
-**Common patterns:**
-- Soft delete (deletedAt)
-- Audit trail (createdBy, updatedBy)
-- Versioning (version, previousId)`,
-    examples: [
-      {
-        title: "Complex Relationship Model",
-        before: "Users and permissions",
-        after: `Design a role-based access control (RBAC) system.
-
-Entities and relationships:
-
-User (one-to-many with UserRole)
-- id, email, name
-
-Role (many-to-many with Permission via RolePermission)
-- id, name, description
-- Examples: admin, editor, viewer
-
-Permission
-- id, name, resource, action
-- Examples: posts:create, posts:read, users:delete
-
-UserRole (junction: User <-> Role)
-- user_id: FK
-- role_id: FK
-- assigned_at: TIMESTAMP
-- assigned_by: FK -> users(id)
-- expires_at: TIMESTAMP (optional, for temp roles)
-- PRIMARY KEY (user_id, role_id)
-
-RolePermission (junction: Role <-> Permission)
-- role_id: FK
-- permission_id: FK
-- PRIMARY KEY (role_id, permission_id)
-
-Additional:
-- Roles can inherit from other roles (parent_role_id)
-- Create query to check if user has permission
-- Create query to get all permissions for user
-
-Include:
-- Prisma schema with relations
-- PostgreSQL CREATE statements
-- Helper queries`,
-        explanation: "This models a complete RBAC system with role inheritance, temporary roles, and audit fields on the junction table.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Junction Table",
-        meaning: "A table that connects two other tables in a many-to-many relationship",
-        usage: "Use a post_tags junction table to connect posts and tags",
-      },
-      {
-        term: "Self-Reference",
-        meaning: "A table that references itself for hierarchical data",
-        usage: "Add parent_id self-reference for category subcategories",
-      },
-      {
-        term: "RBAC",
-        meaning: "Role-Based Access Control - permissions assigned through roles",
-        usage: "Implement RBAC to control what users can do in the app",
-      },
-    ],
-    instructorNotes: "Draw relationship diagrams. Show how junction tables enable many-to-many. Demonstrate queries that traverse relationships.",
-  },
-
-  // ============ MODULE 6: DevOps & Deployment Prompts ============
-  "6-1": {
-    objectives: [
-      "Create Docker configurations",
-      "Containerize applications",
-      "Optimize Docker images",
-    ],
-    summary: "Docker containers package your application with its dependencies. Good Dockerfiles are small, secure, and build quickly.",
-    theory: `**Docker components:**
-- Dockerfile: Build instructions
-- Image: Built package
-- Container: Running instance
-- docker-compose: Multi-container apps
-
-**Dockerfile best practices:**
-- Use official base images
-- Multi-stage builds
-- Order layers for caching
-- Don't run as root
-- Minimize image size
-
-**What to include in prompts:**
-- Application type (Node, Python, etc.)
-- Required dependencies
-- Build vs runtime steps
-- Port exposure
-- Environment variables
-- Volume mounts`,
-    examples: [
-      {
-        title: "Node.js App Dockerfile",
-        before: "Docker for my app",
-        after: `Create a production Dockerfile for a Node.js application.
-
-Stack: Node.js 20, TypeScript, Prisma ORM
-
-Requirements:
-- Multi-stage build (build + production)
-- Minimal final image size
-- Run as non-root user
-- Handle Prisma binary generation
-- Use npm ci for reproducible installs
-
-Stages:
-
-1. deps: Install production dependencies
-2. build: Compile TypeScript, generate Prisma
-3. production: Copy only needed files
-
-Include:
-- .dockerignore file
-- Health check command
-- Proper signal handling
-- Layer caching optimization
-
-Also create docker-compose.yml with:
-- App service
-- PostgreSQL service
-- Volume for database data
-- Environment variables from .env`,
-        explanation: "This prompt specifies multi-stage builds, security practices, and includes docker-compose for local development.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Docker",
-        meaning: "A tool that packages apps into containers that run anywhere",
-        usage: "Use Docker to ensure your app runs the same in dev and production",
-      },
-      {
-        term: "Container",
-        meaning: "An isolated environment running your application",
-        usage: "Deploy your app as a container on any cloud platform",
-      },
-      {
-        term: "Image",
-        meaning: "A snapshot of your app and dependencies used to create containers",
-        usage: "Build a Docker image and push it to a registry for deployment",
-      },
-    ],
-    instructorNotes: "Build and run a container live. Show the difference between dev and production Dockerfiles. Demonstrate image size optimization.",
-  },
-  "6-2": {
-    objectives: [
-      "Set up CI/CD pipelines",
-      "Automate testing and deployment",
-      "Configure GitHub Actions",
-    ],
-    summary: "CI/CD pipelines automate testing and deployment. Good pipeline prompts specify triggers, stages, and deployment targets.",
-    theory: `**CI/CD concepts:**
-- Continuous Integration: Auto test on every push
-- Continuous Deployment: Auto deploy on merge
-
-**Pipeline stages:**
-1. Install dependencies
-2. Run linters
-3. Run tests
-4. Build application
-5. Deploy to staging/production
-
-**Triggers:**
-- Push to branch
-- Pull request
-- Manual trigger
-- Schedule
-
-**What to include:**
-- Platform (GitHub Actions, GitLab CI)
-- Triggers and branches
-- Environment variables/secrets
-- Build steps
-- Test commands
-- Deployment target`,
-    examples: [
-      {
-        title: "GitHub Actions Pipeline",
-        before: "CI/CD for my project",
-        after: `Create GitHub Actions workflow for a React + Node.js app.
-
-Triggers:
-- Push to main: Deploy to production
-- Push to develop: Deploy to staging
-- Pull request: Run tests only
-
-Jobs:
-
-1. test (runs on all triggers)
-   - Checkout code
-   - Setup Node.js 20
-   - Install dependencies (npm ci)
-   - Run linter (npm run lint)
-   - Run type check (npm run typecheck)
-   - Run tests (npm test)
-   - Upload coverage to Codecov
-
-2. build (runs after test passes)
-   - Build frontend (npm run build)
-   - Build backend (npm run build:server)
-   - Upload artifacts
-
-3. deploy-staging (only develop branch)
-   - Download artifacts
-   - Deploy to staging environment
-   - Run smoke tests
-   - Notify Slack on success/failure
-
-4. deploy-production (only main branch)
-   - Require manual approval
-   - Download artifacts
-   - Deploy to production
-   - Run health checks
-   - Notify team
-
-Include:
-- Caching for node_modules
-- Environment secrets usage
-- Conditional job execution
-- Failure notifications`,
-        explanation: "This pipeline covers testing, building, and deploying with environment-specific behavior and proper notifications.",
-      },
-    ],
-    keywords: [
-      {
-        term: "CI/CD",
-        meaning: "Continuous Integration and Deployment - automating test and deploy",
-        usage: "Set up CI/CD to automatically test code on every pull request",
-      },
-      {
-        term: "Pipeline",
-        meaning: "A series of automated steps that run when code changes",
-        usage: "The pipeline runs tests, builds, and deploys to production",
-      },
-      {
-        term: "Workflow",
-        meaning: "A configuration file defining CI/CD pipeline steps",
-        usage: "Create a workflow file to run tests on every push",
-      },
-    ],
-    instructorNotes: "Set up a real pipeline and trigger it. Show how it catches bugs before they reach production. Demonstrate deployment automation.",
-  },
-  "6-3": {
-    objectives: [
-      "Deploy to cloud platforms",
-      "Configure cloud services",
-      "Manage infrastructure",
-    ],
-    summary: "Cloud deployment makes your application available to users. Good deployment prompts specify the platform, services, and configuration needs.",
-    theory: `**Deployment options:**
-- Serverless: Vercel, Netlify, AWS Lambda
-- Containers: AWS ECS, Google Cloud Run
-- VMs: EC2, Digital Ocean Droplets
-- Kubernetes: EKS, GKE, AKS
-
-**What to specify:**
-- Platform and services
-- Resource requirements
-- Scaling configuration
-- Domain and SSL
-- Database connection
-- Environment variables
-
-**Common cloud services:**
-- Compute: Where code runs
-- Database: Managed PostgreSQL, MongoDB
-- Storage: S3, Cloud Storage
-- CDN: CloudFront, Cloudflare
-- Secrets: AWS Secrets Manager
-
-**Deployment considerations:**
-- Zero-downtime deployment
-- Rollback strategy
-- Health checks
-- Monitoring and alerts`,
-    examples: [
-      {
-        title: "Vercel Deployment Config",
-        before: "Deploy to Vercel",
-        after: `Create Vercel deployment configuration for a Next.js app.
-
-vercel.json configuration:
-- Build command: npm run build
-- Output directory: .next
-- Node.js version: 20.x
-
-Environment variables needed:
-- DATABASE_URL: PostgreSQL connection string
-- NEXTAUTH_SECRET: Auth secret
-- NEXTAUTH_URL: Site URL
-- STRIPE_SECRET_KEY: Payment processing
-
-Edge functions:
-- /api/edge/* routes run on edge
-
-Rewrites:
-- /blog/:slug -> /posts/:slug (legacy URLs)
-
-Headers:
-- Cache-Control for static assets
-- Security headers (CSP, X-Frame-Options)
-
-Regions:
-- Primary: iad1 (US East)
-- Failover: sfo1 (US West)
-
-Preview deployments:
-- Enabled for all branches
-- Separate preview database
-
-Production:
-- Custom domain with SSL
-- Analytics enabled
-- Web Vitals monitoring
-
-Include GitHub integration setup instructions.`,
-        explanation: "This covers Vercel-specific configuration including edge functions, rewrites, security headers, and multi-region deployment.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Deployment",
-        meaning: "Making your application available on the internet",
-        usage: "Deploy to Vercel to make your site live for users",
-      },
-      {
-        term: "Serverless",
-        meaning: "Running code without managing servers - scales automatically",
-        usage: "Use serverless functions to run backend code without a server",
-      },
-      {
-        term: "CDN",
-        meaning: "Content Delivery Network - serves content from nearby locations",
-        usage: "Use a CDN to make your site load faster worldwide",
-      },
-    ],
-    instructorNotes: "Deploy an app live during the lesson. Show the deployment logs and domain configuration. Demonstrate rollback for a failed deploy.",
-  },
-  "6-4": {
-    objectives: [
-      "Manage environment variables",
-      "Handle secrets securely",
-      "Configure different environments",
-    ],
-    summary: "Environment variables separate configuration from code. Proper secret management prevents security breaches and makes deployments flexible.",
-    theory: `**Environment types:**
-- Development: Local machine
-- Staging: Test environment
-- Production: Live users
-
-**Variable categories:**
-- Config: API URLs, feature flags
-- Secrets: API keys, database passwords
-- Runtime: Node environment, port
-
-**Secret management:**
-- Never commit secrets to git
-- Use .env files for local
-- Use secret managers for production
-- Rotate secrets regularly
-
-**Best practices:**
-- Document all required variables
-- Provide example .env file
-- Validate variables on startup
-- Use different values per environment`,
-    examples: [
-      {
-        title: "Environment Configuration",
-        before: "Set up env variables",
-        after: `Create environment variable management for a full-stack app.
-
-Required variables:
-
-# App
-NODE_ENV: development | staging | production
-PORT: Server port
-APP_URL: Full application URL
-
-# Database
-DATABASE_URL: PostgreSQL connection string
-REDIS_URL: Redis for caching/sessions
-
-# Auth
-JWT_SECRET: 32+ character secret
-SESSION_SECRET: Session encryption
-
-# Third-party
-STRIPE_SECRET_KEY: Payment processing
-STRIPE_WEBHOOK_SECRET: Webhook verification
-SENDGRID_API_KEY: Email sending
-S3_ACCESS_KEY: File storage
-S3_SECRET_KEY: File storage
-S3_BUCKET: Bucket name
-
-Create:
-1. .env.example with placeholder values
-2. .env.local for development defaults
-3. Environment validation on startup (Zod schema)
-4. Type-safe env access utility
-
-Validation:
-- Check all required vars exist
-- Validate URL formats
-- Fail fast with clear error messages
-
-Documentation:
-- README section explaining each variable
-- Setup instructions for new developers`,
-        explanation: "This creates a complete environment management system with validation, documentation, and type-safe access.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Environment Variable",
-        meaning: "A setting stored outside code that changes per environment",
-        usage: "Use environment variables for API keys and database URLs",
-      },
-      {
-        term: "Secret",
-        meaning: "Sensitive data like passwords or API keys that must be protected",
-        usage: "Store secrets in a secret manager, not in code",
-      },
-      {
-        term: ".env File",
-        meaning: "A file storing environment variables for local development",
-        usage: "Create a .env file with your local database connection",
-      },
-    ],
-    instructorNotes: "Show what happens when secrets leak. Demonstrate proper secret rotation. Set up validation that fails fast on missing variables.",
-  },
-  "6-5": {
-    objectives: [
-      "Set up application monitoring",
-      "Configure logging systems",
-      "Create alerts for issues",
-    ],
-    summary: "Monitoring and logging help you understand what's happening in production. Good prompts specify what to track, how to log, and when to alert.",
-    theory: `**Monitoring types:**
-- Infrastructure: CPU, memory, disk
-- Application: Response times, error rates
-- Business: Signups, purchases, usage
-
-**What to monitor:**
-- HTTP response times
-- Error rates
-- Database query times
-- Queue lengths
-- User activity
-
-**Logging levels:**
-- Error: Something broke
-- Warn: Something concerning
-- Info: Normal operations
-- Debug: Development details
-
-**Alerting:**
-- Define thresholds
-- Avoid alert fatigue
-- Include context
-- Route to right people`,
-    examples: [
-      {
-        title: "Monitoring Setup",
-        before: "Add monitoring",
-        after: `Create monitoring and logging setup for a Node.js API.
-
-Logging:
-- Use structured logging (JSON format)
-- Include: timestamp, level, message, requestId, userId
-- Log levels: error, warn, info, debug
-- Environment-based level (debug in dev, info in prod)
-
-Request logging:
-- Log all requests: method, path, duration, status
-- Log slow requests (> 1s) as warnings
-- Log errors with stack trace
-
-Application metrics:
-- Request rate
-- Response time (p50, p95, p99)
-- Error rate by endpoint
-- Active connections
-- Memory usage
-
-Database metrics:
-- Query count
-- Query duration
-- Connection pool status
-- Slow queries (> 100ms)
-
-Alerts (with thresholds):
-- Error rate > 5% for 5 minutes
-- p99 latency > 2s
-- Memory usage > 80%
-- Database connections > 90%
-
-Include:
-- Winston logger configuration
-- Prometheus metrics middleware
-- Grafana dashboard JSON
-- Alert rules`,
-        explanation: "This creates comprehensive observability with structured logs, metrics, and actionable alerts.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Monitoring",
-        meaning: "Watching your app to detect problems and understand behavior",
-        usage: "Set up monitoring to know when the API is slow or failing",
-      },
-      {
-        term: "Logging",
-        meaning: "Recording events and errors that happen in your application",
-        usage: "Add logging to track user actions and debug issues",
-      },
-      {
-        term: "Alert",
-        meaning: "A notification when something needs attention",
-        usage: "Create an alert when error rate exceeds 5 percent",
-      },
-    ],
-    instructorNotes: "Show real monitoring dashboards. Create an alert and trigger it. Demonstrate how good logging helps debug production issues.",
-  },
-
-  // ============ MODULE 7: Assets & Creative Prompts ============
-  "7-1": {
-    objectives: [
-      "Write effective image generation prompts",
-      "Understand image AI capabilities",
-      "Control style and composition",
-    ],
-    summary: "Image generation AI creates visuals from text descriptions. Good prompts specify subject, style, composition, and technical details.",
-    theory: `**Prompt components:**
-- Subject: What is in the image
-- Style: Art style, medium, technique
-- Composition: Framing, angle, layout
-- Lighting: Natural, studio, dramatic
-- Mood: Emotion, atmosphere
-- Technical: Resolution, aspect ratio
-
-**Style keywords:**
-- Photography: cinematic, portrait, landscape
-- Art: watercolor, oil painting, digital art
-- Design: minimalist, isometric, flat
-
-**Quality modifiers:**
-- High quality, detailed, sharp
-- 4K, 8K resolution
-- Professional, polished
-
-**Common mistakes:**
-- Too vague: "a nice picture"
-- Too complex: cramming everything
-- Conflicting styles
-- Ignoring aspect ratio`,
-    examples: [
-      {
-        title: "Product Photography",
-        before: "Picture of headphones",
-        after: `Professional product photography of premium wireless headphones.
-
-Subject:
-- Modern over-ear headphones
-- Matte black with silver accents
-- Subtle brand logo visible
-
-Style:
-- Clean product photography
-- Magazine advertisement quality
-- Apple-style minimalism
-
-Composition:
-- 3/4 angle view
-- Floating in frame
-- Negative space on right for text
-
-Lighting:
-- Soft studio lighting
-- Subtle gradient background (white to light gray)
-- Gentle reflection below
-
-Mood:
-- Premium, luxurious, aspirational
-- Clean and sophisticated
-
-Technical:
-- Aspect ratio: 16:9
-- High resolution
-- Sharp focus on product`,
-        explanation: "This prompt gives specific guidance on every aspect of the image, resulting in consistent, usable product shots.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Prompt",
-        meaning: "Text description telling AI what image to create",
-        usage: "Write a detailed prompt to get the exact image you need",
-      },
-      {
-        term: "Composition",
-        meaning: "How elements are arranged within the image frame",
-        usage: "Specify composition like centered subject with space for text",
-      },
-      {
-        term: "Style",
-        meaning: "The artistic look and feel of the generated image",
-        usage: "Add style keywords like minimalist or photorealistic",
-      },
-    ],
-    instructorNotes: "Generate images live and iterate on prompts. Show how small changes affect output. Compare vague vs specific prompts.",
-  },
-  "7-2": {
-    objectives: [
-      "Generate logo concepts",
-      "Create brand asset prompts",
-      "Maintain brand consistency",
-    ],
-    summary: "Logo and brand asset generation requires understanding of brand identity. Good prompts communicate brand values and visual style clearly.",
-    theory: `**Logo types:**
-- Wordmark: Company name as logo
-- Lettermark: Initials only
-- Icon/Symbol: Abstract or pictorial
-- Combination: Icon + wordmark
-- Emblem: Badge-style design
-
-**Brand elements:**
-- Logo variations (full, icon, mono)
-- Color palette
-- Typography
-- Iconography style
-- Pattern/texture
-
-**What to specify:**
-- Brand personality
-- Industry context
-- Target audience
-- Visual preferences
-- Usage context (digital, print)
-
-**Logo prompts should include:**
-- Business type
-- Style direction
-- Color preferences
-- Format needs`,
-    examples: [
-      {
-        title: "Tech Startup Logo",
-        before: "Logo for my app",
-        after: `Design a logo for "Flowbase" - a workflow automation SaaS.
-
-Brand personality:
-- Modern and innovative
-- Approachable, not intimidating
-- Efficient and smart
-- Trustworthy
-
-Visual direction:
-- Minimalist, geometric
-- Clean lines, no gradients
-- Works well at small sizes
-
-Concepts to explore:
-1. Abstract flow/movement symbol
-2. Connected nodes/workflow
-3. Stylized "F" lettermark
-
-Color:
-- Primary: Deep blue (trust, tech)
-- Accent: Vibrant teal (energy, innovation)
-- Works on both light and dark backgrounds
-
-Requirements:
-- Vector format
-- Horizontal and stacked versions
-- Icon-only version for favicon
-- Black and white version
-
-Avoid:
-- Overly complex details
-- Literal workflow diagrams
-- Generic tech cliches (gears, lightbulbs)`,
-        explanation: "This prompt provides brand context, specific directions, multiple concepts to explore, and practical requirements.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Brand Identity",
-        meaning: "The visual and emotional elements that define a brand",
-        usage: "Define brand identity before creating logos and marketing materials",
-      },
-      {
-        term: "Wordmark",
-        meaning: "A logo that is the company name in stylized text",
-        usage: "Create a wordmark for a text-based logo design",
-      },
-      {
-        term: "Vector",
-        meaning: "Graphics that scale to any size without losing quality",
-        usage: "Export logos as vectors so they work at any size",
-      },
-    ],
-    instructorNotes: "Show logo evolution from prompt to final asset. Discuss what makes logos work at different sizes. Generate variations and compare.",
-  },
-  "7-3": {
-    objectives: [
-      "Generate consistent icon sets",
-      "Match icon style to UI",
-      "Create custom icons with AI",
-    ],
-    summary: "Icons need to be consistent in style, size, and meaning. Good icon prompts specify style, stroke weight, and functional purpose.",
-    theory: `**Icon styles:**
-- Outlined: Clean, modern, light
-- Filled: Bold, prominent, solid
-- Duo-tone: Accent color highlight
-- Hand-drawn: Casual, friendly
-
-**Consistency factors:**
-- Stroke weight (1px, 2px)
-- Corner radius
-- Grid alignment
-- Visual weight
-- Level of detail
-
-**What to specify:**
-- Icon list (all needed icons)
-- Style reference (Lucide, Phosphor)
-- Size (24px, 32px base)
-- Color behavior
-- Animation needs
-
-**Icon categories:**
-- Navigation (home, menu, back)
-- Actions (edit, delete, save)
-- Objects (file, folder, image)
-- Status (success, warning, error)`,
-    examples: [
-      {
-        title: "Dashboard Icon Set",
-        before: "Icons for my dashboard",
-        after: `Create an icon set for a project management dashboard.
-
-Style:
-- Outlined (2px stroke)
-- Rounded corners (2px radius)
-- 24px base grid
-- Similar to Lucide Icons
-
-Icons needed:
-1. Dashboard - grid/overview view
-2. Projects - folder with badge
-3. Tasks - checklist
-4. Calendar - date picker
-5. Team - people group
-6. Messages - chat bubble
-7. Settings - gear
-8. Notifications - bell
-9. Search - magnifying glass
-10. Add new - plus circle
-
-Variations needed:
-- Default (gray)
-- Active (primary color)
-- Filled version for selected state
-
-Requirements:
-- SVG format
-- Consistent visual weight
-- Clear at small sizes (16px)
-- Work on both light and dark backgrounds
-
-Style consistency:
-- Same stroke weight throughout
-- Aligned to pixel grid
-- Uniform corner rounding`,
-        explanation: "This prompt specifies style details, lists all needed icons, and ensures consistency across the set.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Icon",
-        meaning: "A small graphic representing an action, object, or concept",
-        usage: "Use icons to make navigation and actions easy to understand",
-      },
-      {
-        term: "Stroke Weight",
-        meaning: "The thickness of lines in an outlined icon",
-        usage: "Use consistent 2px stroke weight across all icons",
-      },
-      {
-        term: "SVG",
-        meaning: "Scalable Vector Graphics - a format for icons that scales perfectly",
-        usage: "Export icons as SVG for crisp display at any size",
-      },
-    ],
-    instructorNotes: "Generate icons and test in actual UI. Show how inconsistent styles break visual harmony. Demonstrate size testing.",
-  },
-  "7-4": {
-    objectives: [
-      "Generate background graphics",
-      "Create seamless patterns",
-      "Design abstract visuals",
-    ],
-    summary: "Backgrounds and patterns set the visual foundation of designs. Good prompts specify pattern type, colors, and intended usage.",
-    theory: `**Background types:**
-- Solid colors
-- Gradients (linear, radial)
-- Patterns (geometric, organic)
-- Textures (noise, grain)
-- Abstract shapes
-
-**Pattern considerations:**
-- Seamless tiling
-- Density and scale
-- Color harmony
-- Visual hierarchy
-
-**Usage contexts:**
-- Website backgrounds
-- Card backgrounds
-- Hero sections
-- Social media
-
-**What to specify:**
-- Pattern type
-- Colors from palette
-- Tile size
-- Density/complexity
-- Where it will be used`,
-    examples: [
-      {
-        title: "Website Background Pattern",
-        before: "Background for website",
-        after: `Create a subtle background pattern for a tech company website.
-
-Pattern type:
-- Geometric, abstract
-- Connected lines and dots (network/tech feel)
-- Very low contrast (subtle)
-
-Colors:
-- Base: Near-white (#FAFAFA)
-- Pattern: Light gray (#E5E5E5)
-- Occasional accent dots: Primary blue (10% opacity)
-
-Characteristics:
-- Seamlessly tileable
-- Works at 1920x1080+
-- Non-distracting (content stays focus)
-- Professional, not playful
-
-Technical:
-- SVG format for quality
-- Tile size: 400x400px
-- Opacity: Pattern at 30-40%
-
-Usage:
-- Main page background
-- Behind hero sections
-- Card container backgrounds
-
-Also create:
-- Darker version for dark mode
-- Higher contrast version for section breaks`,
-        explanation: "This prompt considers the functional use (background, subtle) and provides specific technical requirements for implementation.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Pattern",
-        meaning: "A repeated design that creates visual texture",
-        usage: "Add a subtle pattern to backgrounds for visual interest",
-      },
-      {
-        term: "Seamless",
-        meaning: "A pattern that tiles without visible edges or breaks",
-        usage: "Create a seamless pattern that repeats without showing lines",
-      },
-      {
-        term: "Gradient",
-        meaning: "A smooth transition between two or more colors",
-        usage: "Use a gradient from blue to purple for the hero background",
-      },
-    ],
-    instructorNotes: "Show patterns in context. Demonstrate seamless tiling. Compare busy vs subtle backgrounds and their effect on readability.",
-  },
-  "7-5": {
-    objectives: [
-      "Generate music and audio with AI",
-      "Write effective audio prompts",
-      "Understand audio generation tools",
-    ],
-    summary: "Audio generation AI creates music, sound effects, and ambient sounds. Good prompts specify mood, tempo, instruments, and technical requirements.",
-    theory: `**Audio types:**
-- Background music
-- Sound effects
-- Ambient/atmosphere
-- Voice/speech
-- Jingles/intros
-
-**Music prompt elements:**
-- Genre/style
-- Tempo (BPM)
-- Mood/emotion
-- Instruments
-- Structure
-
-**Sound effect elements:**
-- Type (click, whoosh, notification)
-- Duration
-- Intensity
-- Variations needed
-
-**What to specify:**
-- Purpose (background, notification)
-- Length
-- Loop requirements
-- Format (MP3, WAV)
-- Licensing needs`,
-    examples: [
-      {
-        title: "App Notification Sounds",
-        before: "Make notification sounds",
-        after: `Create a set of notification sounds for a productivity app.
-
-Sound set:
-1. Success/Complete
-   - Pleasant, affirming
-   - Short chime or bell
-   - 0.5-1 second
-
-2. New message
-   - Gentle attention-grab
-   - Soft bubble or ping
-   - Not jarring
-   - 0.3 seconds
-
-3. Error/Warning
-   - Noticeable but not alarming
-   - Lower tone
-   - 0.5 seconds
-
-4. Timer complete
-   - Celebratory
-   - Slightly longer (1-2 seconds)
-   - Clear completion signal
-
-Style:
-- Modern, clean
-- Similar to iOS/Material sounds
-- Not 8-bit or retro
-- Professional feel
-
-Technical:
-- Format: WAV and MP3
-- Sample rate: 44.1kHz
-- Volume normalized
-- Clean start and end (no pops)
-
-All sounds should:
-- Feel related (same family)
-- Be distinct from each other
-- Work at low volumes
-- Not be annoying with repetition`,
-        explanation: "This prompt creates a cohesive sound set with specific purposes, style guidelines, and technical requirements.",
-      },
-    ],
-    keywords: [
-      {
-        term: "BPM",
-        meaning: "Beats Per Minute - the tempo or speed of music",
-        usage: "Set BPM to 90 for a relaxed, calm background track",
-      },
-      {
-        term: "Loop",
-        meaning: "Audio that repeats seamlessly from end to start",
-        usage: "Create a loopable ambient track for the meditation feature",
-      },
-      {
-        term: "Normalized",
-        meaning: "Audio adjusted to a consistent volume level",
-        usage: "Normalize all sounds so they play at similar volumes",
-      },
-    ],
-    instructorNotes: "Play audio examples and discuss what works. Generate sounds and test in context. Show how audio enhances UX.",
-  },
-
-  // ============ MODULE 8: AI Tools & Advanced Usage ============
-  "8-1": {
-    objectives: [
-      "Understand what Lovable is and how to use it",
-      "Write effective prompts for Lovable",
-      "Build full web applications with AI",
-    ],
-    summary: "Lovable is an AI-powered platform that builds complete web applications from natural language prompts. It handles frontend, backend, database, and deployment automatically.",
-    theory: `**What is Lovable?**
-Lovable is an AI web app builder that creates full-stack applications from text prompts. You describe what you want, and it generates React code, connects databases, and deploys your app.
-
-**Key features:**
-- Generates React + TypeScript + Tailwind code
-- Connects to Supabase for database and auth
-- Handles deployment automatically
-- Real-time preview as you build
-- Edit by prompting or by code
-
-**Best prompts for Lovable:**
-- Describe the app purpose clearly
-- List key features
-- Mention design preferences
-- Specify user flows
-
-**Lovable strengths:**
-- Rapid prototyping
-- Full-stack apps in minutes
-- No setup or configuration needed
-- Good for MVPs and side projects
-
-**Prompting tips:**
-- Start with the big picture
-- Add features incrementally
-- Be specific about UI/UX
-- Reference similar apps for clarity`,
-    examples: [
-      {
-        title: "Building with Lovable",
-        before: "Make me an app",
-        after: `Build a habit tracking app with the following:
-
-Core features:
-- Users can add habits to track (name, frequency: daily/weekly)
-- Daily check-in screen to mark habits complete
-- Streak tracking for each habit
-- Simple analytics showing completion rates
-
-User flow:
-1. Landing page with sign up
-2. Dashboard showing today's habits
-3. Add habit button with form
-4. Habit detail page with history
-5. Profile with settings
-
-Design:
-- Clean, minimal UI
-- Soft colors (avoid harsh contrasts)
-- Mobile-first layout
-- Celebratory animation when completing habits
-
-Tech preferences:
-- Use Supabase for auth and database
-- Store habit data per user`,
-        explanation: "This prompt gives Lovable clear direction on features, user flow, and design. It will generate a complete working app.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Lovable",
-        meaning: "An AI platform that builds full web apps from text descriptions",
-        usage: "Use Lovable to create a complete app without writing code yourself",
-      },
-      {
-        term: "Full-stack",
-        meaning: "Both frontend (what users see) and backend (server and database)",
-        usage: "Lovable creates full-stack apps with frontend and database",
-      },
-      {
-        term: "Supabase",
-        meaning: "A backend service providing database, auth, and storage",
-        usage: "Connect Supabase to store user data and handle login",
-      },
-    ],
-    instructorNotes: "Demo building an app live in Lovable. Show how iterative prompting refines the result. Emphasize that it generates real, editable code.",
-  },
-  "8-2": {
-    objectives: [
-      "Understand what Bolt.new is and how it works",
-      "Write prompts for full-stack app generation",
-      "Compare Bolt.new with other AI builders",
-    ],
-    summary: "Bolt.new by StackBlitz creates full-stack applications in the browser. It uses AI to generate code and runs everything in a web container without local setup.",
-    theory: `**What is Bolt.new?**
-Bolt.new is an AI app builder from StackBlitz. It creates full-stack applications entirely in the browser using WebContainers technology. No installation needed.
-
-**Key features:**
-- Full Node.js environment in browser
-- Generates React, Vue, Svelte, etc.
-- Backend with Express, Fastify
-- Database connections
-- One-click deployment
-
-**Best for:**
-- Quick prototypes
-- Full-stack experiments
-- Learning and exploration
-- Sharing runnable demos
-
-**Prompting Bolt.new:**
-- State the framework preference
-- Describe the app functionality
-- Mention API integrations needed
-- Specify styling preferences
-
-**Bolt.new strengths:**
-- No local setup needed
-- Instant shareable links
-- Full backend support
-- Great for experimentation`,
-    examples: [
-      {
-        title: "Building with Bolt.new",
-        before: "Create an app",
-        after: `Create a recipe sharing app with React and Express.
-
-Frontend:
-- Recipe list with search and filter by cuisine
-- Recipe detail page with ingredients and steps
-- Add recipe form with image upload
-- User favorites functionality
-
-Backend:
-- Express API with RESTful endpoints
-- SQLite database for simplicity
-- Image upload handling
-
-API endpoints:
-- GET /recipes - list with filters
-- GET /recipes/:id - single recipe
-- POST /recipes - create new
-- PUT /recipes/:id - update
-- POST /recipes/:id/favorite - toggle favorite
-
-Styling:
-- Tailwind CSS
-- Clean, food-blog aesthetic
-- Card-based layout`,
-        explanation: "This prompt specifies frontend, backend, and API requirements. Bolt.new will generate and run everything in the browser.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Bolt.new",
-        meaning: "AI app builder that runs full-stack code in the browser",
-        usage: "Use Bolt.new to prototype ideas without any local setup",
-      },
-      {
-        term: "WebContainers",
-        meaning: "Technology that runs Node.js entirely in the browser",
-        usage: "WebContainers let you run backend code without a server",
-      },
-      {
-        term: "Prototype",
-        meaning: "A quick working version to test an idea",
-        usage: "Create a prototype in Bolt.new before building the full app",
-      },
-    ],
-    instructorNotes: "Build something live in Bolt.new. Show how it runs Node.js in the browser. Compare the experience to local development.",
-  },
-  "8-3": {
-    objectives: [
-      "Understand V0 by Vercel",
-      "Generate UI components with V0",
-      "Use V0 for rapid UI prototyping",
-    ],
-    summary: "V0 by Vercel is an AI tool that generates React UI components from text descriptions. It creates beautiful, production-ready components using shadcn/ui and Tailwind.",
-    theory: `**What is V0?**
-V0 is Vercel's AI UI generator. You describe a component or page, and it generates high-quality React code using modern best practices.
-
-**Key features:**
-- Generates React + TypeScript
-- Uses shadcn/ui components
-- Tailwind CSS styling
-- Multiple variations per prompt
-- Copy code directly into projects
-
-**Best for:**
-- UI component generation
-- Landing page designs
-- Dashboard layouts
-- Form designs
-- Marketing pages
-
-**V0 strengths:**
-- Beautiful, polished output
-- Production-ready code
-- Consistent with modern UI patterns
-- Great for design inspiration
-
-**Prompting V0:**
-- Describe the component visually
-- Reference similar designs
-- Specify interactive behaviors
-- Mention responsive needs`,
-    examples: [
-      {
-        title: "V0 Component Prompt",
-        before: "Make a pricing section",
-        after: `Create a pricing section for a SaaS product.
-
-Layout:
-- 3 tier cards side by side
-- Highlight the middle tier (recommended)
-- Toggle for monthly/annual pricing
-
-Tiers:
-1. Starter - $9/mo, basic features
-2. Pro - $29/mo, most popular, more features
-3. Enterprise - Custom pricing, all features
-
-Card content:
-- Tier name and price
-- Feature list with checkmarks
-- CTA button
-- "Save 20%" badge for annual
-
-Design:
-- Clean, minimal
-- Subtle shadows
-- Rounded corners
-- Primary color for CTA buttons
-- Gray for non-recommended tiers
-
-Responsive:
-- Stack vertically on mobile
-- Keep highlight on Pro tier`,
-        explanation: "V0 will generate multiple variations of this pricing section. You can pick the best one or iterate further.",
-      },
-    ],
-    keywords: [
-      {
-        term: "V0",
-        meaning: "Vercel's AI tool that generates React UI components",
-        usage: "Use V0 to quickly generate beautiful UI component code",
-      },
-      {
-        term: "shadcn/ui",
-        meaning: "A collection of reusable React components built with Tailwind",
-        usage: "V0 generates components using shadcn/ui for consistency",
-      },
-      {
-        term: "Component",
-        meaning: "A reusable piece of UI that can be used throughout an app",
-        usage: "Generate a pricing component with V0 and use it on your site",
-      },
-    ],
-    instructorNotes: "Generate components in V0 and show the different variations. Demonstrate copying code into a real project. Compare V0 output quality.",
-  },
-  "8-4": {
-    objectives: [
-      "Understand Cursor AI code editor",
-      "Use AI-assisted coding effectively",
-      "Write better code with Cursor",
-    ],
-    summary: "Cursor is an AI-powered code editor built on VS Code. It provides intelligent code completion, chat assistance, and codebase understanding for faster development.",
-    theory: `**What is Cursor?**
-Cursor is a code editor with AI built in. It understands your entire codebase and helps you write, edit, and understand code through natural language.
-
-**Key features:**
-- AI code completion (Tab)
-- Chat with your codebase (Cmd+L)
-- Edit code with instructions (Cmd+K)
-- Understands project context
-- Uses Claude, GPT-4, and more
-
-**Best for:**
-- Professional developers
-- Complex codebases
-- Refactoring tasks
-- Learning new codebases
-- Debugging
-
-**Cursor commands:**
-- Tab: Accept completion
-- Cmd+K: Edit selection with AI
-- Cmd+L: Open chat
-- @file: Reference specific files
-- @codebase: Search entire project
-
-**Cursor strengths:**
-- Codebase awareness
-- Multi-file edits
-- Fast completions
-- Familiar VS Code interface`,
-    examples: [
-      {
-        title: "Using Cursor Effectively",
-        before: "Write some code",
-        after: `Cursor workflow examples:
-
-Cmd+K (Edit with instructions):
-Select a function, press Cmd+K, type:
-"Add error handling and TypeScript types"
-
-Chat with codebase (Cmd+L):
-"How does authentication work in this project?"
-"Where is the user data being fetched?"
-"What components use the Button component?"
-
-Tab completion:
-Start typing a function and Cursor suggests
-the complete implementation based on context.
-
-Multi-file edits:
-"Update all API calls to use the new error handler"
-Cursor will find and modify relevant files.
-
-Refactoring:
-"Split this 200-line component into smaller parts"
-"Convert this class component to functional"
-
-Best practices:
-- Give context in your prompts
-- Reference files with @filename
-- Review AI changes carefully
-- Use for repetitive tasks`,
-        explanation: "These examples show how to leverage Cursor's AI features for common development tasks.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Cursor",
-        meaning: "An AI-powered code editor based on VS Code",
-        usage: "Use Cursor for AI-assisted coding and codebase chat",
-      },
-      {
-        term: "Code Completion",
-        meaning: "AI suggesting code as you type",
-        usage: "Press Tab to accept Cursor's code completion suggestions",
-      },
-      {
-        term: "Codebase Chat",
-        meaning: "Asking questions about your project using natural language",
-        usage: "Ask Cursor how authentication works in the chat sidebar",
-      },
-    ],
-    instructorNotes: "Demo Cursor live with a real project. Show the difference between regular coding and AI-assisted. Highlight codebase understanding.",
-  },
-  "8-5": {
-    objectives: [
-      "Understand emerging AI tools",
-      "Learn about Emergent AI and Anti Gravity",
-      "Stay current with AI development tools",
-    ],
-    summary: "New AI tools are constantly emerging. Emergent AI and Anti Gravity represent newer entrants in the AI development space, each with unique approaches to building software.",
-    theory: `**Emergent AI:**
-An AI-powered development platform focusing on building applications through conversation. It emphasizes iterative development and learning from user feedback.
-
-**Anti Gravity:**
-A newer AI tool for rapid application development. It focuses on zero-friction development, letting users describe ideas and see working applications quickly.
-
-**What to look for in new tools:**
-- Speed of development
-- Quality of generated code
-- Integration capabilities
-- Learning curve
-- Pricing model
-- Community support
-
-**Staying current:**
-- Follow AI tool launches
-- Test new tools on side projects
-- Compare outputs between tools
-- Share findings with community
-
-**Evaluation criteria:**
-- Does it solve a real problem?
-- Is the output production-ready?
-- How quickly can you iterate?
-- What are the limitations?`,
-    examples: [
-      {
-        title: "Evaluating New AI Tools",
-        before: "Which tool should I use?",
-        after: `Framework for evaluating AI development tools:
-
-1. Build the same test project in each tool:
-   - Simple todo app
-   - Note: speed, code quality, features
-
-2. Test specific capabilities:
-   - Database integration
-   - Authentication
-   - API calls
-   - Styling/design
-
-3. Compare outputs:
-   - Code readability
-   - Best practices followed
-   - Error handling
-   - TypeScript support
-
-4. Consider practical factors:
-   - Pricing for your use case
-   - Export/ownership of code
-   - Learning resources
-   - Community activity
-
-5. Match to use case:
-   - Prototyping → Speed matters most
-   - Production → Quality matters most
-   - Learning → Explanations matter most
-
-Keep a comparison document as you test.`,
-        explanation: "This framework helps systematically evaluate new AI tools rather than following hype.",
-      },
-    ],
-    keywords: [
-      {
-        term: "AI Tool",
-        meaning: "Software that uses AI to help with development tasks",
-        usage: "Evaluate AI tools by building the same project in each",
-      },
-      {
-        term: "Iteration",
-        meaning: "Repeatedly improving through cycles of feedback",
-        usage: "Fast iteration speed makes prototyping more efficient",
-      },
-      {
-        term: "Zero-friction",
-        meaning: "Development with minimal setup or barriers",
-        usage: "Zero-friction tools let you start building immediately",
-      },
-    ],
-    instructorNotes: "The AI tool landscape changes rapidly. Update examples with current tools. Encourage students to explore and share discoveries.",
-  },
-  "8-6": {
-    objectives: [
-      "Understand AI tools for mobile development",
-      "Use Android Studio AI features",
-      "Explore mobile-specific AI tools",
-    ],
-    summary: "Mobile development has its own AI tools and features. Android Studio includes AI assistance, and specialized tools help build mobile apps faster.",
-    theory: `**Android Studio AI Features:**
-- Gemini integration for code help
-- AI-powered code completion
-- Generate UI from descriptions
-- Debug assistance
-- Performance suggestions
-
-**Mobile AI Tools:**
-- FlutterFlow: Visual Flutter builder
-- Draftbit: React Native builder
-- Bravo Studio: Design to app
-- BuildFire: No-code app builder
-
-**AI for Mobile:**
-- Layout generation
-- Component creation
-- API integration
-- Testing suggestions
-- Performance optimization
-
-**Mobile-specific considerations:**
-- Platform differences (iOS/Android)
+      "Understand what prompt engineering is and why it matters for app development",
+      "Learn the core principles of effective prompts",
+      "Write your first structured prompts for mobile apps",
+    ],
+    summary: "Prompt engineering is essential for building apps with AI. This lesson introduces the fundamentals specific to app development.",
+    theory: `**Prompt Engineering for App Development**
+
+Building apps with AI requires understanding both platforms (iOS, Android, Web) and how to communicate requirements clearly.
+
+**Key Differences from Web:**
+- Platform considerations (iOS vs Android)
+- Native vs cross-platform decisions
+- Mobile-specific UX patterns
 - Performance constraints
-- Offline capability
-- Device testing
+- App store requirements
 
-**What to prompt for:**
-- Screen layouts
-- Navigation flows
-- Data persistence
-- Push notifications
-- App store assets`,
+**Mobile-Specific Prompting:**
+- Always specify the target platform
+- Include device size considerations
+- Mention offline capabilities if needed
+- Consider touch interactions
+- Think about permissions and privacy
+
+**Example Context for App Prompts:**
+"Building a cross-platform app using React Native / Flutter, targeting iOS and Android, for users aged 18-35 who want quick, gesture-based interactions."`,
     examples: [
       {
-        title: "Mobile App with AI",
-        before: "Make a mobile app",
-        after: `Create a workout tracking app for Android.
-
-Screens:
-1. Home - Today's workout, streak count
-2. Exercises - Browse/search exercise library
-3. Workout - Active workout with timer
-4. History - Past workouts with stats
-5. Profile - Settings and achievements
-
-Features:
-- Timer for rest periods
-- Rep and set tracking
-- Progress photos
-- Workout reminders (notifications)
-- Offline functionality
-
-UI Design:
-- Material You design system
-- Dynamic color theming
-- Large touch targets
-- Dark mode support
-
-Data:
-- Local storage for workouts
-- Sync with Google Fit (optional)
-- Export workout history
-
-Technical:
-- Kotlin + Jetpack Compose
-- Room database for local storage
-- WorkManager for reminders`,
-        explanation: "This prompt is specific to Android development, mentioning Android-specific technologies and design systems.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Android Studio",
-        meaning: "The official development environment for Android apps",
-        usage: "Use Android Studio with Gemini AI for faster development",
-      },
-      {
-        term: "Jetpack Compose",
-        meaning: "Modern Android UI toolkit for building native interfaces",
-        usage: "Build UI with Jetpack Compose for declarative Android layouts",
-      },
-      {
-        term: "Flutter",
-        meaning: "Cross-platform framework for iOS and Android apps",
-        usage: "Use Flutter to build one app that works on both platforms",
-      },
-    ],
-    instructorNotes: "Demo Android Studio AI features. Show FlutterFlow for visual app building. Compare native vs cross-platform approaches.",
-  },
-  "8-7": {
-    objectives: [
-      "Understand Replit AI features",
-      "Learn about Windsurf editor",
-      "Compare browser-based AI tools",
-    ],
-    summary: "Replit and Windsurf represent different approaches to AI-assisted development. Replit offers a browser-based IDE with AI, while Windsurf is a dedicated AI code editor.",
-    theory: `**Replit:**
-An online IDE with AI features built in. Run code in any language directly in the browser with AI assistance.
-
-Features:
-- Ghostwriter AI assistant
-- Multi-language support
-- Instant deployment
-- Collaboration built-in
-- Learning-friendly
-
-**Windsurf:**
-A newer AI code editor focused on deep codebase understanding and agentic workflows.
-
-Features:
-- Cascade agentic workflow
-- Deep context awareness
-- Multi-file editing
-- Works with any project
-- Alternative to Cursor
-
-**When to use Replit:**
-- Learning to code
-- Quick experiments
-- Sharing runnable code
-- Hackathons
-- Teaching
-
-**When to use Windsurf:**
-- Professional development
-- Large codebases
-- Complex refactoring
-- Team projects`,
-    examples: [
-      {
-        title: "Replit AI Usage",
-        before: "Help me code",
-        after: `Using Replit effectively:
-
-Starting a project:
-"Create a Python web scraper that collects
-news headlines from 3 different sites and
-saves them to a JSON file"
-
-Replit will:
-- Set up the project
-- Install dependencies
-- Write the code
-- You can run it immediately
-
-Ghostwriter chat:
-"Explain how the BeautifulSoup selector works"
-"Add error handling for network failures"
-"Make this run on a schedule"
-
-Collaboration:
-- Share link for instant access
-- Others can fork and modify
-- Real-time multiplayer editing
-
-Best for:
-- Python scripts
-- API experiments
-- Learning projects
-- Quick demos`,
-        explanation: "Replit is excellent for quick projects and learning because everything runs in the browser.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Replit",
-        meaning: "Browser-based IDE with AI and instant code running",
-        usage: "Use Replit to code and run projects without local setup",
-      },
-      {
-        term: "Windsurf",
-        meaning: "AI code editor with deep codebase understanding",
-        usage: "Try Windsurf as an alternative to Cursor for AI coding",
-      },
-      {
-        term: "Ghostwriter",
-        meaning: "Replit's AI assistant for code generation and help",
-        usage: "Ask Ghostwriter to explain or generate code in Replit",
-      },
-    ],
-    instructorNotes: "Demo Replit for quick projects. Show Windsurf's Cascade feature. Compare the different tool philosophies.",
-  },
-  "8-8": {
-    objectives: [
-      "Master ChatGPT for code generation",
-      "Use effective prompting techniques",
-      "Understand ChatGPT's strengths and limitations",
-    ],
-    summary: "ChatGPT by OpenAI is one of the most popular AI assistants. It excels at explaining concepts, generating code, and helping with a wide range of development tasks.",
-    theory: `**ChatGPT** is OpenAI's conversational AI model. It understands context, remembers conversation history, and can help with coding, writing, and problem-solving.
-
-**Strengths:**
-- Excellent at explanations
-- Great code generation
-- Multi-language support
-- Large context window
-- Plugins and tools
-
-**Best uses for coding:**
-- Explaining concepts
-- Debugging code
-- Writing functions
-- Code reviews
-- Learning new technologies
-
-**Prompting ChatGPT:**
-- Be specific about what you want
-- Provide code context
-- Ask for step-by-step explanations
-- Request specific formats
-
-**GPT-4 vs GPT-3.5:**
-- GPT-4 is more accurate
-- Better at complex tasks
-- Follows instructions better
-- GPT-3.5 is faster and free
-
-**Tips:**
-- Use system messages for role-setting
-- Break complex tasks into steps
-- Ask for alternative approaches
-- Request tests along with code`,
-    examples: [
-      {
-        title: "ChatGPT for Code Generation",
-        before: "Write a sort function",
-        after: `I need a TypeScript function that sorts an array of products.
-
-Product interface:
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  rating: number;
-  createdAt: Date;
-}
-
-Requirements:
-- Sort by multiple fields (primary and secondary)
-- Support ascending and descending order
-- Handle null values gracefully
-- Return a new array (don't mutate original)
-
-Example usage:
-sortProducts(products, { field: 'price', order: 'asc' })
-sortProducts(products, { field: 'rating', order: 'desc' }, { field: 'name', order: 'asc' })
-
-Please include:
-1. TypeScript types for the sort options
-2. The sort function
-3. 2-3 test cases`,
-        explanation: "ChatGPT works best with clear context, specific requirements, and examples of expected usage.",
-      },
-    ],
-    keywords: [
-      {
-        term: "ChatGPT",
-        meaning: "OpenAI's conversational AI assistant for coding and more",
-        usage: "Ask ChatGPT to explain code, generate functions, or debug issues",
-      },
-      {
-        term: "GPT-4",
-        meaning: "OpenAI's most capable model with advanced reasoning",
-        usage: "Use GPT-4 for complex coding tasks requiring accuracy",
-      },
-      {
-        term: "System Message",
-        meaning: "Instructions that set the AI's behavior for a conversation",
-        usage: "Use system messages to tell ChatGPT to act as a senior developer",
-      },
-    ],
-    instructorNotes: "Demo ChatGPT's code generation and explanation abilities. Show how conversation context improves results. Compare GPT-3.5 and GPT-4 outputs.",
-  },
-  "8-9": {
-    objectives: [
-      "Use Google's Gemini AI for development",
-      "Navigate Google AI Studio",
-      "Leverage Gemini's multimodal capabilities",
-    ],
-    summary: "Gemini is Google's AI model family. It excels at multimodal tasks (text + images), has large context windows, and integrates with Google services.",
-    theory: `**Google Gemini** is a family of AI models from Google, designed to be multimodal and highly capable.
-
-**Model variants:**
-- Gemini Ultra: Most powerful
-- Gemini Pro: Balanced performance
-- Gemini Flash: Fast and efficient
-
-**Strengths:**
-- Long context window (1M+ tokens)
-- Image understanding
-- Code generation
-- Integration with Google tools
-- Competitive pricing
-
-**Google AI Studio:**
-A web interface to experiment with Gemini:
-- Test prompts quickly
-- Tune parameters
-- Create AI applications
-- Generate API keys
-
-**Best for:**
-- Large codebase analysis
-- Image-to-code tasks
-- Documentation review
-- Multi-file understanding
-- Long document processing
-
-**Using Gemini for code:**
-- Upload images of designs
-- Analyze error screenshots
-- Process long documentation
-- Compare multiple files
-
-**Integration:**
-- API access via Google AI
-- Available in Android Studio
-- Works with Vertex AI
-- MakerSuite for experiments`,
-    examples: [
-      {
-        title: "Gemini for Image-to-Code",
-        before: "Make this design",
-        after: `[Attach screenshot of UI design]
-
-Convert this design to React + Tailwind CSS.
-
-Details I can see in the image:
-- Header with navigation and logo
-- Hero section with gradient background
-- 3-column feature cards
-- Footer with newsletter signup
-
-Requirements:
-- Match the colors and spacing closely
-- Use semantic HTML
-- Make it fully responsive
-- Add subtle hover animations
-
-Questions:
-- What font appears to be used?
-- Are there any micro-interactions shown?
-
-Please provide:
-1. Component structure outline
-2. Main page component
-3. Individual sub-components
-4. Tailwind classes matching the design`,
-        explanation: "Gemini's image understanding lets you upload designs and get accurate code that matches the visual.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Gemini",
-        meaning: "Google's multimodal AI model for text, code, and images",
-        usage: "Use Gemini to analyze images and generate matching code",
-      },
-      {
-        term: "Google AI Studio",
-        meaning: "Web interface to experiment with Gemini models",
-        usage: "Test prompts in Google AI Studio before using the API",
-      },
-      {
-        term: "Multimodal",
-        meaning: "AI that understands multiple types of input (text, images, audio)",
-        usage: "Use multimodal AI to convert design screenshots to code",
-      },
-    ],
-    instructorNotes: "Demo Google AI Studio interface. Show image-to-code with a design screenshot. Compare context window sizes between models.",
-  },
-  "8-10": {
-    objectives: [
-      "Understand Grok AI capabilities",
-      "Use Grok for real-time information",
-      "Compare Grok with other AI assistants",
-    ],
-    summary: "Grok is xAI's AI assistant, created by Elon Musk's AI company. It has access to real-time information from X (Twitter) and takes a more direct, unfiltered approach.",
-    theory: `**Grok** is an AI assistant from xAI, designed to be helpful, truthful, and direct.
-
-**Unique features:**
-- Real-time X/Twitter access
-- Current events knowledge
-- Direct, witty responses
-- Less restrictive than others
-- Fast response times
-
-**Best for:**
-- Current trends and news
-- Real-time market info
-- Social media analysis
-- Unfiltered opinions
-- Quick, direct answers
-
-**For developers:**
-- Trending tech discussions
-- Community sentiment
-- Quick code snippets
-- Debugging help
-- Library recommendations
-
-**Access:**
-- X Premium subscription
-- Available on x.com
-- API access available
-- Mobile app
-
-**When to use Grok:**
-- Need current information
-- Want quick, direct answers
-- Researching trends
-- Social context matters
-
-**Limitations:**
-- Smaller context window
-- Less coding depth than GPT-4
-- X-focused knowledge
-- Newer, still evolving`,
-    examples: [
-      {
-        title: "Grok for Tech Research",
-        before: "What's the best frontend framework?",
-        after: `What are developers on X/Twitter saying about React vs Vue vs Svelte in 2024?
-
-I want to understand:
-1. Current community sentiment
-2. Recent major updates or announcements
-3. What problems people are complaining about
-4. What features people are excited about
-5. Any trending migrations (e.g., React to X)
-
-Context: I'm choosing a framework for a new project and want to understand the current landscape beyond just documentation.
-
-Please include:
-- Recent tweets or discussions you're aware of
-- Any notable developer opinions
-- Practical recommendations based on what you see`,
-        explanation: "Grok's access to real-time X data makes it useful for understanding current developer sentiment and trends.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Grok",
-        meaning: "xAI's AI assistant with real-time X/Twitter access",
-        usage: "Use Grok to research current developer trends and sentiment",
-      },
-      {
-        term: "xAI",
-        meaning: "Elon Musk's AI company that created Grok",
-        usage: "xAI focuses on building helpful and truthful AI assistants",
-      },
-      {
-        term: "Real-time",
-        meaning: "Access to current, up-to-date information",
-        usage: "Grok's real-time access helps answer questions about current events",
-      },
-    ],
-    instructorNotes: "Demo Grok's real-time capabilities. Show how it differs from ChatGPT and Gemini. Discuss when real-time information matters for development.",
-  },
-  "8-11": {
-    objectives: [
-      "Compare AI development tools",
-      "Choose the right tool for each task",
-      "Build efficient AI-assisted workflows",
-    ],
-    summary: "Different AI tools excel at different tasks. Understanding their strengths helps you choose the right tool and build efficient development workflows.",
-    theory: `**Tool comparison:**
-
-**For full apps from scratch:**
-- Lovable: Best for web apps with database
-- Bolt.new: Best for experimenting
-- V0: Best for UI components only
-
-**For coding assistance:**
-- Cursor: Best overall editor
-- Windsurf: Best for complex projects
-- Replit: Best for learning/sharing
-
-**For conversational AI:**
-- ChatGPT: Best for explanations
-- Gemini: Best for large context
-- Grok: Best for real-time info
-
-**For mobile:**
-- FlutterFlow: Visual Flutter
-- Android Studio + Gemini: Native Android
-
-**Choosing criteria:**
-1. What are you building?
-2. How much do you know?
-3. Do you need to edit code?
-4. Will it go to production?
-
-**Workflow tips:**
-- Use V0 for UI components
-- Use Lovable/Bolt for MVPs
-- Use Cursor for refinement
-- Combine tools strategically
-
-**Common workflows:**
-1. V0 → Lovable (design then build)
-2. Lovable → Cursor (generate then refine)
-3. V0 → Cursor (components then integrate)`,
-    examples: [
-      {
-        title: "Tool Selection Guide",
-        before: "Which AI tool should I use?",
-        after: `Decision framework for AI tools:
-
-Building a landing page?
-→ V0 for components
-→ Lovable to deploy quickly
-
-Building an MVP for feedback?
-→ Lovable (fastest to deployed app)
-→ Or Bolt.new (more control)
-
-Learning to code?
-→ Replit (run code instantly)
-→ Cursor with explanations
-
-Working on existing codebase?
-→ Cursor or Windsurf
-→ Never start-from-scratch tools
-
-Need mobile app?
-→ FlutterFlow for visual building
-→ Android Studio + AI for native
-
-Need code explanations?
-→ ChatGPT or Gemini
-→ Ask for step-by-step breakdowns
-
-Researching trends?
-→ Grok for real-time info
-→ Check what developers are saying
-
-Workflow example:
-1. Sketch idea on paper
-2. V0 for key UI components
-3. Lovable for full app with DB
-4. Cursor for customizations
-5. Deploy via Lovable
-
-Key insight: Tools are not mutually exclusive.
-Use each for what it does best.`,
-        explanation: "This guide helps choose the right tool based on your specific needs and project stage.",
-      },
-    ],
-    keywords: [
-      {
-        term: "MVP",
-        meaning: "Minimum Viable Product - simplest version to test an idea",
-        usage: "Use AI tools to build an MVP quickly and get user feedback",
-      },
-      {
-        term: "Workflow",
-        meaning: "A series of steps to complete a task efficiently",
-        usage: "Build an AI workflow that combines multiple tools",
-      },
-      {
-        term: "Tool Chain",
-        meaning: "Multiple tools used together in a development process",
-        usage: "Create a tool chain: design in V0, build in Lovable, refine in Cursor",
-      },
-    ],
-    instructorNotes: "Show a real workflow using multiple tools. Let students try different combinations. Discuss how the landscape will evolve.",
-  },
-  // ============ MODULE 9: App Development with AI ============
-  "9-1": {
-    objectives: [
-      "Understand Flutter and FlutterFlow basics",
-      "Build mobile apps with AI assistance",
-      "Create cross-platform applications",
-    ],
-    summary: "Flutter is Google's UI toolkit for building beautiful, natively compiled applications. FlutterFlow adds visual, AI-powered development on top.",
-    theory: `**Flutter** is an open-source UI framework from Google for building cross-platform apps from a single codebase.
-
-**FlutterFlow** is a visual builder that generates Flutter code, making app development faster and more accessible.
-
-**Why Flutter?**
-- One codebase for iOS, Android, web, desktop
-- Beautiful, customizable widgets
-- Fast development with hot reload
-- Strong performance
-
-**FlutterFlow advantages:**
-- Visual drag-and-drop interface
-- AI-powered code generation
-- Direct Supabase/Firebase integration
-- Export clean Flutter code
-
-**Getting started:**
-1. Design your app visually
-2. Connect your data sources
-3. Add logic and navigation
-4. Test on multiple platforms
-5. Export or deploy`,
-    examples: [
-      {
-        title: "Building a Mobile App",
-        before: "Make me an app",
-        after: `Build a task management app using FlutterFlow.
-
-Features needed:
-- User authentication (email/password)
-- Task list with add, edit, delete
-- Categories for organizing tasks
-- Due dates with notifications
-- Dark/light theme toggle
-
-Design requirements:
-- Clean, minimal interface
-- Bottom navigation with 3 tabs
-- Floating action button to add tasks
-- Swipe gestures for quick actions
-
-Backend:
-- Use Supabase for database
-- Real-time sync across devices`,
-        explanation: "Specific features, design requirements, and backend choices help FlutterFlow generate a complete, functional app.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Flutter",
-        meaning: "Google's cross-platform UI framework for mobile, web, and desktop apps",
-        usage: "Use Flutter to build apps for iOS and Android from one codebase",
-      },
-      {
-        term: "FlutterFlow",
-        meaning: "Visual app builder that generates Flutter code with AI assistance",
-        usage: "Use FlutterFlow to build apps faster without writing all the code manually",
-      },
-      {
-        term: "Widget",
-        meaning: "A building block of Flutter UI - everything is a widget",
-        usage: "Combine widgets like Container, Column, and Button to build your UI",
-      },
-    ],
-    instructorNotes: "Demo FlutterFlow's visual builder. Show how to connect Supabase. Build a simple app in real-time.",
-  },
-  "9-2": {
-    objectives: [
-      "Build React Native apps with AI",
-      "Understand Expo development workflow",
-      "Create native mobile experiences",
-    ],
-    summary: "React Native lets you build mobile apps using JavaScript and React. Combined with AI tools, you can rapidly prototype and build native mobile apps.",
-    theory: `**React Native** uses React to build native mobile apps. If you know React, you can build mobile apps.
-
-**Expo** simplifies React Native development with managed workflow, OTA updates, and easy deployment.
-
-**AI-assisted React Native:**
-- Use ChatGPT/Gemini for component code
-- Use Cursor for editing RN projects
-- Copilot for autocomplete
-
-**Key differences from web React:**
-- View instead of div
-- Text component for all text
-- StyleSheet instead of CSS
-- Platform-specific code
-
-**Development workflow:**
-1. Initialize with Expo
-2. Develop with hot reload
-3. Test on simulators/devices
-4. Build with EAS Build
-5. Deploy to app stores`,
-    examples: [
-      {
-        title: "React Native Screen",
-        before: "Create a profile screen",
-        after: `Create a React Native profile screen using Expo.
-
-Requirements:
-- Profile picture with edit option
-- User info (name, email, bio)
-- Settings list (notifications, privacy, help)
-- Logout button at bottom
-
-Styling:
-- Use NativeWind (Tailwind for RN)
+        title: "App-Specific Prompt",
+        before: "Make a todo app",
+        after: `Create a task management app with React Native that:
+
+**Platform:** iOS and Android (cross-platform)
+
+**Core Features:**
+- Add, edit, delete tasks
+- Mark tasks complete with swipe gesture
+- Categorize tasks with color-coded tags
+- Daily reminder notifications
+
+**UX Requirements:**
+- Bottom navigation (4 tabs max)
+- Pull-to-refresh on task list
+- Haptic feedback on interactions
 - Support dark mode
-- iOS and Android optimized
 
-Navigation:
-- Using React Navigation
-- Stack navigator for nested screens
-- Bottom tabs for main sections`,
-        explanation: "Specify the navigation library, styling approach, and platform considerations for React Native.",
+**Technical:**
+- Use Expo for easier development
+- Local storage with AsyncStorage
+- TypeScript for type safety`,
+        explanation: "App prompts need platform specifics, mobile UX patterns, and consideration for device capabilities.",
       },
     ],
     keywords: [
-      {
-        term: "React Native",
-        meaning: "Framework for building native mobile apps using React and JavaScript",
-        usage: "Use React Native to build iOS and Android apps with your React knowledge",
-      },
-      {
-        term: "Expo",
-        meaning: "Development platform that simplifies React Native development",
-        usage: "Start with Expo to avoid native build configuration complexity",
-      },
-      {
-        term: "Native Module",
-        meaning: "Bridge to access native platform features from JavaScript",
-        usage: "Use native modules for camera, GPS, and other device features",
-      },
+      { term: "Cross-platform", meaning: "Apps that run on multiple operating systems from one codebase", usage: "Specify cross-platform when you want iOS and Android from one codebase" },
+      { term: "Native", meaning: "Apps built specifically for one platform using its native language", usage: "Native apps have better performance but require separate codebases" },
+      { term: "Expo", meaning: "A framework for building React Native apps more easily", usage: "Use Expo for faster development and easier deployment" },
     ],
-    instructorNotes: "Compare React Native to Flutter. Show Expo development workflow. Demonstrate AI-assisted component generation.",
+    links: [
+      { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+      { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
+    ],
+    instructorNotes: "Compare web vs app prompts. Show how mobile considerations change the prompt structure. Demo with a simple app idea.",
   },
-  "9-3": {
+
+  // Game Development - Idea to Prompts
+  "GS-IP-01": {
     objectives: [
-      "Build iOS apps with SwiftUI and AI",
-      "Understand Apple development ecosystem",
-      "Use Xcode with AI assistants",
+      "Understand prompt engineering for game development",
+      "Learn game-specific prompt patterns",
+      "Write prompts for different game development tasks",
     ],
-    summary: "SwiftUI is Apple's modern framework for building iOS apps. AI tools can help generate SwiftUI code even if you're new to Swift.",
-    theory: `**SwiftUI** is Apple's declarative UI framework, similar to React in concept but built for Apple platforms.
+    summary: "Game development requires specialized prompts that consider gameplay, mechanics, performance, and player experience.",
+    theory: `**Prompt Engineering for Games**
 
-**AI for iOS development:**
-- ChatGPT/Gemini for SwiftUI code
-- GitHub Copilot in Xcode
-- Claude for architecture advice
+Game development is complex—it combines art, code, design, and player psychology. Prompts need to address multiple disciplines.
 
-**SwiftUI basics:**
-- Declarative syntax
-- State-driven UI updates
-- Preview canvas for instant feedback
-- Built-in accessibility
+**Game-Specific Considerations:**
+- Game engine (Unity, Unreal, Godot)
+- Genre and mechanics
+- Target platform and performance
+- Player experience goals
+- Art style and audio needs
 
-**When to choose iOS-only:**
-- Apple Watch/TV apps
-- Deep iOS integration
-- Performance-critical apps
-- Apple ecosystem features
+**Types of Game Prompts:**
+1. **Design Prompts** - Game mechanics, levels, systems
+2. **Code Prompts** - Scripts, AI behavior, physics
+3. **Art Prompts** - Characters, environments, UI
+4. **Audio Prompts** - Music, sound effects, voice
 
-**Development tools:**
-- Xcode (required)
-- Swift Playgrounds for learning
-- TestFlight for beta testing
-- App Store Connect for publishing`,
+**Key Context to Include:**
+- Game genre (RPG, FPS, puzzle, etc.)
+- Target audience and platform
+- Performance constraints
+- Art style direction
+- Reference games for inspiration`,
     examples: [
       {
-        title: "SwiftUI View Generation",
-        before: "Make a settings page",
-        after: `Create a SwiftUI Settings view for an iOS app.
+        title: "Game Development Prompt",
+        before: "Make a player movement script",
+        after: `Create a player movement system for Unity (C#) for a 3D platformer:
 
-Structure:
-- Use List with sections
-- Profile section with avatar
-- Preferences section with toggles
-- About section with app info
+**Game Type:** 3D platformer (similar to Mario Odyssey)
 
-Features needed:
-- @AppStorage for persisting settings
-- NavigationStack for drill-down
-- Toggle for notifications, dark mode
-- Button to clear cache
-- Link to privacy policy
+**Movement Features:**
+- WASD/joystick movement
+- Jump with variable height (hold for higher)
+- Double jump ability
+- Wall jump off vertical surfaces
+- Sprint when holding shift
 
-Styling:
-- Follow Human Interface Guidelines
-- System colors for proper dark mode
-- SF Symbols for icons`,
-        explanation: "Reference Apple's guidelines and use SwiftUI-specific patterns like @AppStorage and NavigationStack.",
-      },
-    ],
-    keywords: [
-      {
-        term: "SwiftUI",
-        meaning: "Apple's declarative framework for building UIs across all Apple platforms",
-        usage: "Use SwiftUI to build modern iOS apps with less code than UIKit",
-      },
-      {
-        term: "Xcode",
-        meaning: "Apple's IDE for developing iOS, macOS, and other Apple platform apps",
-        usage: "Use Xcode to write, test, and deploy iOS applications",
-      },
-      {
-        term: "@State",
-        meaning: "Property wrapper that creates mutable state in SwiftUI views",
-        usage: "Use @State to track values that change and trigger UI updates",
-      },
-    ],
-    instructorNotes: "Show Xcode and SwiftUI previews. Demonstrate AI code generation for SwiftUI. Discuss when to choose native iOS vs cross-platform.",
-  },
-  "9-4": {
-    objectives: [
-      "Build Android apps with Jetpack Compose",
-      "Use Android Studio AI features",
-      "Understand Material Design 3",
-    ],
-    summary: "Jetpack Compose is Android's modern UI toolkit. Android Studio now includes AI assistants to help you write Kotlin code faster.",
-    theory: `**Jetpack Compose** is Android's declarative UI framework, similar to SwiftUI and React.
-
-**Android Studio AI:**
-- Studio Bot for code help
-- Gemini integration
-- Code completion
-- Error explanations
-
-**Compose advantages:**
-- Less code than XML layouts
-- Reactive UI updates
-- Better preview tooling
-- Material Design 3 built-in
-
-**Material Design 3:**
-- Dynamic color from wallpaper
-- Updated components
-- Better accessibility
-- Consistent cross-device UI
-
-**Development workflow:**
-1. Design in Figma with Material plugin
-2. Generate Compose code with AI
-3. Test with Preview annotations
-4. Build with Gradle
-5. Publish to Play Store`,
-    examples: [
-      {
-        title: "Compose Screen with AI",
-        before: "Build a home screen",
-        after: `Create a Jetpack Compose home screen for a news app.
-
-Layout:
-- TopAppBar with search icon
-- LazyColumn for article list
-- FloatingActionButton for filters
-
-Each article card should have:
-- Image (AsyncImage with Coil)
-- Title and source
-- Time ago and bookmark icon
-- Click to navigate to detail
-
-Styling:
-- Material Design 3 components
-- Dynamic color support
-- Light and dark themes
-- Proper content padding`,
-        explanation: "Use Compose-specific components and libraries like Coil. Reference Material Design 3 for modern Android styling.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Jetpack Compose",
-        meaning: "Android's modern declarative UI toolkit for building native interfaces",
-        usage: "Use Compose to build Android UIs with Kotlin instead of XML",
-      },
-      {
-        term: "Android Studio",
-        meaning: "Google's official IDE for Android app development",
-        usage: "Use Android Studio to develop, test, and debug Android applications",
-      },
-      {
-        term: "Material Design",
-        meaning: "Google's design system for building consistent, beautiful apps",
-        usage: "Follow Material Design guidelines for standard Android UI patterns",
-      },
-    ],
-    instructorNotes: "Demo Android Studio with Gemini. Show Compose previews. Compare with XML-based development. Demonstrate AI code generation.",
-  },
-  "9-5": {
-    objectives: [
-      "Choose the right cross-platform strategy",
-      "Understand trade-offs of each approach",
-      "Build maintainable multi-platform apps",
-    ],
-    summary: "Different cross-platform approaches have different trade-offs. Choose based on your team's skills, app requirements, and long-term goals.",
-    theory: `**Cross-platform options:**
-
-**Flutter:**
-- Best UI consistency
-- Single codebase
-- Good performance
-- Learning Dart required
-
-**React Native:**
-- Use existing React skills
-- Large ecosystem
-- OTA updates
-- Native feel with effort
-
-**Web-based (Capacitor/Ionic):**
-- Use web technologies
-- Easy to start
-- Lower performance
-- Limited native access
-
-**Decision factors:**
-1. Team expertise
-2. App complexity
-3. Performance needs
-4. Time to market
-5. Maintenance plan
-
-**When to go native:**
-- Performance critical
-- Heavy native features
-- Platform-specific design
-- Long-term investment`,
-    examples: [
-      {
-        title: "Platform Decision Framework",
-        before: "Should I use Flutter or React Native?",
-        after: `Help me choose between Flutter and React Native for my project.
-
-Project details:
-- E-commerce app with catalog and checkout
-- Need push notifications
-- Payment integration (Stripe)
-- User authentication
-- Offline support for cart
-
-Team situation:
-- 2 developers, both know React
-- 6 month timeline
-- MVP first, then iterate
-
-Constraints:
-- Must work on iOS and Android
-- Needs to feel native
-- Budget for one codebase only
-
-Please compare:
-1. Development speed
-2. Performance for our use case
-3. Long-term maintainability
-4. Library availability`,
-        explanation: "Provide project specifics, team skills, and constraints to get tailored cross-platform recommendations.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Cross-Platform",
-        meaning: "Code that runs on multiple platforms (iOS, Android, web) from one source",
-        usage: "Use cross-platform frameworks to reduce development time and maintenance",
-      },
-      {
-        term: "Native",
-        meaning: "Code written specifically for one platform using its official tools",
-        usage: "Go native when you need maximum performance or platform-specific features",
-      },
-      {
-        term: "PWA",
-        meaning: "Progressive Web App - web app with native-like capabilities",
-        usage: "Consider PWA if your app is content-focused and doesn't need deep native access",
-      },
-    ],
-    instructorNotes: "Present a decision matrix. Discuss real-world examples of each approach. Have students evaluate their own project needs.",
-  },
-  // ============ MODULE 10: Game & Simulation Development ============
-  "10-1": {
-    objectives: [
-      "Integrate AI into Unity projects",
-      "Use ML-Agents for game AI",
-      "Generate game assets with AI",
-    ],
-    summary: "Unity is the most popular game engine. AI can help generate code, create assets, and even train game AI behaviors using machine learning.",
-    theory: `**Unity + AI:**
-Unity is a powerful game engine that can be enhanced with AI in multiple ways.
-
-**AI for Unity development:**
-- ChatGPT/Gemini for C# scripts
-- Copilot in Visual Studio
-- AI asset generation
-- ML-Agents for NPC behavior
-
-**Unity ML-Agents:**
-- Train AI using reinforcement learning
-- Create intelligent NPCs
-- Game testing automation
-- Procedural content
-
-**Asset generation:**
-- Midjourney for textures
-- AI 3D model generation
-- Sound effects with AI
-- Music generation
-
-**Common Unity AI uses:**
-- Pathfinding (NavMesh)
-- Behavior trees
-- State machines
-- Procedural generation`,
-    examples: [
-      {
-        title: "Unity Script with AI",
-        before: "Make a player controller",
-        after: `Create a Unity C# script for a 3D platformer player controller.
-
-Features:
-- WASD/Arrow keys movement
-- Space to jump (with coyote time)
-- Camera-relative movement
-- Ground detection with raycast
-- Smooth acceleration/deceleration
-
-Technical requirements:
-- Use CharacterController component
-- Serialize fields for tuning
-- Support gamepad input
-- Implement gravity properly
-
-Parameters to expose:
-- Move speed (default 5)
-- Jump height (default 2)
-- Gravity multiplier (default 2)
-- Coyote time (default 0.15s)`,
-        explanation: "Specify Unity components, input methods, and expose parameters for designer tuning.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Unity",
-        meaning: "Popular game engine for 2D and 3D games across all platforms",
-        usage: "Use Unity to build games for mobile, PC, console, and VR",
-      },
-      {
-        term: "ML-Agents",
-        meaning: "Unity toolkit for training game AI using machine learning",
-        usage: "Use ML-Agents to create intelligent NPCs that learn behaviors",
-      },
-      {
-        term: "C#",
-        meaning: "Programming language used for Unity game scripting",
-        usage: "Write C# scripts to control game objects and implement game logic",
-      },
-    ],
-    instructorNotes: "Demo Unity with AI code generation. Show ML-Agents training. Generate game assets with Midjourney or DALL-E.",
-  },
-  "10-2": {
-    objectives: [
-      "Use AI with Unreal Engine",
-      "Generate Blueprints and C++",
-      "Create realistic game environments",
-    ],
-    summary: "Unreal Engine powers AAA games and realistic simulations. AI can help with Blueprint logic, C++ code, and creating stunning visual assets.",
-    theory: `**Unreal Engine + AI:**
-Unreal Engine 5 offers cutting-edge graphics and can benefit from AI assistance.
-
-**AI for Unreal development:**
-- ChatGPT for C++ and Blueprints
-- GitHub Copilot in VS/Rider
-- AI texture generation
-- Procedural world building
-
-**Unreal strengths:**
-- Photorealistic rendering
-- Nanite (geometry streaming)
-- Lumen (global illumination)
-- MetaHumans
-
-**Blueprint AI assistance:**
-- Describe logic in plain English
-- Convert to Blueprint node setup
-- Debug complex node graphs
-- Optimize performance
-
-**AI asset creation:**
-- AI-generated textures
-- Environment concept art
-- Sound and music
-- Animation assistance`,
-    examples: [
-      {
-        title: "Unreal Blueprint Logic",
-        before: "Make an inventory system",
-        after: `Create an Unreal Engine Blueprint for an inventory system.
-
-Core functionality:
-- Array of item structs (ID, name, quantity, icon)
-- Add and remove items
-- Stack same items
-- Weight limit check
-
-UI integration:
-- Update widget on change
-- Show/hide inventory panel with I key
-- Drag and drop support
-- Context menu for items
-
-Events needed:
-- OnItemAdded
-- OnItemRemoved
-- OnInventoryFull
-- OnWeightExceeded
-
-Please provide:
-1. Item struct definition
-2. Inventory component Blueprint
-3. Key function descriptions
-4. Widget binding approach`,
-        explanation: "Describe the data structure, UI needs, and events for complete Blueprint architecture guidance.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Unreal Engine",
-        meaning: "Epic Games' AAA game engine known for stunning graphics",
-        usage: "Use Unreal for high-fidelity games, simulations, and virtual production",
-      },
-      {
-        term: "Blueprint",
-        meaning: "Unreal's visual scripting system - programming without code",
-        usage: "Use Blueprints to create game logic visually with connected nodes",
-      },
-      {
-        term: "Nanite",
-        meaning: "Unreal 5's virtualized geometry system for film-quality assets",
-        usage: "Nanite lets you use highly detailed 3D models without performance hit",
-      },
-    ],
-    instructorNotes: "Compare Unity and Unreal. Show Blueprint generation with AI. Demonstrate MetaHumans and Nanite for realistic content.",
-  },
-  "10-3": {
-    objectives: [
-      "Build 2D games efficiently",
-      "Use AI for game art and sprites",
-      "Implement common 2D mechanics",
-    ],
-    summary: "2D game development is great for learning and indie games. AI can generate pixel art, sprites, and help with game logic.",
-    theory: `**2D Game Development:**
-2D games are faster to develop and perfect for learning game design fundamentals.
-
-**Popular 2D engines:**
-- Unity 2D
-- Godot
-- GameMaker
-- Phaser (web)
-
-**AI for 2D games:**
-- Pixel art generation
-- Sprite sheet creation
-- Tile map generation
-- Sound effects
-
-**Common 2D mechanics:**
-- Platformer physics
-- Top-down movement
-- Tile-based levels
-- Collision detection
-
-**Art generation tools:**
-- Midjourney for concepts
-- PixelLab for sprites
-- Remove.bg for assets
-- Soundraw for music`,
-    examples: [
-      {
-        title: "2D Platformer Mechanics",
-        before: "Make a platformer",
-        after: `Create a 2D platformer character controller in Godot 4.
-
-Player mechanics:
-- Smooth horizontal movement with acceleration
-- Variable jump height (hold for higher)
-- Wall slide and wall jump
-- Coyote time (jump after leaving platform)
+**Feel Requirements:**
+- Responsive, snappy controls
+- Slight acceleration/deceleration
+- Coyote time for jump forgiveness
 - Jump buffering
 
-Animation states:
-- Idle, Run, Jump, Fall, Wall slide
-- Blend between states smoothly
-- Flip sprite based on direction
-
-Physics settings:
-- Gravity: 1200
-- Max fall speed: 400
-- Move speed: 200
-- Jump velocity: 500
-
-Please provide GDScript code with comments.`,
-        explanation: "Include specific physics values and animation states for a polished 2D character controller.",
+**Technical:**
+- Use Unity's new Input System
+- CharacterController component
+- Smooth camera follow (Cinemachine compatible)
+- Include comments for each section`,
+        explanation: "Game prompts need specific mechanics details, feel descriptions, and technical requirements for the game engine.",
       },
     ],
     keywords: [
-      {
-        term: "Sprite",
-        meaning: "2D image used to represent game objects, characters, or items",
-        usage: "Create sprite sheets with AI tools for animated game characters",
-      },
-      {
-        term: "Tilemap",
-        meaning: "Grid-based system for building 2D game levels from reusable tiles",
-        usage: "Use tilemaps to efficiently build and modify 2D game levels",
-      },
-      {
-        term: "Godot",
-        meaning: "Free, open-source game engine popular for 2D games",
-        usage: "Use Godot for 2D games with its intuitive scene system and GDScript",
-      },
+      { term: "Game Loop", meaning: "The core cycle of actions players repeat in a game", usage: "Define your game loop early to guide all other decisions" },
+      { term: "Coyote Time", meaning: "A brief window after leaving a platform where jump is still allowed", usage: "Add coyote time to make platforming feel more forgiving" },
+      { term: "Game Feel", meaning: "The intangible sense of how satisfying a game is to play", usage: "Describe the game feel you want: snappy, weighty, floaty, etc." },
     ],
-    instructorNotes: "Build a simple platformer live. Generate pixel art with AI. Show how to create a sprite sheet for animations.",
-  },
-  "10-4": {
-    objectives: [
-      "Create 3D simulations",
-      "Use physics engines effectively",
-      "Build training and visualization tools",
+    links: [
+      { type: "video", title: "Prompt Engineering Tutorial", url: "https://www.youtube.com/watch?v=_ZvnD73m40o" },
+      { type: "article", title: "OpenAI Prompt Engineering Guide", url: "https://platform.openai.com/docs/guides/prompt-engineering" },
     ],
-    summary: "3D simulations are used for training, visualization, and testing. AI can help create realistic environments and behaviors.",
-    theory: `**3D Simulation use cases:**
-- Training simulations
-- Architectural visualization
-- Scientific modeling
-- Digital twins
-- VR experiences
-
-**Building simulations:**
-1. Define the scenario
-2. Create the environment
-3. Add physics and interactions
-4. Implement behaviors
-5. Collect data/feedback
-
-**AI applications:**
-- Environment generation
-- Realistic NPC behavior
-- Physics optimization
-- Data analysis
-
-**Tools for simulation:**
-- Unity with HDRP
-- Unreal Engine
-- Blender for assets
-- NVIDIA Omniverse
-
-**Physics considerations:**
-- Rigid body dynamics
-- Soft body simulation
-- Fluid dynamics
-- Particle systems`,
-    examples: [
-      {
-        title: "Training Simulation",
-        before: "Make a driving simulator",
-        after: `Design a driving training simulation in Unity.
-
-Simulation requirements:
-- Realistic vehicle physics (wheel colliders)
-- Traffic system with AI vehicles
-- Weather effects (rain, fog, night)
-- Various road types and scenarios
-
-Training scenarios:
-- Highway merging
-- City navigation
-- Emergency braking
-- Parking (parallel, perpendicular)
-
-Metrics to track:
-- Speed violations
-- Lane departures
-- Reaction times
-- Near-miss events
-
-Technical needs:
-- VR support (optional)
-- Session recording
-- Performance report generation
-- Adjustable difficulty`,
-        explanation: "Define training objectives, scenarios, and metrics for an effective simulation design.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Physics Engine",
-        meaning: "Software that simulates realistic physical interactions in games",
-        usage: "Use physics engines for realistic collisions, gravity, and object behavior",
-      },
-      {
-        term: "Digital Twin",
-        meaning: "Virtual replica of a physical system for simulation and analysis",
-        usage: "Create digital twins to test scenarios without real-world risk",
-      },
-      {
-        term: "HDRP",
-        meaning: "Unity's High Definition Render Pipeline for photorealistic graphics",
-        usage: "Use HDRP for realistic lighting and materials in simulations",
-      },
-    ],
-    instructorNotes: "Show real-world simulation examples. Demonstrate basic physics setup. Discuss data collection and analysis.",
-  },
-  "10-5": {
-    objectives: [
-      "Generate game assets with AI",
-      "Create consistent art styles",
-      "Optimize assets for games",
-    ],
-    summary: "AI can generate textures, sprites, 3D models, and audio for games. Learning to prompt for game assets saves time and enables solo development.",
-    theory: `**AI asset generation:**
-AI tools can create many types of game assets quickly.
-
-**Visual assets:**
-- Textures and materials
-- Character sprites
-- Environment art
-- UI elements
-- Icons and items
-
-**Audio assets:**
-- Sound effects
-- Background music
-- Voice (with care)
-- Ambient sounds
-
-**3D assets (emerging):**
-- AI 3D model generation
-- Texture to 3D
-- Model variations
-
-**Best practices:**
-- Maintain style consistency
-- Generate variations
-- Use as base, then refine
-- Respect licensing
-
-**Workflow:**
-1. Define art style
-2. Generate base assets
-3. Edit and refine
-4. Import to engine
-5. Optimize for performance`,
-    examples: [
-      {
-        title: "Game Art Style Guide",
-        before: "Make game sprites",
-        after: `Generate a consistent set of game assets for a fantasy RPG.
-
-Art style:
-- Pixel art, 32x32 base size
-- Limited palette (16 colors max)
-- Slightly desaturated, earthy tones
-- Clear silhouettes
-
-Assets needed:
-1. Player character (4 directions, idle + walk)
-2. 5 enemy types (slime, skeleton, bat, wolf, boss)
-3. Tileset (grass, dirt, stone, water edges)
-4. Items (sword, potion, key, chest)
-5. UI elements (hearts, mana, buttons)
-
-Technical requirements:
-- Transparent backgrounds
-- Consistent lighting direction (top-left)
-- No anti-aliasing on edges
-- Power-of-2 dimensions
-
-Please generate prompts for each asset type.`,
-        explanation: "Define a clear art style, palette, and technical requirements for consistent game assets.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Sprite Sheet",
-        meaning: "Single image containing multiple sprites for animation or variation",
-        usage: "Organize character animations in a sprite sheet for efficient loading",
-      },
-      {
-        term: "Tileset",
-        meaning: "Collection of tiles used to build game levels and environments",
-        usage: "Create reusable tilesets for efficient level design",
-      },
-      {
-        term: "Art Style",
-        meaning: "Visual aesthetic that defines the look and feel of a game",
-        usage: "Maintain consistent art style by using the same prompts and parameters",
-      },
-    ],
-    instructorNotes: "Generate assets live with AI tools. Show import and optimization process. Discuss maintaining consistency across assets.",
-  },
-  // ============ MODULE 11: Images & Videos Development ============
-  "11-1": {
-    objectives: [
-      "Master Midjourney for image generation",
-      "Understand prompt engineering for images",
-      "Create consistent visual styles",
-    ],
-    summary: "Midjourney is one of the most powerful AI image generators. Learning its prompting syntax unlocks stunning visual creation.",
-    theory: `**Midjourney basics:**
-Midjourney generates images from text prompts with exceptional artistic quality.
-
-**Prompt structure:**
-/imagine [subject], [style], [details], [parameters]
-
-**Key parameters:**
-- --ar (aspect ratio)
-- --v (version)
-- --stylize (creativity level)
-- --chaos (variation)
-- --no (exclude elements)
-
-**Effective prompting:**
-1. Be specific about subject
-2. Describe style and mood
-3. Add lighting and color
-4. Reference artists or genres
-5. Use quality boosters
-
-**Style consistency:**
-- Save successful prompts
-- Use --sref for style reference
-- Create prompt templates
-- Document what works`,
-    examples: [
-      {
-        title: "Midjourney Prompt",
-        before: "A fantasy castle",
-        after: `/imagine A majestic fantasy castle perched on a cliff overlooking a misty valley, Gothic architecture with tall spires and flying buttresses, warm sunset lighting with dramatic clouds, oil painting style, rich colors, detailed stonework, fantasy art, epic scale, cinematic composition --ar 16:9 --v 6 --stylize 750`,
-        explanation: "Include subject, setting, architecture, lighting, style, and technical parameters for best results.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Midjourney",
-        meaning: "AI image generator known for artistic, high-quality outputs",
-        usage: "Use Midjourney for concept art, illustrations, and creative visuals",
-      },
-      {
-        term: "Aspect Ratio",
-        meaning: "Width to height proportion of an image",
-        usage: "Use --ar 16:9 for cinematic, --ar 1:1 for social media",
-      },
-      {
-        term: "Stylize",
-        meaning: "Parameter controlling how artistic vs. literal the output is",
-        usage: "Higher stylize values (750-1000) give more artistic interpretation",
-      },
-    ],
-    instructorNotes: "Show live Midjourney generation. Compare different parameter settings. Create a style guide for a project.",
-  },
-  "11-2": {
-    objectives: [
-      "Use DALL-E for image generation",
-      "Edit existing images with AI",
-      "Integrate DALL-E via API",
-    ],
-    summary: "DALL-E is OpenAI's image generator with strong editing capabilities. It excels at following instructions and can edit specific parts of images.",
-    theory: `**DALL-E features:**
-- Natural language understanding
-- Image editing (inpainting)
-- Outpainting (extend images)
-- Variations of images
-- API access
-
-**Strengths:**
-- Follows instructions well
-- Good at text in images
-- Editing capabilities
-- Easy API integration
-
-**Use cases:**
-- Product mockups
-- Social media graphics
-- Content illustrations
-- Photo editing
-
-**API integration:**
-- OpenAI API access
-- Generate from text
-- Edit existing images
-- Create variations
-
-**Best practices:**
-- Be descriptive and clear
-- Specify style explicitly
-- Use editing for refinement
-- Generate multiple options`,
-    examples: [
-      {
-        title: "DALL-E Image Edit",
-        before: "Fix this image",
-        after: `Edit this product photo:
-
-Original: [upload product image]
-
-Changes needed:
-1. Replace the background with a clean white studio backdrop
-2. Add soft shadow beneath the product
-3. Enhance the lighting to look professional
-4. Keep the product exactly as is
-
-Output requirements:
-- Same dimensions as original
-- High resolution
-- Clean, e-commerce ready style`,
-        explanation: "Describe exactly what to change and what to preserve when editing images.",
-      },
-    ],
-    keywords: [
-      {
-        term: "DALL-E",
-        meaning: "OpenAI's AI image generator with strong instruction following",
-        usage: "Use DALL-E for precise image generation and editing tasks",
-      },
-      {
-        term: "Inpainting",
-        meaning: "AI technique to edit or fill in parts of an existing image",
-        usage: "Use inpainting to remove objects or change specific areas of an image",
-      },
-      {
-        term: "Outpainting",
-        meaning: "Extending an image beyond its original borders",
-        usage: "Use outpainting to expand an image while maintaining consistency",
-      },
-    ],
-    instructorNotes: "Demonstrate DALL-E editing features. Show API integration. Compare with Midjourney for different use cases.",
-  },
-  "11-3": {
-    objectives: [
-      "Set up and use Stable Diffusion",
-      "Understand local vs. cloud generation",
-      "Create custom models and LoRAs",
-    ],
-    summary: "Stable Diffusion is an open-source image generator you can run locally. It offers unlimited generation and can be customized with your own trained models.",
-    theory: `**Stable Diffusion advantages:**
-- Free and open source
-- Run locally (unlimited)
-- Highly customizable
-- Custom model training
-
-**Setup options:**
-- Automatic1111 WebUI
-- ComfyUI (node-based)
-- Cloud services
-- API providers
-
-**Key concepts:**
-- Checkpoints (base models)
-- LoRA (small trained additions)
-- VAE (image quality)
-- Samplers (generation methods)
-
-**Customization:**
-- Train on your own images
-- Style transfer with LoRA
-- ControlNet for guidance
-- Custom embeddings
-
-**Best for:**
-- High volume generation
-- Custom styles needed
-- Privacy concerns
-- Technical users`,
-    examples: [
-      {
-        title: "Stable Diffusion Prompt",
-        before: "Professional headshot",
-        after: `Positive prompt:
-professional corporate headshot, 35mm photograph, sharp focus, natural lighting, neutral background, confident expression, business attire, high resolution, professional photography
-
-Negative prompt:
-blurry, distorted face, bad anatomy, low quality, cartoon, illustration, painting, multiple people, text, watermark
-
-Settings:
-- Sampler: DPM++ 2M Karras
-- Steps: 30
-- CFG Scale: 7
-- Size: 512x768`,
-        explanation: "Include positive and negative prompts with technical settings for consistent results.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Stable Diffusion",
-        meaning: "Open-source AI image generator that can run locally",
-        usage: "Use Stable Diffusion for unlimited local image generation",
-      },
-      {
-        term: "LoRA",
-        meaning: "Small trained model that adds specific styles or subjects",
-        usage: "Use LoRAs to generate images in specific art styles or of specific subjects",
-      },
-      {
-        term: "ControlNet",
-        meaning: "Tool that guides image generation using reference images",
-        usage: "Use ControlNet for precise pose, depth, or edge control in generation",
-      },
-    ],
-    instructorNotes: "Demo local Stable Diffusion setup. Show LoRA application. Compare cloud vs local generation trade-offs.",
-  },
-  "11-4": {
-    objectives: [
-      "Generate videos with AI",
-      "Understand video AI tools",
-      "Create animations and motion",
-    ],
-    summary: "AI video generation is rapidly evolving. Tools can now create short videos from text, animate images, and generate motion graphics.",
-    theory: `**Video AI tools:**
-- Runway Gen-3
-- Pika Labs
-- Kling AI
-- Sora (OpenAI)
-- Luma Dream Machine
-
-**Video types:**
-- Text to video
-- Image to video
-- Video to video
-- Motion graphics
-
-**Current capabilities:**
-- Short clips (4-16 seconds)
-- Consistent characters (improving)
-- Camera movements
-- Style transfer
-
-**Use cases:**
-- Social media content
-- Concept visualization
-- Music videos
-- Advertising previews
-- Product animations
-
-**Best practices:**
-- Start with strong prompts
-- Use image-to-video for control
-- Generate multiple options
-- Edit and combine clips`,
-    examples: [
-      {
-        title: "AI Video Prompt",
-        before: "Make a video of nature",
-        after: `Create a cinematic video clip:
-
-Scene: A serene mountain lake at golden hour, mist rising from the water, pine trees in silhouette
-
-Camera movement: Slow dolly forward toward the lake, gentle parallax on trees
-
-Duration: 5 seconds
-
-Style: Cinematic, film grain, warm color grading, 24fps
-
-Mood: Peaceful, contemplative, nature documentary feel
-
-Elements to include:
-- Subtle water ripples
-- Light rays through mist
-- Bird flying across frame`,
-        explanation: "Describe scene, camera movement, duration, and style for cohesive video generation.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Runway",
-        meaning: "AI creative suite with powerful video generation tools",
-        usage: "Use Runway Gen-3 for high-quality AI video generation",
-      },
-      {
-        term: "Text to Video",
-        meaning: "Generating video directly from text descriptions",
-        usage: "Use text-to-video for quick concept visualization and prototyping",
-      },
-      {
-        term: "Image to Video",
-        meaning: "Animating a still image into a video clip",
-        usage: "Use image-to-video for more control over the starting frame",
-      },
-    ],
-    instructorNotes: "Demo multiple video AI tools. Compare quality and use cases. Show workflow for combining generated clips.",
-  },
-  "11-5": {
-    objectives: [
-      "Edit videos using AI tools",
-      "Automate video workflows",
-      "Enhance footage with AI",
-    ],
-    summary: "AI video editing tools can upscale, stabilize, remove objects, generate captions, and automate tedious editing tasks.",
-    theory: `**AI video editing tools:**
-- Runway (effects, removal)
-- Topaz Video AI (upscaling)
-- Descript (transcript editing)
-- CapCut (auto-editing)
-- Adobe Premiere AI
-
-**AI editing features:**
-- Object removal
-- Background replacement
-- Upscaling and enhancement
-- Automatic captions
-- Transcript-based editing
-
-**Workflow automation:**
-- Auto-generate clips from long content
-- Silence and filler removal
-- Color matching
-- Audio enhancement
-
-**Enhancement:**
-- Upscaling (4K, 8K)
-- Frame interpolation
-- Noise reduction
-- Stabilization
-
-**Best workflow:**
-1. Rough edit traditionally
-2. Apply AI enhancements
-3. Fine-tune results
-4. Export and review`,
-    examples: [
-      {
-        title: "AI Video Enhancement",
-        before: "Make my video better",
-        after: `Enhance this video footage:
-
-Current issues:
-- Shot on phone, 1080p
-- Some shaky handheld shots
-- Audio has background noise
-- No captions
-
-Enhancement requests:
-1. Upscale to 4K using Topaz
-2. Apply stabilization to shaky clips
-3. Reduce background noise, enhance voice
-4. Auto-generate captions (burn in or SRT)
-5. Color grade for consistent look
-
-Output specs:
-- 4K resolution
-- H.264 codec
-- Separate SRT caption file
-- Color graded LUT applied`,
-        explanation: "List specific issues and desired enhancements with output specifications.",
-      },
-    ],
-    keywords: [
-      {
-        term: "Upscaling",
-        meaning: "AI enhancement of video resolution (e.g., 1080p to 4K)",
-        usage: "Use AI upscaling to improve quality of older or lower-resolution footage",
-      },
-      {
-        term: "Transcript Editing",
-        meaning: "Editing video by editing its text transcript",
-        usage: "Use Descript to edit videos by deleting or rearranging text",
-      },
-      {
-        term: "Frame Interpolation",
-        meaning: "AI-generated frames to increase video smoothness",
-        usage: "Use frame interpolation to convert 30fps video to smooth 60fps",
-      },
-    ],
-    instructorNotes: "Demo multiple AI editing tools. Show before/after comparisons. Discuss when AI enhancement is appropriate.",
+    instructorNotes: "Show examples from different game genres. Demonstrate how the same task (e.g., movement) varies drastically between an FPS and a puzzle game.",
   },
 };
 
-// Library templates
-export const promptTemplates: PromptTemplate[] = [
-  {
-    id: "1",
-    title: "React Component",
-    description: "Generate a React component with TypeScript and Tailwind",
-    category: "Frontend",
-    level: "intermediate",
-    template: `Create a {componentType} component with TypeScript and Tailwind.
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 
-Props:
-{props}
-
-Features:
-{features}
-
-Include proper TypeScript types and Tailwind styling.`,
-    variables: ["componentType", "props", "features"],
-  },
-  {
-    id: "2",
-    title: "API Endpoint",
-    description: "Generate a REST API endpoint",
-    category: "Backend",
-    level: "intermediate",
-    template: `Create a {method} endpoint for {resource}.
-
-Route: {route}
-
-Request body:
-{requestBody}
-
-Response:
-{response}
-
-Include validation and error handling.`,
-    variables: ["method", "resource", "route", "requestBody", "response"],
-  },
-  {
-    id: "3",
-    title: "Database Schema",
-    description: "Generate a database table schema",
-    category: "Database",
-    level: "intermediate",
-    template: `Create a database schema for {tableName}.
-
-Fields:
-{fields}
-
-Relationships:
-{relationships}
-
-Include indexes for common queries.`,
-    variables: ["tableName", "fields", "relationships"],
-  },
-];
-
-// Helper functions
-export function getLesson(lessonId: string) {
-  for (const module of modules) {
-    const lesson = module.lessons.find((l) => l.id === lessonId);
-    if (lesson) {
-      return {
-        ...lesson,
-        moduleTitle: module.title,
-        content: lessonContent[lessonId],
-      };
-    }
-  }
-  return null;
+export function getCourse(courseId: string): Course | undefined {
+  return courses.find((c) => c.id === courseId);
 }
 
-export function getAdjacentLessons(lessonId: string) {
-  const allLessons = modules.flatMap((m) => m.lessons);
+export function getModule(moduleId: string): Module | undefined {
+  for (const course of courses) {
+    const module = course.modules.find((m) => m.id === moduleId);
+    if (module) return module;
+  }
+  return undefined;
+}
+
+export function getLesson(lessonId: string): { lesson: Lesson; module: Module; course: Course } | undefined {
+  for (const course of courses) {
+    for (const module of course.modules) {
+      const lesson = module.lessons.find((l) => l.id === lessonId);
+      if (lesson) return { lesson, module, course };
+    }
+  }
+  return undefined;
+}
+
+export function getLessonContent(lessonId: string): LessonContent | undefined {
+  return lessonContent[lessonId];
+}
+
+export function getLessonLinks(lessonId: string): LessonLink[] {
+  return lessonLinks[lessonId] || [];
+}
+
+export function getAdjacentLessons(lessonId: string): { prev: Lesson | null; next: Lesson | null } {
+  const allLessons: Lesson[] = [];
+  for (const course of courses) {
+    for (const module of course.modules) {
+      allLessons.push(...module.lessons);
+    }
+  }
+  
   const currentIndex = allLessons.findIndex((l) => l.id === lessonId);
   
   return {
     prev: currentIndex > 0 ? allLessons[currentIndex - 1] : null,
     next: currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null,
   };
+}
+
+export function getCourseStats(courseId: string): { modules: number; lessons: number; hours: number } {
+  const course = getCourse(courseId);
+  if (!course) return { modules: 0, lessons: 0, hours: 0 };
+  
+  const modules = course.modules.length;
+  const lessons = course.modules.reduce((sum, m) => sum + m.lessons.length, 0);
+  const hours = Math.round(course.modules.reduce((sum, m) => 
+    sum + m.lessons.reduce((lSum, l) => lSum + parseInt(l.duration) || 25, 0), 0) / 60);
+  
+  return { modules, lessons, hours };
 }
